@@ -1,0 +1,695 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+div {
+    margin: 0px;
+    padding: 0px;
+}
+
+dl {
+    margin: 0px;
+    padding: 0px;
+}
+
+dt {
+    margin: 0px;
+    padding: 0px;
+}
+
+dd {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+ol {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+h3 {
+    margin: 0px;
+    padding: 0px;
+}
+
+h4 {
+    margin: 0px;
+    padding: 0px;
+}
+
+h5 {
+    margin: 0px;
+    padding: 0px;
+}
+
+h6 {
+    margin: 0px;
+    padding: 0px;
+}
+
+pre {
+    margin: 0px;
+    padding: 0px;
+}
+
+code {
+    margin: 0px;
+    padding: 0px;
+}
+
+form {
+    margin: 0px;
+    padding: 0px;
+}
+
+fieldset {
+    margin: 0px;
+    padding: 0px;
+}
+
+legend {
+    margin: 0px;
+    padding: 0px;
+}
+
+input {
+    margin: 0px;
+    padding: 0px;
+}
+
+button {
+    margin: 0px;
+    padding: 0px;
+}
+
+textarea {
+    margin: 0px;
+    padding: 0px;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+blockquote {
+    margin: 0px;
+    padding: 0px;
+}
+
+th {
+    margin: 0px;
+    padding: 0px;
+}
+
+td {
+    margin: 0px;
+    padding: 0px;
+}
+
+select {
+    margin: 0px;
+    padding: 0px;
+}
+
+fieldset {
+    border: 0px currentColor;
+}
+
+img {
+    border: 0px currentColor;
+}
+
+img {
+    vertical-align: top;
+}
+
+:focus {
+    outline: 0px;
+}
+
+address {
+    font-style: normal;
+    font-weight: normal;
+}
+
+caption {
+    font-style: normal;
+    font-weight: normal;
+}
+
+cite {
+    font-style: normal;
+    font-weight: normal;
+}
+
+code {
+    font-style: normal;
+    font-weight: normal;
+}
+
+dfn {
+    font-style: normal;
+    font-weight: normal;
+}
+
+em {
+    font-style: normal;
+    font-weight: normal;
+}
+
+th {
+    font-style: normal;
+    font-weight: normal;
+}
+
+var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+optgroup {
+    font-style: normal;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+h4 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+h5 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+abbr {
+    border: 0px currentColor;
+    font-variant: normal;
+}
+
+acronym {
+    border: 0px currentColor;
+    font-variant: normal;
+}
+
+input {
+    font-family: arial;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+button {
+    font-family: arial;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+textarea {
+    font-family: arial;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+select {
+    font-family: arial;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+optgroup {
+    font-family: arial;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+option {
+    font-family: arial;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+code {
+    font-size: 100%;
+}
+
+kbd {
+    font-size: 100%;
+}
+
+samp {
+    font-size: 100%;
+}
+
+tt {
+    font-size: 100%;
+}
+
+input {
+
+}
+
+button {
+
+}
+
+textarea {
+
+}
+
+select {
+
+}
+
+ol {
+    list-style: none;
+}
+
+ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption {
+    text-align: left;
+}
+
+th {
+    text-align: left;
+}
+
+sup {
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+sub {
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+:link {
+    text-decoration: none;
+}
+
+:visited {
+    text-decoration: none;
+}
+
+ins {
+    text-decoration: none;
+}
+
+blockquote {
+    quotes: none;
+}
+
+q {
+    quotes: none;
+}
+
+blockquote::before {
+    content: none;
+}
+
+blockquote::after {
+    content: none;
+}
+
+q::before {
+    content: none;
+}
+
+q::after {
+    content: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.clearfix::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.topbar::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.nav::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.section::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.product_buy_bd::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.buy_num::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.buy_area::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.pic_thumbnail::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.tab_hd::after {
+    height: 0px;
+    clear: both;
+    font-size: 0px;
+    display: block;
+    content: "\20";
+}
+
+.clearfix {
+
+}
+
+.topbar {
+
+}
+
+.nav {
+
+}
+
+.section {
+
+}
+
+.tab1_hd {
+
+}
+
+.product_buy_bd {
+
+}
+
+.buy_num {
+
+}
+
+.buy_area {
+
+}
+
+.pic_thumbnail {
+
+}
+
+.tab_hd {
+
+}
+
+body {
+    font: 12px/1.6 "宋体", "Tahoma", arial;
+    color: rgb(72, 72, 72);
+    font-size-adjust: none;
+    font-stretch: normal;
+    background-color: rgb(255, 255, 255);
+}
+
+a {
+    color: rgb(72, 72, 72);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(28, 155, 253);
+    text-decoration: underline;
+}
+
+.main_con {
+    margin: 0px auto;
+    top: 50px;
+    width: 970px;
+    position: relative;
+}
+
+.slider {
+    width: 965px;
+    height: 405px;
+    overflow: hidden;
+    position: relative;
+    zoom: 1;
+    box-shadow: 0px 1px 3px #999;
+}
+
+.slider img {
+    float: left;
+}
+
+.pager {
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    bottom: 0px;
+    overflow: hidden;
+    clear: both;
+    float: left;
+    position: absolute;
+}
+
+.pager a {
+    background: rgb(0, 0, 0);
+    margin: 0px 5px;
+    width: 21px;
+    height: 5px;
+    overflow: hidden;
+    text-decoration: none;
+    float: left;
+}
+
+.pager a.selected {
+    background: rgb(54, 103, 185);
+}
+
+.login_area {
+    left: -2px;
+    top: -10px;
+    height: 180px;
+    clear: both;
+    position: relative;
+    z-index: 99;
+}
+
+.logo_bar {
+    width: 480px;
+    height: 130px;
+    margin-top: 10px;
+    float: left;
+}
+
+.login_bar {
+    width: 480px;
+    height: 130px;
+    margin-top: 10px;
+    float: left;
+}
+
+.logo_bar img {
+    left: 200px;
+    top: 34px;
+    position: relative;
+}
+
+.login_bar {
+    width: 425px;
+    margin-top: 42px;
+    position: relative;
+}
+
+.login_bar .i {
+    clear: both;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.login_bar .ipt {
+    padding: 8px 8px 8px 36px;
+    border: 0px currentColor;
+    width: 168px;
+    height: 15px;
+    line-height: 16px;
+    overflow: hidden;
+    display: block;
+}
+
+.login_bar .lbl {
+    overflow: hidden;
+    float: left;
+    cursor: pointer;
+}
+
+.login_bar .ipc {
+    margin-right: 5px;
+    vertical-align: -3px;
+    cursor: pointer;
+}
+
+.rtx_login {
+    right: 100px;
+    padding-left: 18px;
+    float: right;
+    position: relative;
+}
+
+.login_bar .login_btn {
+    top: 0px;
+    width: 80px;
+    height: 75px;
+    right: 95px;
+    text-indent: -1024px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.login_bar .rtx_login_btn {
+    right: 0px;
+}
+
+.footer {
+    top: -42px;
+    height: 25px;
+    line-height: 25px;
+    position: relative;
+    z-index: 99;
+}
+
+.footer p {
+    text-align: center;
+    color: rgb(140, 140, 140);
+    font-family: Arial, sans-serif;
+}
+
+.login_area {
+    background-image: url("../img/login_bar_bg.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-potsion: 0 0;
+}
+
+.logo_bar {
+    background-image: url("../img/gutter_03.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-potsion: 0 0;
+}
+
+.login_bar .usr_name {
+    background-image: url("../img/landing_usr_ipt.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-potsion: 0 0;
+}
+
+.login_bar .usr_pwd {
+    background-image: url("../img/landing_pwd_ipt.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-potsion: 0 0;
+}
+
+.login_bar .login_btn {
+    background-image: url("../img/landing_login_btn.bmp");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-potsion: 0 0;
+}
+
+.login_bar .login_btn:hover {
+    background-image: url("../img/landing_login_btn.bmp");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-potsion: 0 0;
+}

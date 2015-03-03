@@ -1,0 +1,41 @@
+#button {
+    margin: 0 auto;
+    position: absolute;
+    padding: 10px;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.the_menu {
+    display: none;
+    z-index: 1500;
+    width: 200px;
+    background-clip: padding-box;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.the_menu li {
+    background-color: #ffffff;
+}
+
+.the_menu li a {
+    color: #777777;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    display: block;
+}
+
+.the_menu li a:hover {
+    padding: 10px;
+    font-weight: bold;
+    color: #444444;
+}

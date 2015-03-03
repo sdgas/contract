@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+}
+
+#head_line {
+    width: 100%;
+    height: 3px;
+    background: #2569c1;
+}
+
+#head {
+    width: 960px;
+    height: 110px;
+    margin: 0 auto 30px;
+}
+
+#head img {
+    float: left;
+    margin: 0px 0px -5px 0px;
+}
+
+#head #login {
+    float: left;
+    position: absolute;
+    top: 3px;
+    right: 15%;
+    width: 215px;
+    height: 33px;
+    background: url(../img/login_bg.jpg) no-repeat;
+}
+
+#head #login a {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 0px 5px 0px 5px;
+    line-height: 25px;
+    color: #fff;
+}
+
+#head #login a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+#nav {
+    height: 35px;
+    float: right;
+    margin-top: 80px;
+}
+
+/**	style used for both examples **/
+
+.menu {
+    height: 35px;
+    display: block;
+    font-family: "微软雅黑";
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    /* width and height of the menu items */
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    line-height: 45px;
+
+}
+
+.menu ul li a {
+    /* must be postioned relative  */
+    position: relative;
+    display: block;
+    width: 100px;
+    height: 45px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.menu ul li a span {
+    /* all layers will be absolute positioned */
+    position: absolute;
+    left: 0;
+    width: 100px;
+}
+
+.menu ul li a span.out {
+    top: 0px;
+}
+
+.menu ul li a span.over,
+.menu ul li a span.bg {
+    /* hide */
+    top: -45px;
+}
+
+/** 1st example **/
+
+#menu {
+
+}
+
+#menu ul li a {
+    color: #757575;
+}
+
+#menu ul li a span.over {
+    color: #114a93;
+    text-decoration: underline;
+}
+
+#content {
+    width: 900px;
+    margin: 10px auto 0;
+}
+
+#content h2 {
+    background: #557bac;
+    font-weight: normal;
+    font-family: "微软雅黑";
+    color: white;
+    font-size: 16px;
+    margin-left: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    *margin-bottom: 3px;
+    padding: 5px 0 5px 10px;
+}
+
+#content h3 {
+    background: #557bac;
+    font-weight: normal;
+    font-family: "微软雅黑";
+    color: white;
+    font-size: 22px;
+    margin-left: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    *margin-bottom: 3px;
+    padding: 5px 0 5px 10px;
+}
+
+#loginForm {
+    width: 500px;
+    margin-top: 20px;
+    margin-left: 95px;
+
+}
+
+#content form table {
+    margin: 20px 0px 20px 180px;
+    font-family: '微软雅黑';
+    font-size: 16px;
+}
+
+#content form table tr td {
+    /*width: 200px;*/
+    height: 35px;
+
+}
+
+#content form table tr td input {
+    font-family: '微软雅黑';
+    font-size: 16px;
+
+}
+
+#content form table tr td #link a {
+    text-decoration: none;
+}
+
+#content form table tr td a:hover {
+    color: #878787;
+}
+
+#content form a {
+    text-decoration: none;
+}
+
+#content hr {
+    width: 96%;
+    margin: 0 auto;
+    color: #ffffff;
+    size: 0;
+    border-bottom: 1px #cccccc solid;
+}
+
+#footer {
+    width: 960px;
+    margin: 0 auto;
+    height: 80px;
+    clear: both;
+}
+

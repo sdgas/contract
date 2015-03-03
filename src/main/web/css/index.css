@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+}
+
+#head_line {
+    width: 100%;
+    height: 3px;
+    background: #2569c1;
+}
+
+#head {
+    width: 960px;
+    height: 110px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+#head img {
+    float: left;
+    margin: 0px 0px -5px 0px;
+}
+
+#head #login {
+    position: absolute;
+    top: 3px;
+    right: 15%;
+    width: 215px;
+    height: 33px;
+    background: url(../img/login_bg.jpg);
+}
+
+#head #login a {
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 25px;
+    color: #fff;
+    padding-right: 25px;
+}
+
+#head #login a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+#left {
+    width: 120px;
+    border-top: 5px solid #2569c1;
+    border-bottom: 5px solid #2569c1;
+    border-left: 1px solid #2569c1;
+    border-right: 1px solid #2569c1;
+    position: fixed;
+    top: 25%;
+    left: 7%;
+    border-radius: 15px;
+}
+
+#left ul {
+    padding: 0px 10px;
+}
+
+#left ul li {
+    line-height: 30px;
+    list-style: none;
+    text-align: center;
+}
+
+#left ul li a {
+    text-decoration: none;
+    font-family: '微软雅黑';
+    color: #2569c1;
+}
+
+#left ul li a:hover {
+    color: red;
+}
+
+#picture {
+    margin-left: 18%;
+    margin-top: 3%;
+}
+
+#right {
+    width: 250px;
+    height: 257px;
+    margin-left: 60.5%;
+    background: #000000;
+}
+
+#content {
+    width: 960px;
+    margin: 0 auto;
+    height: 180px;
+    margin-top: 30px;
+}
+
+#content #leftContent a:hover {
+    color: #757575;
+}
+
+#content #leftContent, #content #rightContent {
+    float: left;
+    width: 400px;
+}
+
+#content #leftContent h2, #content #rightContent h2 {
+    background: #557bac;
+    font-weight: normal;
+    font-family: "微软雅黑";
+    display: inline;
+    color: white;
+    font-size: 14px;
+    padding: 5px 30px;
+
+}
+
+#content #leftContent ul, #content #rightContent ul {
+    margin-top: 15px;;
+    padding: 10px 5px;
+    border-top: 3px #757575 solid;
+}
+
+#content #leftContent ul li, #content #rightContent ul li {
+    height: 25px;
+}
+
+#content #leftContent ul li a, #content #rightContent ul li a {
+    text-decoration: none;
+    font-family: "微软雅黑";
+}
+
+#content #rightContent {
+    margin-left: 158px;
+}
+
+#line {
+    width: 960px;
+    height: 3px;
+    background: #114a93;
+    clear: both;
+    margin: 0 auto;
+
+}
+
+#footer {
+    width: 960px;
+    margin: 0 auto;
+    clear: both;
+    font-family: "微软雅黑";
+}
+
+#footer table {
+    width: 900px;
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+#footer table tr td {
+    width: 150px;
+    height: 25px;
+}
+
+#footer table tr td ul li {
+    list-style: none;
+    color: #757575;
+    font-size: 14px;
+    height: 20px;
+}

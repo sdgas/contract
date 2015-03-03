@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.objectFactory"
+              value="org.apache.struts2.spring.StrutsSpringObjectFactory"/>
+    <constant name="struts.ui.theme" value="simple"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <!--<constant name="struts.custom.i18n.resources" value=""/>-->
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.objectFactory.spring.autoWire.alwaysRespect"
+              value="true"/>
+
+    <!--上传文件的临时目录-->
+    <constant name="struts.multipart.saveDir" value="D:/CRM/_file/"/>
+    <!-- 上传文件的总大小限制200M-->
+    <constant name="struts.multipart.maxSize" value="209715200"/>
+    <!--资源文件配置-->
+    <constant name="struts.custom.i18n.resources"
+              value="ApplicationResources">
+    </constant>
+
+    <include file="struts/struts4download.xml"/>
+    <package name="default" extends="struts-default">
+        <!-- 默认action参考，就是当配置里的action都对应不上的时候，最后就会执行这个-->
+        <!--暂时不需要-->
+        <!--<default-action-ref name="index"/>-->
+
+        <!--Nickle: Nice job to use wildcard character (learnt it :) ) -->
+        <action name="*" class="org.sdgas.action.{1}Action">
+            <result name="success">/page/message/message.jsp</result>
+            <result name="error">/page/message/message.jsp</result>
+            <!-- 以下是本人自定义的结果，view是返回指定视图，action是跳转到指定action -->
+            <result name="view">${view}</result>
+            <result name="action" type="redirect">${action}</result>
+        </action>
+    </package>
+</struts>

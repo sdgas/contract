@@ -1,0 +1,136 @@
+#wrapper {
+    border: 1px #ccc solid;
+    position: relative;
+    overflow: hidden;
+    width: 573px;
+    height: 257px;
+    font-size: 14px;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+#number {
+    width: 88px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+
+#number li {
+    padding-left: 6px;
+    float: left;
+    text-indent: -9999px;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    background-image: url(../images/number1.png);
+    background-repeat: no-repeat;
+}
+
+#buttom_0 {
+    background-position: 0 0;
+}
+
+#buttom_1 {
+    background-position: -22px 0;
+}
+
+#buttom_2 {
+    background-position: -44px 0;
+}
+
+#buttom_3 {
+    background-position: -66px 0;
+}
+
+#buttom_0.selected {
+    background-position: 0 -16px;
+}
+
+#buttom_1.selected {
+    background-position: -22px -16px;
+}
+
+#buttom_2.selected {
+    background-position: -44px -16px;
+}
+
+#buttom_3.selected {
+    background-position: -66px -16px;
+}
+
+/* */
+.content_right {
+    float: left;
+}
+
+.content_right .ad {
+    margin-bottom: 10px;
+    width: 573px;
+    height: 257px;
+    overflow: hidden;
+    position: relative;
+}
+
+.content_right .slider, .content_right .num {
+    position: absolute;
+}
+
+.content_right .slider li {
+    list-style: none;
+    display: inline;
+}
+
+.content_right .slider img {
+    width: 573px;
+    height: 257px;
+    display: block;
+}
+
+.content_right .num {
+    right: 5px;
+    bottom: 5px;
+}
+
+.content_right .num li {
+    float: left;
+    color: #069;
+    text-align: center;
+    line-height: 16px;
+    width: 16px;
+    height: 16px;
+    font-family: Arial;
+    font-size: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 3px 1px;
+    border: 1px solid #069;
+    background-color: #fff;
+}
+
+.content_right .num li.on {
+    color: #fff;
+    line-height: 16px;
+    width: 16px;
+    height: 16px;
+    font-size: 14px;
+    margin: 3px 1px;
+    border: 1px solid #069;
+    background-color: #069;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
