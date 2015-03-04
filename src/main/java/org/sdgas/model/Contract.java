@@ -51,9 +51,44 @@ public class Contract {
     private String contractOperator;
 
     /**
+     * 合同原件份数
+     */
+    private int count;
+
+    /**
+     * 签约公司
+     */
+    private String contractSignCompany;
+
+    /**
+     * 预算
+     */
+    private Budget budget;
+
+    /**
+     * 预算类别
+     */
+    private String budgetType;
+
+    /**
+     * 预算剩下金额
+     */
+    private double budgetMoney = 0.0d;
+
+    /**
      * 附件
      */
     private String attachment;
+
+    /**
+     * 审结日期
+     */
+    private Date contractCloseDate;
+
+    /**
+     * 归档日期
+     */
+    private Date contractFilingDate;
 
     /**
      * 经办部门
@@ -114,7 +149,7 @@ public class Contract {
     }
 
     //precision表示数值的总长度，scale表示小数点所占的位数
-    @Column(precision = 12, scale = 2)
+    @Column(precision = 12, scale = 2, nullable = false)
     public double getContractMoney() {
         return contractMoney;
     }
@@ -123,7 +158,8 @@ public class Contract {
         this.contractMoney = contractMoney;
     }
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
+    @Column(nullable = false)
     public Date getSignContractDate() {
         return signContractDate;
     }
@@ -133,6 +169,7 @@ public class Contract {
     }
 
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     public Date getContractBeginDate() {
         return contractBeginDate;
     }
@@ -142,6 +179,7 @@ public class Contract {
     }
 
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     public Date getContractEndDate() {
         return contractEndDate;
     }
@@ -194,5 +232,68 @@ public class Contract {
 
     public void setContractProperty(ContractProperty contractProperty) {
         this.contractProperty = contractProperty;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
+
+    @Column(length = 4, nullable = false)
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    @Temporal(TemporalType.TIME)
+    public Date getContractCloseDate() {
+        return contractCloseDate;
+    }
+
+    public void setContractCloseDate(Date contractCloseDate) {
+        this.contractCloseDate = contractCloseDate;
+    }
+
+    @Temporal(TemporalType.TIME)
+    public Date getContractFilingDate() {
+        return contractFilingDate;
+    }
+
+    public void setContractFilingDate(Date contractFilingDate) {
+        this.contractFilingDate = contractFilingDate;
+    }
+
+    @Column(length = 15)
+    public String getBudgetType() {
+        return budgetType;
+    }
+
+    public void setBudgetType(String budgetType) {
+        this.budgetType = budgetType;
+    }
+
+
+    public double getBudgetMoney() {
+        return budgetMoney;
+    }
+
+    public void setBudgetMoney(double budgetMoney) {
+        this.budgetMoney = budgetMoney;
+    }
+
+    @Column(length = 30)
+    public String getContractSignCompany() {
+        return contractSignCompany;
+    }
+
+    public void setContractSignCompany(String contractSignCompany) {
+        this.contractSignCompany = contractSignCompany;
     }
 }
