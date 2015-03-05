@@ -84,7 +84,7 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
 
         User user = userService.findById(userVo.getUserId());
         if (!user.getPwd().equals(userVo.getPwd())) {
-            userVo.setResultMessage("<script>alert('原密码错误');location.href='/page/message/alterPwd.jsp';</script>");
+            userVo.setResultMessage("<script>alert('原密码错误');location.href='/page/user/alterPwd.jsp';</script>");
             logger.info(user.getPosition().getPositionName() + ":" + user.getUserName() + " 修改用户密码，原密码错误）操作IP：" + ip);
             return ERROR;
         } else {
@@ -94,6 +94,11 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
             logger.info(user.getPosition().getPositionName() + ":" + user.getUserName() + " 修改用户密码成功。操作IP：" + ip);
             return SUCCESS;
         }
+    }
+
+    //todo
+    public String addUser() {
+        return SUCCESS;
     }
 
     @Override

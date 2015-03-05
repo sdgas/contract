@@ -38,24 +38,21 @@
     <div class="btn-group" style="margin-top: 10px;">
         <%--btn-primary 颜色--%>
         <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
-            供应商管理 <span class="caret"></span>
+            人员管理 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="#">增加供应商信息</a>
+                <a href="<%=basePath%>/page/user/addPerson.jsp">增加账号</a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="Supplier.action"> 查询供应商信息 </a>
+                <a href="<%=basePath%>/page/user/alterPwd.jsp">修改账号密码</a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="Supplier.action"> 修改供应商信息 </a>
+                <a href="#"> 账号信息修改 </a>
             </li>
             <li class="divider"></li>
-            <li>
-                <a href="#"> 导入供应商信息 </a>
-            </li>
         </ul>
     </div>
 

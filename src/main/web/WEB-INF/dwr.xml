@@ -2,13 +2,20 @@
 <!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr/dwr30.dtd">
 <dwr>
     <allow>
-        <convert match="org.gdpu.model.User" converter="bean"/>
-        <!-- <convert match="org.gdpu.model.Sex" converter="enum"/>-->
+        <convert match="org.sdgas.model.Department" converter="bean"/>
+        <convert match="org.sdgas.model.Position" converter="bean"/>
+        <!-- <convert match="org.sdgas.model.Sex" converter="enum"/>-->
 
-       <!-- <create creator="spring" javascript="dormitoryService">
-            &lt;!&ndash;  由spring管理的业务类对象  dormitoryService   &ndash;&gt;
-            <param name="beanName" value="dormitoryServiceImpl"/>
-            &lt;!&ndash;指定可供远程调用的以为方法&ndash;&gt;
-        </create>-->
+        <create creator="spring" javascript="positionService">
+            <!--  由spring管理的业务类对象  ***Service   -->
+            <param name="beanName" value="positionServiceImpl"/>
+            <!--指定可供远程调用的以为方法-->
+        </create>
+
+        <create creator="spring" javascript="departmentService">
+            <!--  由spring管理的业务类对象  ***Service   -->
+            <param name="beanName" value="departmentServiceImpl"/>
+            <!--指定可供远程调用的以为方法-->
+        </create>
     </allow>
 </dwr>
