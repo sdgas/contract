@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- status=debug 可以查看log4j的装配过程 -->
 <configuration monitorInterval="30">
+
     <appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <!--过滤器:<level>:设置过滤级别 <onMatch>:用于配置符合过滤条件的操作
                     <onMismatch>:用于配置不符合过滤条件的操作 ACCEPT, DENY 或者 NEUTRAL-->
             <!--<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>-->
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" color="red"/>
         </Console>
         <!--输出到文件-->
-        <File name="log" fileName="D:/contract/contract_Log.log" append="true">
+        <File name="log" fileName="D:/contract/error/error.log" append="true">
             <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
         </File>
         <!--滚动文件-->
-        <RollingFile name="RollingLog" fileName="D:/contract/contract_Log/contract_Rolling.log"
+        <RollingFile name="RollingLog" fileName="D:/contract/daily/daily.log"
                      filePattern="D:/contract/contract_Log/contract_Log-$${date:MM-dd-yyyy}.%i.log.gz">
             <!--<ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>-->
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
-            <SizeBasedTriggeringPolicy size="50MB"/>
+            <SizeBasedTriggeringPolicy size="1MB"/>
         </RollingFile>
     </appenders>
     <loggers>
-        <!--除了org.gdpu的level以上的日志才能输出-->
+        <!--除了com.sdgas的level以上的日志才能输出-->
         <!--additivity表示叠加性 如果设置为true 日志级别满足下面<root>标签里的内容也会输出一次-->
-        <logger name="org.gdpu" level="TRACE" additivity="false">
+        <logger name="org.sdgas" level="Info" additivity="false">
             <appender-ref ref="RollingLog"/>
             <appender-ref ref="log"/>
             <appender-ref ref="Console"/>
         </logger>
 
-        <root level="WARN">
+        <root level="Info">
             <appender-ref ref="RollingLog"/>
             <appender-ref ref="log"/>
             <appender-ref ref="Console"/>

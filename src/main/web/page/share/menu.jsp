@@ -34,82 +34,79 @@
     </div>
 
     <%--导航菜单开始--%>
-    <c:if test="${session.person.position.positionId!=4||session.person.remarks=='物料采购'}">
+    <%--按钮1--%>
+    <div class="btn-group" style="margin-top: 10px;">
+        <%--btn-primary 颜色--%>
+        <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
+            供应商管理 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="#">增加供应商信息</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="Supplier.action"> 查询供应商信息 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="Supplier.action"> 修改供应商信息 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#"> 导入供应商信息 </a>
+            </li>
+        </ul>
+    </div>
 
-        <%--按钮1--%>
-        <div class="btn-group" style="margin-top: 10px;">
-                <%--btn-primary 颜色--%>
-            <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
-                供应商管理 <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="<%=basePath%>page/supplier/addSupplier.jsp">增加供应商信息</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="Supplier.action"> 查询供应商信息 </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="Supplier.action"> 修改供应商信息 </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="<%=basePath%>page/supplier/DateOperation.jsp"> 导入供应商信息 </a>
-                </li>
-            </ul>
-        </div>
+    <%--按钮2--%>
+    <div class="btn-group" style="margin-top: 10px;">
+        <%--btn-primary 颜色--%>
+        <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
+            物料管理 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="#"> 添加物料信息 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#"> 物料信息查询 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#"> 修改物料信息 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#"> 导入物料信息 </a>
+            </li>
+        </ul>
+    </div>
 
-        <%--按钮2--%>
-        <div class="btn-group" style="margin-top: 10px;">
-                <%--btn-primary 颜色--%>
-            <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
-                物料管理 <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="<%=basePath%>page/material/addMaterial.jsp"> 添加物料信息 </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="Material.action"> 物料信息查询 </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="Material.action"> 修改物料信息 </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="<%=basePath%>page/material/DateOperation.jsp"> 导入物料信息 </a>
-                </li>
-            </ul>
-        </div>
-
-        <%--按钮3--%>
-        <div class="btn-group" style="margin-top: 10px;">
-            <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
-                物料管理 <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="<%=basePath%>page/material/addMaterial.jsp"> 添加物料信息 </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="Material.action"> 物料信息查询 </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="Material.action"> 修改物料信息 </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="<%=basePath%>page/material/DateOperation.jsp"> 导入物料信息 </a>
-                </li>
-            </ul>
-        </div>
-    </c:if>
+    <%--按钮3--%>
+    <div class="btn-group" style="margin-top: 10px;">
+        <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
+            物料管理 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="#"> 添加物料信息 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#"> 物料信息查询 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#"> 修改物料信息 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="#"> 导入物料信息 </a>
+            </li>
+        </ul>
+    </div>
 
     <%--按钮4--%>
     <div class="btn-group" style="margin-top: 10px;">
@@ -118,70 +115,65 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="<%=basePath%>page/dp/addPlans.jsp"> 物料需求计划申请 </a>
+                <a href="#"> 物料需求计划申请 </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="DemandPlans.action"> 需求计划综合查询 </a>
+                <a href="#"> 需求计划综合查询 </a>
             </li>
             <li class="divider"></li>
-            <c:if test="${person.remarks=='物料采购'||person.position.positionId!=4}">
-                <li>
-                    <a href="DemandPlans.action?flag=2"> 需求计划审核 </a>
-                </li>
-            </c:if>
+            <li>
+                <a href="#"> 需求计划审核 </a>
+            </li>
         </ul>
     </div>
 
-    <c:if test="${person.remarks=='物料采购'||person.position.positionId!=4}">
-
-        <%--按钮5--%>
+    <%--按钮5--%>
     <div class="btn-group" style="margin-top: 10px;">
         <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
             请购管理 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="PurchaseRequisition!findAll.action"> 请购单填写 </a>
+                <a href="#"> 请购单填写 </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="PurchaseRequisition!findAll.action?flag=2"> 请购单综合查询 </a>
+                <a href="#"> 请购单综合查询 </a>
             </li>
         </ul>
     </div>
 
-        <%--按钮6--%>
+    <%--按钮6--%>
     <div class="btn-group" style="margin-top: 10px;">
         <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
             采购管理 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="PurchaseRequisition!findOrder.action"> 采购单管理填写 </a>
+                <a href="#"> 采购单管理填写 </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="Order.action"> 采购单查询管理 </a>
+                <a href="#"> 采购单查询管理 </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="Order!arrival.action"> 采购到货情况管理 </a>
+                <a href="#"> 采购到货情况管理 </a>
             </li>
         </ul>
     </div>
 
-        <%--按钮5--%>
+    <%--按钮5--%>
     <div class="btn-group" style="margin-top: 10px;">
         <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
             查询 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="<%=basePath%>page/supplier/statistics.jsp"> 供应商销售查询 </a>
+                <a href="#"> 供应商销售查询 </a>
             </li>
         </ul>
-        </c:if>
     </div>
 </div>
 <%--<div style="margin-top: 10px;" class="btn-group">
