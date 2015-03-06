@@ -31,7 +31,7 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="<%=basePath%>js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
-
+    <script type="text/javascript" src="<%=basePath%>js/jquery.pstrength.js"></script>
     <style type="text/css">
         tr {
             text-align: center;
@@ -53,7 +53,12 @@
         });
 
         function sure() {
-            if ($('#pwd2')[0].value != $('#pwd1')[0].value) {
+            var pwd = $("#pwd1")[0].value;
+            if (pwd.length < 6) {
+                alert("密码长度必须大于六位");
+                return false;
+            }
+            else if ($('#pwd2')[0].value != pwd) {
                 alert("两次输入的密码不一致");
                 return false;
             } else {
@@ -74,20 +79,27 @@
             </tr>
             <tr>
                 <td>原密码：</td>
-                <td><input type="password" name="pwd" id="pwd"></td>
+                <td>
+                    <input type="password" name="pwd" id="pwd">
+                </td>
             </tr>
             <tr>
                 <td>新密码：</td>
-                <td><input type="password" name="pwd1" id="pwd1"></td>
+                <td>
+                    <input type="password" name="pwd1" id="pwd1" onchange="pwdLength()"
+                           onKeyUp="pwStrength(this.value)" onBlur="pwStrength(this.value)">
+                </td>
+                <td style="height:6px;width: 40px" id="strength_L" bgcolor="#f5f5f5">弱</td>
+                <td style="height:5px;width: 40px" id="strength_M" bgcolor="#f5f5f5">中</td>
+                <td style="height:5px;width: 40px" id="strength_H" bgcolor="#f5f5f5">强</td>
+
             </tr>
+
             <tr>
                 <td>确认密码：</td>
-                <td><input type="password" name="pwd2" id="pwd2"
-                           onchange="sure()"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div id="msg" style="color: red;"></div>
+                <td>
+                    <input type="password" name="pwd2" id="pwd2"
+                           onchange="sure()">
                 </td>
             </tr>
             <tr>

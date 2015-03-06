@@ -24,9 +24,7 @@ public class DepartmentServiceImpl extends DaoSupport<Department> implements Dep
     }
 
     @Override
-    public Department findDepartmentByName(String department) {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("departmentName", department);
-        return (Department) this.findSpecialObject(Department.class, params);
+    public Department findDepartmentById(int departmentId) {
+        return this.find(Department.class, departmentId);
     }
 }

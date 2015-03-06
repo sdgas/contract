@@ -18,10 +18,10 @@ public interface PositionService extends DAO {
     public List<Position> findAllPosition();
 
     /**
-     * 根据职位名称查找
+     * 根据职位编号查找
      *
-     * @param position 职位名称
+     * @param positionId 职位编号
      * @return 职位
      */
-    public Position findPositionByName(String position);
+    public Position findPositionById(int positionId);
 }

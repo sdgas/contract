@@ -98,7 +98,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="button" value="添加">
+                    <input type="submit" value="添加">
                     <input type="reset" value="重置">
                 </td>
             </tr>

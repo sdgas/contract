@@ -5,7 +5,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.sdgas.VO.UserVo;
+import org.sdgas.model.Department;
+import org.sdgas.model.Position;
 import org.sdgas.model.User;
+import org.sdgas.service.DepartmentService;
+import org.sdgas.service.PositionService;
 import org.sdgas.service.UserService;
 import org.sdgas.util.SystemHelper;
 import org.springframework.context.annotation.Scope;
@@ -24,6 +28,8 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
 
     private UserVo userVo = new UserVo();
     private UserService userService;
+    private DepartmentService departmentService;
+    private PositionService positionService;
 
     private static String ip = "";
 
@@ -98,6 +104,26 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
 
     //todo
     public String addUser() {
+        HttpSession session = ServletActionContext.getRequest().getSession();
+        User person = (User) session.getAttribute("person");
+
+        User user = userService.findById(userVo.getUserId());
+        if (user != null) {
+            userVo.setResultMessage("<script>alert('该用户已存在，请直接登录');location.href='/page/user/addPerson.jsp';</script>");
+            logger.info("用户：" + user.getUserId() + "已存在，添加用户失败。IP：" + ip);
+            return ERROR;
+        }
+        Department department = departmentService.findDepartmentById(Integer.valueOf(userVo.getDepartment()));
+        Position position = positionService.findPositionById(Integer.valueOf(userVo.getPosition()));
+        User newUser = new User();
+        newUser.setUserId(userVo.getUserId());
+        newUser.setUserName(userVo.getUserName());
+        newUser.setPwd("000000");
+        newUser.setDepartment(department);
+        newUser.setPosition(position);
+        userService.save(newUser);
+        userVo.setResultMessage("<script>alert('用户添加成功');location.href='/page/user/addPerson.jsp';</script>");
+        logger.info("用户：" + person.getUserId() + " 成功添加新用户：" + newUser.getUserId() + "  IP：" + ip);
         return SUCCESS;
     }
 
@@ -109,6 +135,16 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
     @Resource(name = "userServiceImpl")
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Resource(name = "departmentServiceImpl")
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+
+    @Resource(name = "positionServiceImpl")
+    public void setPositionService(PositionService positionService) {
+        this.positionService = positionService;
     }
 
     private void storePersonToSession(User target) {

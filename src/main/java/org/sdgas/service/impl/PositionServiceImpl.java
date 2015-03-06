@@ -24,9 +24,7 @@ public class PositionServiceImpl extends DaoSupport<Position> implements Positio
     }
 
     @Override
-    public Position findPositionByName(String position) {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("positionName", position);
-        return (Position) this.findSpecialObject(Position.class, params);
+    public Position findPositionById(int positionId) {
+        return this.find(Position.class, positionId);
     }
 }

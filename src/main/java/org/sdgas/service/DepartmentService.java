@@ -21,8 +21,8 @@ public interface DepartmentService extends DAO {
     /**
      * 根据部门名称查找
      *
-     * @param department 部门名称
+     * @param departmentId 部门编号
      * @return 部门
      */
-    public Department findDepartmentByName(String department);
+    public Department findDepartmentById(int departmentId);
 }
