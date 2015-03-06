@@ -75,7 +75,9 @@
         <input type="hidden" value="${person.userId}" name="userId">
         <table>
             <tr>
-                <h3>修改用户密码</h3>
+                <td colspan="2" align="center">
+                    <span style="font-size: x-large">修改用户密码</span>
+                </td>
             </tr>
             <tr>
                 <td>原密码：</td>

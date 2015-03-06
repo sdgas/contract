@@ -118,11 +118,11 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
         User newUser = new User();
         newUser.setUserId(userVo.getUserId());
         newUser.setUserName(userVo.getUserName());
-        newUser.setPwd("000000");
+        newUser.setPwd("000000");//默认密码：000000
         newUser.setDepartment(department);
         newUser.setPosition(position);
         userService.save(newUser);
-        userVo.setResultMessage("<script>alert('用户添加成功');location.href='/page/user/addPerson.jsp';</script>");
+        userVo.setResultMessage("<script>alert('用户添加成功！默认密码：000000');location.href='/page/user/addPerson.jsp';</script>");
         logger.info("用户：" + person.getUserId() + " 成功添加新用户：" + newUser.getUserId() + "  IP：" + ip);
         return SUCCESS;
     }
