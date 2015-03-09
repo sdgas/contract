@@ -2,6 +2,8 @@ package org.sdgas.VO;
 
 import org.sdgas.model.ContractProperty;
 
+import java.io.File;
+
 /**
  * Created by 120378 on 2015-03-06.
  */
@@ -9,22 +11,24 @@ public class ContractVO extends BaseVO {
 
     private String contractId;
     private String contractName;
-    private double contractMoney = 0.0d;
-    private int contractType;
+    private String contractMoney;
+    private String performanceBond;
+    private String contractType;
     private String signContractDate;
     private String contractBeginDate;
     private String contractEndDate;
     private String contractOperator;
-    private int count;
+    private String count;
     private String contractSignCompany;
-    private int budget;
+    private String budget;
     private String budgetType;
-    private double budgetMoney = 0.0d;
-    private String attachment;
+    private String budgetMoney;
+    private File attachmentName;
+    private String fileName;
     private String contractCloseDate;
     private String contractFilingDate;
     private String department;
-    private int contractProperty;
+    private String contractProperty;
     private String mainContent;
     private String remark;
 
@@ -42,22 +46,6 @@ public class ContractVO extends BaseVO {
 
     public void setContractName(String contractName) {
         this.contractName = contractName;
-    }
-
-    public double getContractMoney() {
-        return contractMoney;
-    }
-
-    public void setContractMoney(double contractMoney) {
-        this.contractMoney = contractMoney;
-    }
-
-    public int getContractType() {
-        return contractType;
-    }
-
-    public void setContractType(int contractType) {
-        this.contractType = contractType;
     }
 
     public String getSignContractDate() {
@@ -92,28 +80,12 @@ public class ContractVO extends BaseVO {
         this.contractOperator = contractOperator;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
     public String getContractSignCompany() {
         return contractSignCompany;
     }
 
     public void setContractSignCompany(String contractSignCompany) {
         this.contractSignCompany = contractSignCompany;
-    }
-
-    public int getBudget() {
-        return budget;
-    }
-
-    public void setBudget(int budget) {
-        this.budget = budget;
     }
 
     public String getBudgetType() {
@@ -124,20 +96,20 @@ public class ContractVO extends BaseVO {
         this.budgetType = budgetType;
     }
 
-    public double getBudgetMoney() {
-        return budgetMoney;
+    public File getAttachmentName() {
+        return attachmentName;
     }
 
-    public void setBudgetMoney(double budgetMoney) {
-        this.budgetMoney = budgetMoney;
+    public void setAttachmentName(File attachmentName) {
+        this.attachmentName = attachmentName;
     }
 
-    public String getAttachment() {
-        return attachment;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public String getContractCloseDate() {
@@ -164,14 +136,6 @@ public class ContractVO extends BaseVO {
         this.department = department;
     }
 
-    public int getContractProperty() {
-        return contractProperty;
-    }
-
-    public void setContractProperty(int contractProperty) {
-        this.contractProperty = contractProperty;
-    }
-
     public String getMainContent() {
         return mainContent;
     }
@@ -187,4 +151,61 @@ public class ContractVO extends BaseVO {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    public String getContractMoney() {
+        return contractMoney;
+    }
+
+    public void setContractMoney(String contractMoney) {
+        this.contractMoney = contractMoney;
+    }
+
+    public String getPerformanceBond() {
+        return performanceBond;
+    }
+
+    public void setPerformanceBond(String performanceBond) {
+        this.performanceBond = performanceBond;
+    }
+
+    public String getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
+
+    public String getBudget() {
+        return budget;
+    }
+
+    public void setBudget(String budget) {
+        this.budget = budget;
+    }
+
+    public String getBudgetMoney() {
+        return budgetMoney;
+    }
+
+    public void setBudgetMoney(String budgetMoney) {
+        this.budgetMoney = budgetMoney;
+    }
+
+    public String getContractProperty() {
+        return contractProperty;
+    }
+
+    public void setContractProperty(String contractProperty) {
+        this.contractProperty = contractProperty;
+    }
 }
+

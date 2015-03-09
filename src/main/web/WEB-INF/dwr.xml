@@ -5,6 +5,7 @@
         <convert match="org.sdgas.model.Department" converter="bean"/>
         <convert match="org.sdgas.model.Position" converter="bean"/>
         <convert match="org.sdgas.model.ContractType" converter="bean"/>
+        <convert match="org.sdgas.model.ContractName" converter="bean"/>
         <!-- <convert match="org.sdgas.model.Sex" converter="enum"/>-->
 
         <create creator="spring" javascript="positionService">
@@ -19,6 +20,10 @@
 
         <create creator="spring" javascript="contractTypeService">
             <param name="beanName" value="contractTypeServiceImpl"/>
+        </create>
+
+        <create creator="spring" javascript="contractNameService">
+            <param name="beanName" value="contractNameServiceImpl"/>
         </create>
     </allow>
 </dwr>

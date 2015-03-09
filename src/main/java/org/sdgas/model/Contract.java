@@ -18,12 +18,17 @@ public class Contract {
     /**
      * 合同名称
      */
-    private String contractName;
+    private ContractName contractName;
 
     /**
      * 合同金额
      */
-    private double contractMoney = 0.0d;
+    private double contractMoney = 0.0;
+
+    /**
+     * 履约保证金
+     */
+    private double performanceBond = 0.0d;
 
     /**
      * 合同类别
@@ -61,7 +66,7 @@ public class Contract {
     private String contractSignCompany;
 
     /**
-     * 预算
+     * 预算  0预算内，1预算外
      */
     private Budget budget;
 
@@ -74,11 +79,6 @@ public class Contract {
      * 预算剩下金额
      */
     private double budgetMoney = 0.0d;
-
-    /**
-     * 附件
-     */
-    private String attachment;
 
     /**
      * 审结日期
@@ -120,22 +120,14 @@ public class Contract {
         this.contractId = contractId;
     }
 
-    @Column(length = 50, nullable = false)
-    public String getContractName() {
+    @ManyToOne
+    @JoinColumn(name = "contractName")
+    public ContractName getContractName() {
         return contractName;
     }
 
-    public void setContractName(String contractName) {
+    public void setContractName(ContractName contractName) {
         this.contractName = contractName;
-    }
-
-    @Column(length = 100)
-    public String getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
     }
 
     @ManyToOne
@@ -156,6 +148,15 @@ public class Contract {
 
     public void setContractMoney(double contractMoney) {
         this.contractMoney = contractMoney;
+    }
+
+    @Column(precision = 8, scale = 2, nullable = false)
+    public double getPerformanceBond() {
+        return performanceBond;
+    }
+
+    public void setPerformanceBond(double performanceBond) {
+        this.performanceBond = performanceBond;
     }
 
     @Temporal(TemporalType.TIME)
