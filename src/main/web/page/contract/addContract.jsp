@@ -57,7 +57,7 @@
                 swf: '<%=basePath%>uploadify/uploadify.swf',    // 上传使用的 Flash
                 width: 60,                          // 按钮的宽度
                 height: 23,                         // 按钮的高度
-                buttonText: "上传",                 // 按钮上的文字
+                buttonText: "选择文件",              // 按钮上的文字
                 buttonCursor: 'hand',               // 按钮的鼠标图标
                 fileObjName: 'uploadify',            // 上传参数名称 后台<span style="color:#ff0000;">action里面的属性uploadify</span>
                 // 两个配套使用
@@ -65,7 +65,8 @@
                 fileTypeDesc: "请选择 jpg png doc pdf文件",     // 文件说明
                 auto: false,                // 选择之后，自动开始上传
                 multi: true,               // 是否支持同时上传多个文件
-                queueSizeLimit: 5          // 允许多文件上传的时候，同时上传文件的个数
+                queueSizeLimit: 5,          // 允许多文件上传的时候，同时上传文件的个数
+                removeCompleted: false  //上传完后保存列表
             });
         });
 
@@ -198,8 +199,8 @@
                 <td>附件：</td>
                 <td colspan="3">
                     <input type="file" name="uploadify" id="uploadify"/>
-                    <a href="javascript:$('#uploadify').uploadify('cancel')">清除第一个文件</a>
-                    <a href="javascript:$('#uploadify').uploadify('cancel', '*')">清除所有文件</a>
+                    <%--<a href="javascript:$('#uploadify').uploadify('cancel')">清除第一个文件</a>
+                    <a href="javascript:$('#uploadify').uploadify('cancel', '*')">清除所有文件</a>--%>
                     <a href="javascript:$('#uploadify').uploadify('upload', '*')">上传所有文件</a>
                 </td>
             </tr>
