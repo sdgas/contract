@@ -19,7 +19,7 @@ public class Attachment {
     /**
      * 对应的合同编号
      */
-    private Contract contract;
+    private String contract;
 
     /**
      * 附件名称
@@ -35,13 +35,11 @@ public class Attachment {
         this.id = id;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "contract")
-    public Contract getContract() {
+    public String getContract() {
         return contract;
     }
 
-    public void setContract(Contract contract) {
+    public void setContract(String contract) {
         this.contract = contract;
     }
 

@@ -1,9 +1,10 @@
 package org.sdgas.service;
 
-import org.sdgas.VO.ContractVO;
+import org.sdgas.VO.AttachmentVO;
 import org.sdgas.base.DAO;
 import org.sdgas.model.Attachment;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -22,8 +23,9 @@ public interface AttachmentService extends DAO {
     /**
      * 上传附件
      *
-     * @param contractVO 页面信息
+     * @param attachment     文件信息
+     * @param attachmentName 文件名
      * @return 文件名
      */
-    public String uploadAttachment(ContractVO contractVO);
+    public String uploadAttachment(File attachment, String attachmentName);
 }

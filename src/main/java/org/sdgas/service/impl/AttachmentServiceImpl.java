@@ -1,6 +1,6 @@
 package org.sdgas.service.impl;
 
-import org.sdgas.VO.ContractVO;
+import org.sdgas.VO.AttachmentVO;
 import org.sdgas.base.DaoSupport;
 import org.sdgas.model.Attachment;
 import org.sdgas.service.AttachmentService;
@@ -33,7 +33,7 @@ public class AttachmentServiceImpl extends DaoSupport<Attachment> implements Att
     }
 
     @Override
-    public String uploadAttachment(ContractVO contractVO) {
+    public String uploadAttachment(File attachment, String attachmentName) {
         // 得到保存上传文件的目录的真实路径
         File dir = new File(SAVE_PATH_DIR);
         // 如果该目录不存在，就创建
@@ -41,9 +41,9 @@ public class AttachmentServiceImpl extends DaoSupport<Attachment> implements Att
             dir.mkdirs();
         }
 
-        String name = ChangeTime.formatDate() + ":" + contractVO.getFileName();
+        String name = ChangeTime.formatDate() + attachmentName;
         try {
-            FileInputStream is = new FileInputStream(contractVO.getAttachmentName());
+            FileInputStream is = new FileInputStream(attachment);
             FileOutputStream os = new FileOutputStream(new File(dir, name));
             byte[] buf = new byte[1024];
             int len = -1;

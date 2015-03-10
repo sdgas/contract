@@ -41,7 +41,7 @@ function displayNone() {
 // 获取目录对应格式
 function verifyFileName() {
     // 解决中文乱码问题的方法
-    document.forms[0].fileName.value = document.forms[0].attachmentName.value;
+    $("#fileName")[0].value = $("#attachmentName")[0].value;
 }
 
 function confirm() {
@@ -77,5 +77,9 @@ function confirm() {
 }
 
 function checkNum(num) {
-    return /^[0-9]+(\\.[0-9]{1,2})?$/.test(num);
+    if (!/^\d+(\.\d+)?$/.test(num)) {
+        alert("请输入正确的金额");
+        return false;
+    }
+    return true;
 }

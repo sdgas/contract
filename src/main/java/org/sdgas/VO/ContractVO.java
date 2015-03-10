@@ -23,8 +23,7 @@ public class ContractVO extends BaseVO {
     private String budget;
     private String budgetType;
     private String budgetMoney;
-    private File attachmentName;
-    private String fileName;
+
     private String contractCloseDate;
     private String contractFilingDate;
     private String department;
@@ -94,22 +93,6 @@ public class ContractVO extends BaseVO {
 
     public void setBudgetType(String budgetType) {
         this.budgetType = budgetType;
-    }
-
-    public File getAttachmentName() {
-        return attachmentName;
-    }
-
-    public void setAttachmentName(File attachmentName) {
-        this.attachmentName = attachmentName;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     public String getContractCloseDate() {

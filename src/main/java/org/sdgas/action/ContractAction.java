@@ -31,7 +31,6 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     private ContractNameService contractNameService;
     private ContractTypeService contractTypeService;
     private DepartmentService departmentService;
-    private AttachmentService attachmentService;
 
     private static final Logger logger = LogManager.getLogger(ContractAction.class);
 
@@ -67,11 +66,12 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 default:
                     break;
             }
+            contract.setBudgetType(contractVO.getBudgetType());
+            contract.setBudgetMoney(Double.valueOf(contractVO.getBudgetMoney()));
         }
 
-        contract.setBudgetType(contractVO.getBudgetType());
-        contract.setBudgetMoney(Double.valueOf(contractVO.getBudgetMoney()));
-        contract.setDepartment(departmentService.findDepartmentById(Integer.valueOf(contractVO.getDepartment())));
+        if (!contractVO.getDepartment().isEmpty())
+            contract.setDepartment(departmentService.findDepartmentById(Integer.valueOf(contractVO.getDepartment())));
 
         if (contractVO.getContractProperty() != null) {
             switch (Integer.valueOf(contractVO.getContractProperty())) {
@@ -121,10 +121,5 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     @Resource(name = "departmentServiceImpl")
     public void setDepartmentService(DepartmentService departmentService) {
         this.departmentService = departmentService;
-    }
-
-    @Resource(name = "attachmentServiceImpl")
-    public void setAttachmentService(AttachmentService attachmentService) {
-        this.attachmentService = attachmentService;
     }
 }
