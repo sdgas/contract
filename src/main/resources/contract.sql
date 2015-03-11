@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-03-09 17:27:42
+Date: 2015-03-11 17:31:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,14 +23,22 @@ CREATE TABLE `attachment` (
   `id` varchar(255) NOT NULL,
   `attachmentName` varchar(255) DEFAULT NULL,
   `contract` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK1C93543BBB7F9` (`contract`),
-  CONSTRAINT `FK1C93543BBB7F9` FOREIGN KEY (`contract`) REFERENCES `contract` (`contractId`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of attachment
 -- ----------------------------
+INSERT INTO `attachment` VALUES ('2015031110617', '20150311143024合同会签表-2014-12-22(4).DOC', '999');
+INSERT INTO `attachment` VALUES ('201503111151', '20150311151815入党积极分子考察登记表.doc', '999');
+INSERT INTO `attachment` VALUES ('201503111579', '20150311143024入党积极分子考察登记表.doc', '999');
+INSERT INTO `attachment` VALUES ('201503112303', '20150311142736fr_pic_khfwzx.jpg', '33');
+INSERT INTO `attachment` VALUES ('201503113582', '201503111427352015RK.pdf', '33');
+INSERT INTO `attachment` VALUES ('201503114543', '20150311143024合同管理流程-附件5.pdf', '999');
+INSERT INTO `attachment` VALUES ('201503116160', '20150311142736入党积极分子考察登记表.doc', '33');
+INSERT INTO `attachment` VALUES ('201503117754', '20150311143023fr_pic_khfwzx.jpg', '999');
+INSERT INTO `attachment` VALUES ('201503118690', '20150311142736合同会签表-2014-12-22(4).DOC', '33');
+INSERT INTO `attachment` VALUES ('201503119061', '20150311142736合同管理流程-附件5.pdf', '33');
 
 -- ----------------------------
 -- Table structure for contract
@@ -57,6 +65,8 @@ CREATE TABLE `contract` (
   `department` int(11) DEFAULT NULL,
   `performanceBond` double NOT NULL,
   `contractName` int(11) DEFAULT NULL,
+  `budgetType` varchar(15) DEFAULT NULL,
+  `biddingType` int(11) DEFAULT NULL,
   PRIMARY KEY (`contractId`),
   KEY `FKE20F7532DB5FFB39` (`department`),
   KEY `FKE20F75329FD96DFB` (`type`),
@@ -69,7 +79,8 @@ CREATE TABLE `contract` (
 -- ----------------------------
 -- Records of contract
 -- ----------------------------
-INSERT INTO `contract` VALUES ('PC15-STD-001', null, '0', '15000', '2015-03-19', null, '2015-03-19', null, '5000', '何斌', null, '佛山市赛维思信息技术有限公司', '2', '一台办公计算机', '固定资产采购', '16:35:55', '7', '1', '0', '6');
+INSERT INTO `contract` VALUES ('PC15-STD-0001', null, '0', '15000', '2015-03-19', null, '2015-03-19', null, '5000', '何斌', null, '佛山市赛维思信息技术有限公司', '2', '一台办公计算机', '固定资产采购', '16:35:55', '7', '1', '0', '6', null, null);
+INSERT INTO `contract` VALUES ('PC15-STD-0002', null, null, '0', '2015-03-12', null, '2015-03-12', null, '2', '何斌', null, '佛山市顺德区', '2', '2', '2', '14:19:26', '7', '1', '0', '6', null, null);
 
 -- ----------------------------
 -- Table structure for contractname
