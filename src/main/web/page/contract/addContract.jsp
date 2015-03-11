@@ -141,8 +141,8 @@
                 <td>合同属性:</td>
                 <td>
                     <input type="radio" name="contractProperty" value="0">新签
-                    <input type="radio" name="contractProperty" value="2">改签
                     <input type="radio" name="contractProperty" value="1">续签
+                    <input type="radio" name="contractProperty" value="2">改签
                 </td>
                 <td>&nbsp; &nbsp; &nbsp;</td>
                 <td>招标类别：</td>
