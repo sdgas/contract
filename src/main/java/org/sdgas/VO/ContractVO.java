@@ -21,6 +21,7 @@ public class ContractVO extends BaseVO {
     private String count;
     private String contractSignCompany;
     private String budget;
+    private String biddingType;
     private String budgetType;
     private String budgetMoney;
 
@@ -189,6 +190,14 @@ public class ContractVO extends BaseVO {
 
     public void setContractProperty(String contractProperty) {
         this.contractProperty = contractProperty;
+    }
+
+    public String getBiddingType() {
+        return biddingType;
+    }
+
+    public void setBiddingType(String biddingType) {
+        this.biddingType = biddingType;
     }
 }
 

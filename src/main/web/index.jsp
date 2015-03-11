@@ -42,7 +42,7 @@
 </head>
 <body>
 <%@ include file="/page/share/menu.jsp" %>
-<div id="content">
+<%--<div id="content">
     <form action="#" method="post">
 
         <div class="alert" style="width: 450px;margin: 20px 0px 20px 180px;">
@@ -83,7 +83,9 @@
     <div
             style="display:block; float:left;border:1px solid #FFFFFF;background-color: #c0ffa7;width: 400px;height: 300px">
     </div>
-</div>
+</div>--%>
+
+<div id="content"></div>
 
 <%@include file="/page/share/footer.jsp" %>
 </body>

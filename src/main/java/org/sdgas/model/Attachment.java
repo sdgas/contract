@@ -1,9 +1,6 @@
 package org.sdgas.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by 120378 on 2015-03-09.
@@ -35,6 +32,7 @@ public class Attachment {
         this.id = id;
     }
 
+    @Column(length = 15, nullable = false)
     public String getContract() {
         return contract;
     }

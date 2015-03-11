@@ -1,14 +1,12 @@
 package org.sdgas.action;
 
 import com.opensymphony.xwork2.ModelDriven;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.sdgas.VO.ContractVO;
-import org.sdgas.model.Budget;
-import org.sdgas.model.Contract;
-import org.sdgas.model.ContractProperty;
-import org.sdgas.model.User;
+import org.sdgas.model.*;
 import org.sdgas.service.*;
 import org.sdgas.util.ChangeTime;
 import org.springframework.context.annotation.Scope;
@@ -83,6 +81,29 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                     break;
                 case 2:
                     contract.setContractProperty(ContractProperty.CHANGE);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (contractVO.getBiddingType().equals("")) {
+            System.out.println("bt:" + contractVO.getBiddingType());
+            switch (Integer.valueOf(contractVO.getBiddingType())) {
+                case 0:
+                    contract.setBiddingType(BiddingType.OPEN);
+                    break;
+                case 1:
+                    contract.setBiddingType(BiddingType.LAW_INVITE);
+                    break;
+                case 2:
+                    contract.setBiddingType(BiddingType.IN_INVITE);
+                    break;
+                case 3:
+                    contract.setBiddingType(BiddingType.DIRECT);
+                    break;
+                case 4:
+                    contract.setBiddingType(BiddingType.OTHERS);
                     break;
                 default:
                     break;

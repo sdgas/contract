@@ -66,7 +66,8 @@
                 auto: false,                // 选择之后，自动开始上传
                 multi: true,               // 是否支持同时上传多个文件
                 queueSizeLimit: 5,          // 允许多文件上传的时候，同时上传文件的个数
-                removeCompleted: false  //上传完后保存列表
+                removeCompleted: false,  //上传完后保存列表
+                fileSizeLimit: 10240  //限制上传文件大小10M（单位：KB）
             });
         });
 
@@ -82,6 +83,12 @@
             })
         }
     </script>
+    <style type="text/css">
+        /*修改进度条长度*/
+        .uploadify-queue {
+            width: 300px;
+        }
+    </style>
 </head>
 <body>
 <%@ include file="/page/share/menu.jsp" %>
@@ -138,6 +145,19 @@
                     <input type="radio" name="contractProperty" value="1">续签
                 </td>
                 <td>&nbsp; &nbsp; &nbsp;</td>
+                <td>招标类别：</td>
+                <td><select name="biddingType"
+                            style="font-family: '微软雅黑';font-size: 16px;width: 180px">
+                    <option value="" style="text-align: center"> ---------请选择---------</option>
+                    <option style="text-align: center" value="0">公开招标</option>
+                    <option style="text-align: center" value="1">依法邀请招标</option>
+                    <option style="text-align: center" value="2">内部邀请招标</option>
+                    <option style="text-align: center" value="3">直接发包</option>
+                    <option style="text-align: center" value="4">其他</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
                 <td style="color: #ab1e1e">合同原件份数：</td>
                 <td><input type="text" name="count" id="count" onchange="checkNum(this.value)"></td>
             </tr>
@@ -189,20 +209,24 @@
                 </td>
             </tr>
             <tr>
+                <td></td>
+            </tr>
+            <tr>
                 <td>备注：</td>
                 <td colspan="4">
                     <textarea cols="65" rows="3" name="remark"></textarea>
                 </td>
             </tr>
-            <%--TODO:Attachment--%>
+            <tr>
+                <td></td>
+            </tr>
             <tr>
                 <td>附件：</td>
                 <td colspan="3">
                     <input type="file" name="uploadify" id="uploadify"/>
-                    <%--<a href="javascript:$('#uploadify').uploadify('cancel')">清除第一个文件</a>
-                    <a href="javascript:$('#uploadify').uploadify('cancel', '*')">清除所有文件</a>--%>
-                    <a href="javascript:$('#uploadify').uploadify('upload', '*')">上传所有文件</a>
+                    <a href="javascript:$('#uploadify').uploadify('upload', '*')">上传文件</a>
                 </td>
+
             </tr>
             <tr>
                 <td></td>

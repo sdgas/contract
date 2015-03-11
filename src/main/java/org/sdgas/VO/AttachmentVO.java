@@ -9,8 +9,8 @@ import java.util.List;
 public class AttachmentVO extends BaseVO {
 
     private String contractId;
-    private List<File> uploadify;
-    private List<String> uploadifyFileName;
+    private File uploadify;
+    private String uploadifyFileName;
 
     public String getContractId() {
         return contractId;
@@ -20,19 +20,19 @@ public class AttachmentVO extends BaseVO {
         this.contractId = contractId;
     }
 
-    public List<File> getUploadify() {
+    public File getUploadify() {
         return uploadify;
     }
 
-    public void setUploadify(List<File> uploadify) {
+    public void setUploadify(File uploadify) {
         this.uploadify = uploadify;
     }
 
-    public List<String> getUploadifyFileName() {
+    public String getUploadifyFileName() {
         return uploadifyFileName;
     }
 
-    public void setUploadifyFileName(List<String> uploadifyFileName) {
+    public void setUploadifyFileName(String uploadifyFileName) {
         this.uploadifyFileName = uploadifyFileName;
     }
 }

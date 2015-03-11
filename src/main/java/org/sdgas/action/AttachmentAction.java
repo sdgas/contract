@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by 120378 on 2015-03-10.
@@ -35,22 +36,21 @@ public class AttachmentAction extends MyActionSupport implements ModelDriven<Att
 
     private static String contractId = "";
 
-    //添加附件
+    //添加附件(Uploadify)
     @Override
     public String execute() throws IOException {
 
         if (contractId.isEmpty()) {
             return ERROR;
         } else {
-            for (int i = 0; i < attachmentVO.getUploadify().size(); i++) {
-                String name = attachmentService.uploadAttachment(attachmentVO.getUploadify().get(i), attachmentVO.getUploadifyFileName().get(i));
-                Attachment attachment = new Attachment();
-                attachment.setId(ChangeTime.formatDate());
-                attachment.setAttachmentName(name);
-                attachment.setContract(contractId);
-                attachmentService.save(attachment);
-                logger.info("用户：" + user.getUserName() + "上传了一份附件（" + attachment.getId() + ")IP:" + ip);
-            }
+
+            String name = attachmentService.uploadAttachment(attachmentVO.getUploadify(), attachmentVO.getUploadifyFileName());
+            Attachment attachment = new Attachment();
+            attachment.setId(ChangeTime.formatShortDate(new Date()) + (int) (999 + Math.random() * 9999));
+            attachment.setAttachmentName(name);
+            attachment.setContract(contractId);
+            attachmentService.save(attachment);
+            logger.info("用户：" + user.getUserName() + "上传了一份附件（" + attachment.getId() + ")IP:" + ip);
             return SUCCESS;
         }
     }

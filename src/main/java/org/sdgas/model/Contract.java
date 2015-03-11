@@ -41,6 +41,11 @@ public class Contract {
     private Date signContractDate;
 
     /**
+     * 招标类别  0公开招标  1依法邀请招标  2内部邀请招标  3直接发包  4其他
+     */
+    private BiddingType biddingType;
+
+    /**
      * 合同生效日期
      */
     private Date contractBeginDate;
@@ -280,7 +285,7 @@ public class Contract {
         this.budgetType = budgetType;
     }
 
-
+    @Column(precision = 12, scale = 2)
     public double getBudgetMoney() {
         return budgetMoney;
     }
@@ -296,5 +301,14 @@ public class Contract {
 
     public void setContractSignCompany(String contractSignCompany) {
         this.contractSignCompany = contractSignCompany;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    public BiddingType getBiddingType() {
+        return biddingType;
+    }
+
+    public void setBiddingType(BiddingType biddingType) {
+        this.biddingType = biddingType;
     }
 }
