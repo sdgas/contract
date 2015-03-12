@@ -1,7 +1,6 @@
 package org.sdgas.action;
 
 import com.opensymphony.xwork2.ModelDriven;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -88,7 +87,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         }
 
         if (contractVO.getBiddingType().equals("")) {
-            System.out.println("bt:" + contractVO.getBiddingType());
+
             switch (Integer.valueOf(contractVO.getBiddingType())) {
                 case 0:
                     contract.setBiddingType(BiddingType.OPEN);

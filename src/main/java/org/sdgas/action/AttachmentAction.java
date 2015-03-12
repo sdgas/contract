@@ -36,22 +36,34 @@ public class AttachmentAction extends MyActionSupport implements ModelDriven<Att
 
     private static String contractId = "";
 
-    //添加附件(Uploadify)
+    //添加附件(Uploadify调用方法)
     @Override
     public String execute() throws IOException {
 
         if (contractId.isEmpty()) {
             return ERROR;
         } else {
-
             String name = attachmentService.uploadAttachment(attachmentVO.getUploadify(), attachmentVO.getUploadifyFileName());
+            String id = checkId(ChangeTime.formatShortDate(new Date()) + (int) (999 + Math.random() * 9999));
             Attachment attachment = new Attachment();
-            attachment.setId(ChangeTime.formatShortDate(new Date()) + (int) (999 + Math.random() * 9999));
+            attachment.setId(id);
             attachment.setAttachmentName(name);
             attachment.setContract(contractId);
             attachmentService.save(attachment);
             logger.info("用户：" + user.getUserName() + "上传了一份附件（" + attachment.getId() + ")IP:" + ip);
             return SUCCESS;
+        }
+    }
+
+    //递归调用判断ID是否唯一
+    private String checkId(String id) {
+        Attachment attachment = attachmentService.find(Attachment.class, id);
+        if (attachment == null)
+            return id;
+        else {
+            String nextId = ChangeTime.formatShortDate(new Date()) + (int) (999 + Math.random() * 9999);
+            System.out.println("checkId:" + nextId);
+            return checkId(nextId);
         }
     }
 

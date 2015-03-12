@@ -4,7 +4,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
-import org.sdgas.VO.UserVo;
+import org.sdgas.VO.UserVO;
 import org.sdgas.model.Department;
 import org.sdgas.model.Position;
 import org.sdgas.model.User;
@@ -24,9 +24,9 @@ import javax.servlet.http.HttpSession;
  */
 @Component("login")
 @Scope("prototype")
-public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> {
+public class LoginAction extends MyActionSupport implements ModelDriven<UserVO> {
 
-    private UserVo userVo = new UserVo();
+    private UserVO userVO = new UserVO();
     private UserService userService;
     private DepartmentService departmentService;
     private PositionService positionService;
@@ -38,19 +38,19 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
     //用户登录
     @Override
     public String execute() throws Exception {
-        if (userVo.getUserId().isEmpty() || userVo.getPwd().isEmpty()) {
-            userVo.setResultMessage("<script>alert('请填写佛燃工号或密码！');location.href='login.jsp';</script>");
+        if (userVO.getUserId().isEmpty() || userVO.getPwd().isEmpty()) {
+            userVO.setResultMessage("<script>alert('请填写佛燃工号或密码！');location.href='login.jsp';</script>");
             return ERROR;
         }
 
-        User user = userService.findById(userVo.getUserId());
+        User user = userService.findById(userVO.getUserId());
         if (user.getUserId().isEmpty()) {
-            userVo.setResultMessage("<script>alert('用户不存在！');location.href='login.jsp';</script>");
+            userVO.setResultMessage("<script>alert('用户不存在！');location.href='login.jsp';</script>");
             return ERROR;
         }
         logger.entry(user.getUserName());
 
-        if (userVo.getPwd().equals(user.getPwd())) {
+        if (userVO.getPwd().equals(user.getPwd())) {
 
             storePersonToSession(user);
             logger.info(user.getPosition().getPositionName() + " " + user.getUserName() + ",登录系统 IP:" + ip);
@@ -67,7 +67,7 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
         }
         logger.info("用户:" + user.getUserName() + "登录密码错误！");
         logger.exit(user.getUserName());
-        userVo.setResultMessage("<script>alert('密码错误！');location.href='login.jsp';</script>");
+        userVO.setResultMessage("<script>alert('密码错误！');location.href='login.jsp';</script>");
         return ERROR;
     }
 
@@ -88,15 +88,15 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
     //修改密码
     public String alterPwd() {
 
-        User user = userService.findById(userVo.getUserId());
-        if (!user.getPwd().equals(userVo.getPwd())) {
-            userVo.setResultMessage("<script>alert('原密码错误');location.href='/page/user/alterPwd.jsp';</script>");
+        User user = userService.findById(userVO.getUserId());
+        if (!user.getPwd().equals(userVO.getPwd())) {
+            userVO.setResultMessage("<script>alert('原密码错误');location.href='/page/user/alterPwd.jsp';</script>");
             logger.info(user.getPosition().getPositionName() + ":" + user.getUserName() + " 修改用户密码，原密码错误）操作IP：" + ip);
             return ERROR;
         } else {
-            user.setPwd(userVo.getPwd2());
+            user.setPwd(userVO.getPwd2());
             userService.update(user);
-            userVo.setResultMessage("<script>alert('修改密码成功！请重新登录系统');location.href='login.jsp';</script>");
+            userVO.setResultMessage("<script>alert('修改密码成功！请重新登录系统');location.href='login.jsp';</script>");
             logger.info(user.getPosition().getPositionName() + ":" + user.getUserName() + " 修改用户密码成功。操作IP：" + ip);
             return SUCCESS;
         }
@@ -107,29 +107,29 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVo> 
         HttpSession session = ServletActionContext.getRequest().getSession();
         User person = (User) session.getAttribute("person");
 
-        User user = userService.findById(userVo.getUserId());
+        User user = userService.findById(userVO.getUserId());
         if (user != null) {
-            userVo.setResultMessage("<script>alert('该用户已存在，请直接登录');location.href='/page/user/addPerson.jsp';</script>");
+            userVO.setResultMessage("<script>alert('该用户已存在，请直接登录');location.href='/page/user/addPerson.jsp';</script>");
             logger.info("用户：" + user.getUserId() + "已存在，添加用户失败。IP：" + ip);
             return ERROR;
         }
-        Department department = departmentService.findDepartmentById(Integer.valueOf(userVo.getDepartment()));
-        Position position = positionService.findPositionById(Integer.valueOf(userVo.getPosition()));
+        Department department = departmentService.findDepartmentById(Integer.valueOf(userVO.getDepartment()));
+        Position position = positionService.findPositionById(Integer.valueOf(userVO.getPosition()));
         User newUser = new User();
-        newUser.setUserId(userVo.getUserId());
-        newUser.setUserName(userVo.getUserName());
+        newUser.setUserId(userVO.getUserId());
+        newUser.setUserName(userVO.getUserName());
         newUser.setPwd("000000");//默认密码：000000
         newUser.setDepartment(department);
         newUser.setPosition(position);
         userService.save(newUser);
-        userVo.setResultMessage("<script>alert('用户添加成功！默认密码：000000');location.href='/page/user/addPerson.jsp';</script>");
+        userVO.setResultMessage("<script>alert('用户添加成功！默认密码：000000');location.href='/page/user/addPerson.jsp';</script>");
         logger.info("用户：" + person.getUserId() + " 成功添加新用户：" + newUser.getUserId() + "  IP：" + ip);
         return SUCCESS;
     }
 
     @Override
-    public UserVo getModel() {
-        return userVo;
+    public UserVO getModel() {
+        return userVO;
     }
 
     @Resource(name = "userServiceImpl")
