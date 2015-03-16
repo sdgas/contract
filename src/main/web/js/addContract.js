@@ -72,7 +72,10 @@ function confirm() {
     } else if ($("#contractOperator")[0].value == "") {
         alert("请填写合同经办人!");
         return false;
-    } else
+    } else if ($("#guaranteePeriod")[0].value == "") {
+        alert("请选择质保期!");
+        return false;
+    }else
         return true;
 }
 

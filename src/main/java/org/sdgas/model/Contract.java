@@ -26,9 +26,11 @@ public class Contract {
     private double contractMoney = 0.0;
 
     /**
-     * 履约保证金
+     * 履约保证金/质保金
      */
     private double performanceBond = 0.0d;
+
+    private GuaranteePeriod guaranteePeriod;
 
     /**
      * 合同类别
@@ -41,7 +43,8 @@ public class Contract {
     private Date signContractDate;
 
     /**
-     * 招标类别  0公开招标  1依法邀请招标  2内部邀请招标  3直接发包  4其他
+     * 供应商的确定方式
+     * 0公开招标  1依法邀请招标  2内部邀请招标  3直接发包  4询价比价  5其他
      */
     private BiddingType biddingType;
 
@@ -310,5 +313,14 @@ public class Contract {
 
     public void setBiddingType(BiddingType biddingType) {
         this.biddingType = biddingType;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    public GuaranteePeriod getGuaranteePeriod() {
+        return guaranteePeriod;
+    }
+
+    public void setGuaranteePeriod(GuaranteePeriod guaranteePeriod) {
+        this.guaranteePeriod = guaranteePeriod;
     }
 }

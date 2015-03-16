@@ -102,6 +102,9 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                     contract.setBiddingType(BiddingType.DIRECT);
                     break;
                 case 4:
+                    contract.setBiddingType(BiddingType.COMPARE);
+                    break;
+                case 5:
                     contract.setBiddingType(BiddingType.OTHERS);
                     break;
                 default:
@@ -111,6 +114,44 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
 
         contract.setMainContent(contractVO.getMainContent());
         contract.setRemark(contractVO.getRemark());
+        switch (Integer.valueOf(contractVO.getGuaranteePeriod())) {
+            case 0:
+                contract.setGuaranteePeriod(GuaranteePeriod.HALF);
+                break;
+            case 1:
+                contract.setGuaranteePeriod(GuaranteePeriod.ONE);
+                break;
+            case 2:
+                contract.setGuaranteePeriod(GuaranteePeriod.TWO);
+                break;
+            case 3:
+                contract.setGuaranteePeriod(GuaranteePeriod.THREE);
+                break;
+            case 4:
+                contract.setGuaranteePeriod(GuaranteePeriod.FOUR);
+                break;
+            case 5:
+                contract.setGuaranteePeriod(GuaranteePeriod.FIVE);
+                break;
+            case 6:
+                contract.setGuaranteePeriod(GuaranteePeriod.SIX);
+                break;
+            case 7:
+                contract.setGuaranteePeriod(GuaranteePeriod.SEVEN);
+                break;
+            case 8:
+                contract.setGuaranteePeriod(GuaranteePeriod.EIGHT);
+                break;
+            case 9:
+                contract.setGuaranteePeriod(GuaranteePeriod.NINE);
+                break;
+            case 10:
+                contract.setGuaranteePeriod(GuaranteePeriod.TEN);
+                break;
+            case 11:
+                contract.setGuaranteePeriod(GuaranteePeriod.LIFELONG);
+                break;
+        }
 
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);

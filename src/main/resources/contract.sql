@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-03-11 17:31:45
+Date: 2015-03-13 11:07:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `attachment` (
 -- ----------------------------
 -- Records of attachment
 -- ----------------------------
-INSERT INTO `attachment` VALUES ('2015031110617', '20150311143024合同会签表-2014-12-22(4).DOC', '999');
+INSERT INTO `attachment` VALUES ('201503111061', '20150311143024合同会签表-2014-12-22(4).DOC', '999');
 INSERT INTO `attachment` VALUES ('201503111151', '20150311151815入党积极分子考察登记表.doc', '999');
 INSERT INTO `attachment` VALUES ('201503111579', '20150311143024入党积极分子考察登记表.doc', '999');
 INSERT INTO `attachment` VALUES ('201503112303', '20150311142736fr_pic_khfwzx.jpg', '33');
@@ -39,6 +39,11 @@ INSERT INTO `attachment` VALUES ('201503116160', '20150311142736入党积极分�
 INSERT INTO `attachment` VALUES ('201503117754', '20150311143023fr_pic_khfwzx.jpg', '999');
 INSERT INTO `attachment` VALUES ('201503118690', '20150311142736合同会签表-2014-12-22(4).DOC', '33');
 INSERT INTO `attachment` VALUES ('201503119061', '20150311142736合同管理流程-附件5.pdf', '33');
+INSERT INTO `attachment` VALUES ('201503121216', '20150312112626合同管理流程-附件5.pdf', '222222222');
+INSERT INTO `attachment` VALUES ('201503121830', '201503121126252015RK.pdf', '222222222');
+INSERT INTO `attachment` VALUES ('201503122490', '20150312112626入党积极分子考察登记表.doc', '222222222');
+INSERT INTO `attachment` VALUES ('201503125096', '20150312112626合同会签表-2014-12-22(4).DOC', '222222222');
+INSERT INTO `attachment` VALUES ('201503129228', '20150312112626fr_pic_khfwzx.jpg', '222222222');
 
 -- ----------------------------
 -- Table structure for contract
@@ -90,7 +95,7 @@ CREATE TABLE `contractname` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractName` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of contractname
@@ -101,12 +106,13 @@ INSERT INTO `contractname` VALUES ('3', '补充协议');
 INSERT INTO `contractname` VALUES ('4', '供气合同');
 INSERT INTO `contractname` VALUES ('5', '工程合同');
 INSERT INTO `contractname` VALUES ('6', '采购合同');
-INSERT INTO `contractname` VALUES ('7', '服务合同');
+INSERT INTO `contractname` VALUES ('7', '劳务合同');
 INSERT INTO `contractname` VALUES ('8', '培训合同');
 INSERT INTO `contractname` VALUES ('9', '租赁合同');
 INSERT INTO `contractname` VALUES ('10', '报装合同');
-INSERT INTO `contractname` VALUES ('11', '设计合同');
-INSERT INTO `contractname` VALUES ('12', '其他合同');
+INSERT INTO `contractname` VALUES ('11', '融资合同');
+INSERT INTO `contractname` VALUES ('12', '工程服务合同');
+INSERT INTO `contractname` VALUES ('13', '其他合同');
 
 -- ----------------------------
 -- Table structure for contracttype
@@ -157,6 +163,29 @@ INSERT INTO `department` VALUES ('5', '生产运行部');
 INSERT INTO `department` VALUES ('6', '综合管理部');
 INSERT INTO `department` VALUES ('8', '设计室');
 INSERT INTO `department` VALUES ('2', '财务管理部');
+
+-- ----------------------------
+-- Table structure for news
+-- ----------------------------
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) NOT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `newsState` int(11) DEFAULT NULL,
+  `sendTime` datetime DEFAULT NULL,
+  `receiver` varchar(255) NOT NULL,
+  `sender` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK24FEF3C2FECE55` (`sender`),
+  KEY `FK24FEF3C8CA9E0F` (`receiver`),
+  CONSTRAINT `FK24FEF3C2FECE55` FOREIGN KEY (`sender`) REFERENCES `user` (`userId`),
+  CONSTRAINT `FK24FEF3C8CA9E0F` FOREIGN KEY (`receiver`) REFERENCES `user` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of news
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for position

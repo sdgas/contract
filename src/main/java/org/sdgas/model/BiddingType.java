@@ -38,11 +38,19 @@ public enum BiddingType {
         }
     },
     /**
+     * 询价比价
+     */
+    COMPARE {
+        public int getStatus() {
+            return 4;
+        }
+    },
+    /**
      * 其他
      */
     OTHERS {
         public int getStatus() {
-            return 4;
+            return 5;
         }
     };
 
@@ -59,6 +67,8 @@ public enum BiddingType {
                 return "内部邀请招标";
             case DIRECT:
                 return "直接发包";
+            case COMPARE:
+                return "询价比价";
             case OTHERS:
                 return "其他";
             default:

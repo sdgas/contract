@@ -145,7 +145,7 @@
                     <input type="radio" name="contractProperty" value="2">改签
                 </td>
                 <td>&nbsp; &nbsp; &nbsp;</td>
-                <td>招标类别：</td>
+                <td>供应商的确定方式：</td>
                 <td><select name="biddingType"
                             style="font-family: '微软雅黑';font-size: 16px;width: 180px">
                     <option value="" style="text-align: center"> ---------请选择---------</option>
@@ -153,7 +153,8 @@
                     <option style="text-align: center" value="1">依法邀请招标</option>
                     <option style="text-align: center" value="2">内部邀请招标</option>
                     <option style="text-align: center" value="3">直接发包</option>
-                    <option style="text-align: center" value="4">其他</option>
+                    <option style="text-align: center" value="4">询价比价</option>
+                    <option style="text-align: center" value="5">其他</option>
                 </select>
                 </td>
             </tr>
@@ -179,15 +180,36 @@
                 <td><input type="text" name="contractOperator" id="contractOperator"></td>
             </tr>
             <tr>
+                <td style="color: #ab1e1e">质保期：</td>
+                <td>
+                    <select name="guaranteePeriod" style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="guaranteePeriod">
+                        <option value="" style="text-align: center"> ---------请选择---------</option>
+                        <option value="0" style="text-align: center">半年</option>
+                        <option value="1" style="text-align: center">一年</option>
+                        <option value="2" style="text-align: center">两年</option>
+                        <option value="3" style="text-align: center">三年</option>
+                        <option value="4" style="text-align: center">四年</option>
+                        <option value="5" style="text-align: center">五年</option>
+                        <option value="6" style="text-align: center">六年</option>
+                        <option value="7" style="text-align: center">七年</option>
+                        <option value="8" style="text-align: center">八年</option>
+                        <option value="9" style="text-align: center">九年</option>
+                        <option value="10" style="text-align: center">十年</option>
+                        <option value="11" style="text-align: center">终身</option>
+                    </select>
+                </td>
+                <td>&nbsp; &nbsp;</td>
                 <td style="color: #ab1e1e">质保金：</td>
                 <td><input type="text" name="performanceBond" value="0.00" maxlength="10" id="performanceBond"
                            onchange="checkNum(this.value)">元
                 </td>
-                <td>&nbsp; &nbsp;</td>
+            </tr>
+            <tr>
                 <td style="color: #ab1e1e">合同金额：</td>
                 <td><input type="text" name="contractMoney" maxlength="12" id="contractMoney"
                            onchange="checkNum(this.value)">元
                 </td>
+                <td>&nbsp; &nbsp;</td>
             </tr>
             <tr>
                 <td style="color: #ab1e1e">合同生效日期：</td>

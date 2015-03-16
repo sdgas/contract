@@ -13,6 +13,7 @@ public class ContractVO extends BaseVO {
     private String contractName;
     private String contractMoney;
     private String performanceBond;
+    private String guaranteePeriod;
     private String contractType;
     private String signContractDate;
     private String contractBeginDate;
@@ -198,6 +199,14 @@ public class ContractVO extends BaseVO {
 
     public void setBiddingType(String biddingType) {
         this.biddingType = biddingType;
+    }
+
+    public String getGuaranteePeriod() {
+        return guaranteePeriod;
+    }
+
+    public void setGuaranteePeriod(String guaranteePeriod) {
+        this.guaranteePeriod = guaranteePeriod;
     }
 }
 
