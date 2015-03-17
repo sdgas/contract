@@ -151,7 +151,16 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             case 11:
                 contract.setGuaranteePeriod(GuaranteePeriod.LIFELONG);
                 break;
+            case 12:
+                contract.setGuaranteePeriod(GuaranteePeriod.NO);
+                break;
         }
+
+        if ("0".equals(contractVO.getReceiveOrPay()))
+            contract.setReceivableOrPay(ReceiveOrPay.PAY);
+        else
+            contract.setReceivableOrPay(ReceiveOrPay.RECEIVE);
+        contract.setReceivableOrPayMoney(Double.valueOf(contractVO.getReceivableOrPayMoney()));
 
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);

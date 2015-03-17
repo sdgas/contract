@@ -82,6 +82,19 @@
                 dataType: "json"
             })
         }
+
+        function ContractMoney() {
+            var index = $('#cm')[0].selectedIndex;
+            if (index == 1) {
+                $('#word').css('display', '');
+                $('#contractMoneyS').css('display', 'none');
+                $('#contractMoney').val('0');
+            }
+            if (index == 2) {
+                $('#word').css('display', 'none');
+                $('#contractMoneyS').css('display', '');
+            }
+        }
     </script>
     <style type="text/css">
         /*修改进度条长度*/
@@ -147,7 +160,7 @@
                 <td>&nbsp; &nbsp; &nbsp;</td>
                 <td>供应商的确定方式：</td>
                 <td><select name="biddingType"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px">
+                            style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="biddingType">
                     <option value="" style="text-align: center"> ---------请选择---------</option>
                     <option style="text-align: center" value="0">公开招标</option>
                     <option style="text-align: center" value="1">依法邀请招标</option>
@@ -182,8 +195,10 @@
             <tr>
                 <td style="color: #ab1e1e">质保期：</td>
                 <td>
-                    <select name="guaranteePeriod" style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="guaranteePeriod">
+                    <select name="guaranteePeriod" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
+                            id="guaranteePeriod">
                         <option value="" style="text-align: center"> ---------请选择---------</option>
+                        <option value="12" style="text-align: center"> 无须质保</option>
                         <option value="0" style="text-align: center">半年</option>
                         <option value="1" style="text-align: center">一年</option>
                         <option value="2" style="text-align: center">两年</option>
@@ -206,10 +221,29 @@
             </tr>
             <tr>
                 <td style="color: #ab1e1e">合同金额：</td>
-                <td><input type="text" name="contractMoney" maxlength="12" id="contractMoney"
-                           onchange="checkNum(this.value)">元
+                <td>
+                    <select name="" id="cm" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
+                            onchange="ContractMoney()">
+                        <option value="" style="text-align: center"> ---------请选择---------</option>
+                        <option value="0" style="text-align: center">单价金额</option>
+                        <option value="1" style="text-align: center">总价金额</option>
+                    </select>
                 </td>
                 <td>&nbsp; &nbsp;</td>
+                <td colspan="2" style="display: none" id="word"><span style="color: red;">请在备注栏填写合同单价金额</span></td>
+                <td id="contractMoneyS" style="display: none" colspan="2">
+                    <input type="text" name="contractMoney" maxlength="12" id="contractMoney"
+                           onchange="checkNum(this.value)"> 元
+                </td>
+            </tr>
+            <tr>
+                <td style="color: #ab1e1e">合同应收（付）款金额：</td>
+                <td colspan="4" align="center">
+                    <input name="receiveOrPay" type="radio" value="0">付款
+                    <input name="receiveOrPay" type="radio" value="1">收款
+
+                    <input type="text" name="receivableOrPayMoney" maxlength="12" onchange="checkNum(this.value)">元
+                </td>
             </tr>
             <tr>
                 <td style="color: #ab1e1e">合同生效日期：</td>

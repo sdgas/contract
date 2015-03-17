@@ -19,6 +19,9 @@ public class ContractVO extends BaseVO {
     private String contractBeginDate;
     private String contractEndDate;
     private String contractOperator;
+    private String receivableOrPayMoney;
+    private String receiveOrPay;
+    private String stampTax;
     private String count;
     private String contractSignCompany;
     private String budget;
@@ -207,6 +210,30 @@ public class ContractVO extends BaseVO {
 
     public void setGuaranteePeriod(String guaranteePeriod) {
         this.guaranteePeriod = guaranteePeriod;
+    }
+
+    public String getReceivableOrPayMoney() {
+        return receivableOrPayMoney;
+    }
+
+    public void setReceivableOrPayMoney(String receivableOrPayMoney) {
+        this.receivableOrPayMoney = receivableOrPayMoney;
+    }
+
+    public String getStampTax() {
+        return stampTax;
+    }
+
+    public void setStampTax(String stampTax) {
+        this.stampTax = stampTax;
+    }
+
+    public String getReceiveOrPay() {
+        return receiveOrPay;
+    }
+
+    public void setReceiveOrPay(String receiveOrPay) {
+        this.receiveOrPay = receiveOrPay;
     }
 }
 

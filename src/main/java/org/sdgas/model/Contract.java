@@ -30,6 +30,9 @@ public class Contract {
      */
     private double performanceBond = 0.0d;
 
+    /**
+     * 质保期
+     */
     private GuaranteePeriod guaranteePeriod;
 
     /**
@@ -94,6 +97,11 @@ public class Contract {
     private Date contractCloseDate;
 
     /**
+     * 印花税
+     */
+    private StampTax stampTax;
+
+    /**
      * 归档日期
      */
     private Date contractFilingDate;
@@ -113,6 +121,16 @@ public class Contract {
      * 合同主要内容
      */
     private String mainContent;
+
+    /**
+     * 应收（付）金额
+     */
+    private double receivableOrPayMoney;
+
+    /**
+     * 收、付标识   0付款  1收款
+     */
+    private ReceiveOrPay receivableOrPay;
 
     /**
      * 备注
@@ -167,7 +185,7 @@ public class Contract {
         this.performanceBond = performanceBond;
     }
 
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     public Date getSignContractDate() {
         return signContractDate;
@@ -261,7 +279,7 @@ public class Contract {
         this.count = count;
     }
 
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getContractCloseDate() {
         return contractCloseDate;
     }
@@ -270,7 +288,7 @@ public class Contract {
         this.contractCloseDate = contractCloseDate;
     }
 
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getContractFilingDate() {
         return contractFilingDate;
     }
@@ -322,5 +340,32 @@ public class Contract {
 
     public void setGuaranteePeriod(GuaranteePeriod guaranteePeriod) {
         this.guaranteePeriod = guaranteePeriod;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    public StampTax getStampTax() {
+        return stampTax;
+    }
+
+    public void setStampTax(StampTax stampTax) {
+        this.stampTax = stampTax;
+    }
+
+    @Column(precision = 12, scale = 2, nullable = false)
+    public double getReceivableOrPayMoney() {
+        return receivableOrPayMoney;
+    }
+
+    public void setReceivableOrPayMoney(double receivableOrPayMoney) {
+        this.receivableOrPayMoney = receivableOrPayMoney;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    public ReceiveOrPay getReceivableOrPay() {
+        return receivableOrPay;
+    }
+
+    public void setReceivableOrPay(ReceiveOrPay receivableOrPay) {
+        this.receivableOrPay = receivableOrPay;
     }
 }

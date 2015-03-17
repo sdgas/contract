@@ -100,6 +100,11 @@ public enum GuaranteePeriod {
         public int getStatus() {
             return 11;
         }
+    },
+    NO{
+        public int getStatus() {
+            return 12;
+        }
     };
 
     public abstract int getStatus();
@@ -131,6 +136,8 @@ public enum GuaranteePeriod {
                 return "10年";
             case LIFELONG:
                 return "终身";
+            case NO:
+                return "无质保期";
             default:
                 return "ERR04";
 

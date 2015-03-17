@@ -75,7 +75,10 @@ function confirm() {
     } else if ($("#guaranteePeriod")[0].value == "") {
         alert("请选择质保期!");
         return false;
-    }else
+    } else if ($("#biddingType")[0].value == "") {
+        alert("请选择供应商确定方式!");
+        return false;
+    } else
         return true;
 }
 
