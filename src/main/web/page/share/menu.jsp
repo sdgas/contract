@@ -84,23 +84,11 @@
     <%--按钮3--%>
     <div class="btn-group" style="margin-top: 10px;">
         <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
-            <span class="caret"></span>
+            相关制度<span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="#"> </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a href="#"> </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a href="#"> </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a href="#"> </a>
+                <a href="<%=basePath%>page/policy/downloadList.jsp">相关制度下载</a>
             </li>
         </ul>
     </div>

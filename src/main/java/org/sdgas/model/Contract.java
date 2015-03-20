@@ -26,6 +26,11 @@ public class Contract {
     private double contractMoney = 0.0;
 
     /**
+     * 单价金额
+     */
+    private double unit_price = 0.0d;
+
+    /**
      * 履约保证金/质保金
      */
     private double performanceBond = 0.0d;
@@ -55,6 +60,11 @@ public class Contract {
      * 合同生效日期
      */
     private Date contractBeginDate;
+
+    /**
+     * 是否超合同结算  0否  1是
+     */
+    private int closingContract;
 
     /**
      * 合同到期日期
@@ -367,5 +377,22 @@ public class Contract {
 
     public void setReceivableOrPay(ReceiveOrPay receivableOrPay) {
         this.receivableOrPay = receivableOrPay;
+    }
+
+    @Column(precision = 12, scale = 2, nullable = false)
+    public double getUnit_price() {
+        return unit_price;
+    }
+
+    public void setUnit_price(double unit_price) {
+        this.unit_price = unit_price;
+    }
+
+    public int getClosingContract() {
+        return closingContract;
+    }
+
+    public void setClosingContract(int closingContract) {
+        this.closingContract = closingContract;
     }
 }

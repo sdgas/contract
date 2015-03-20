@@ -12,6 +12,7 @@ public class ContractVO extends BaseVO {
     private String contractId;
     private String contractName;
     private String contractMoney;
+    private String unit_price;
     private String performanceBond;
     private String guaranteePeriod;
     private String contractType;
@@ -25,6 +26,7 @@ public class ContractVO extends BaseVO {
     private String count;
     private String contractSignCompany;
     private String budget;
+    private String closingContract;
     private String biddingType;
     private String budgetType;
     private String budgetMoney;
@@ -234,6 +236,22 @@ public class ContractVO extends BaseVO {
 
     public void setReceiveOrPay(String receiveOrPay) {
         this.receiveOrPay = receiveOrPay;
+    }
+
+    public String getUnit_price() {
+        return unit_price;
+    }
+
+    public void setUnit_price(String unit_price) {
+        this.unit_price = unit_price;
+    }
+
+    public String getClosingContract() {
+        return closingContract;
+    }
+
+    public void setClosingContract(String closingContract) {
+        this.closingContract = closingContract;
     }
 }
 

@@ -11,6 +11,7 @@ public class AttachmentVO extends BaseVO {
     private String contractId;
     private File uploadify;
     private String uploadifyFileName;
+    private String fileName;
     private String dbName;
 
     public String getContractId() {
@@ -43,5 +44,13 @@ public class AttachmentVO extends BaseVO {
 
     public void setDbName(String dbName) {
         this.dbName = dbName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

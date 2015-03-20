@@ -82,19 +82,6 @@
                 dataType: "json"
             })
         }
-
-        function ContractMoney() {
-            var index = $('#cm')[0].selectedIndex;
-            if (index == 1) {
-                $('#word').css('display', '');
-                $('#contractMoneyS').css('display', 'none');
-                $('#contractMoney').val('0');
-            }
-            if (index == 2) {
-                $('#word').css('display', 'none');
-                $('#contractMoneyS').css('display', '');
-            }
-        }
     </script>
     <style type="text/css">
         /*修改进度条长度*/
@@ -117,7 +104,7 @@
                 <td colspan="5"></td>
             </tr>
             <tr>
-                <td>合同名称</td>
+                <td>合同名称：</td>
                 <td>
                     <select name="contractName" id="contractName"
                             style="font-family: '微软雅黑';font-size: 16px;width: 180px"></select>
@@ -127,7 +114,7 @@
                 <td><input type="text" name="contractId" id="contractId" onchange="getContract()"></td>
             </tr>
             <tr>
-                <td>合同类别:</td>
+                <td>合同类别：</td>
                 <td>
                     <select name="contractType" id="contractType"
                             style="font-family: '微软雅黑';font-size: 16px;width: 180px"></select>
@@ -151,14 +138,25 @@
                 </td>
             </tr>
             <tr>
-                <td>合同属性:</td>
+                <td>合同属性：</td>
                 <td>
                     <input type="radio" name="contractProperty" value="0">新签
                     <input type="radio" name="contractProperty" value="1">续签
                     <input type="radio" name="contractProperty" value="2">改签
                 </td>
                 <td>&nbsp; &nbsp; &nbsp;</td>
-                <td>供应商的确定方式：</td>
+                <td style="color: #ab1e1e">合同原件份数：</td>
+                <td><input type="text" name="count" id="count" onchange="checkNum(this.value)"></td>
+            </tr>
+            <tr>
+                <td style="color: #ab1e1e">签约对象：</td>
+                <td colspan="4">
+                    <textarea cols="65" rows="1" name="contractSignCompany" type="text"
+                              id="contractSignCompany"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 120px">供应商确定方式：</td>
                 <td><select name="biddingType"
                             style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="biddingType">
                     <option value="" style="text-align: center"> ---------请选择---------</option>
@@ -172,17 +170,6 @@
                 </td>
             </tr>
             <tr>
-                <td style="color: #ab1e1e">合同原件份数：</td>
-                <td><input type="text" name="count" id="count" onchange="checkNum(this.value)"></td>
-            </tr>
-            <tr>
-                <td style="color: #ab1e1e">签约对象：</td>
-                <td colspan="4">
-                    <textarea cols="63" rows="1" name="contractSignCompany" type="text"
-                              id="contractSignCompany"></textarea>
-                </td>
-            </tr>
-            <tr>
                 <td>经办部门：</td>
                 <td>
                     <select name="department" id="dep"
@@ -191,59 +178,6 @@
                 <td>&nbsp; &nbsp; &nbsp;</td>
                 <td style="color: #ab1e1e">经办人：</td>
                 <td><input type="text" name="contractOperator" id="contractOperator"></td>
-            </tr>
-            <tr>
-                <td style="color: #ab1e1e">质保期：</td>
-                <td>
-                    <select name="guaranteePeriod" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
-                            id="guaranteePeriod">
-                        <option value="" style="text-align: center"> ---------请选择---------</option>
-                        <option value="12" style="text-align: center"> 无须质保</option>
-                        <option value="0" style="text-align: center">半年</option>
-                        <option value="1" style="text-align: center">一年</option>
-                        <option value="2" style="text-align: center">两年</option>
-                        <option value="3" style="text-align: center">三年</option>
-                        <option value="4" style="text-align: center">四年</option>
-                        <option value="5" style="text-align: center">五年</option>
-                        <option value="6" style="text-align: center">六年</option>
-                        <option value="7" style="text-align: center">七年</option>
-                        <option value="8" style="text-align: center">八年</option>
-                        <option value="9" style="text-align: center">九年</option>
-                        <option value="10" style="text-align: center">十年</option>
-                        <option value="11" style="text-align: center">终身</option>
-                    </select>
-                </td>
-                <td>&nbsp; &nbsp;</td>
-                <td style="color: #ab1e1e">质保金：</td>
-                <td><input type="text" name="performanceBond" value="0.00" maxlength="10" id="performanceBond"
-                           onchange="checkNum(this.value)">元
-                </td>
-            </tr>
-            <tr>
-                <td style="color: #ab1e1e">合同金额：</td>
-                <td>
-                    <select name="" id="cm" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
-                            onchange="ContractMoney()">
-                        <option value="" style="text-align: center"> ---------请选择---------</option>
-                        <option value="0" style="text-align: center">单价金额</option>
-                        <option value="1" style="text-align: center">总价金额</option>
-                    </select>
-                </td>
-                <td>&nbsp; &nbsp;</td>
-                <td colspan="2" style="display: none" id="word"><span style="color: red;">请在备注栏填写合同单价金额</span></td>
-                <td id="contractMoneyS" style="display: none" colspan="2">
-                    <input type="text" name="contractMoney" maxlength="12" id="contractMoney"
-                           onchange="checkNum(this.value)"> 元
-                </td>
-            </tr>
-            <tr>
-                <td style="color: #ab1e1e">合同应收（付）款金额：</td>
-                <td colspan="4" align="center">
-                    <input name="receiveOrPay" type="radio" value="0">付款
-                    <input name="receiveOrPay" type="radio" value="1">收款
-
-                    <input type="text" name="receivableOrPayMoney" maxlength="12" onchange="checkNum(this.value)">元
-                </td>
             </tr>
             <tr>
                 <td style="color: #ab1e1e">合同生效日期：</td>
@@ -265,7 +199,77 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td style="color: #ab1e1e">合同签订金额：</td>
+                <td>
+                    <span style="color: #ab1e1e">单价金额：</span>
+                    <input type="text" name="unit_price" maxlength="12" id="unit_price"
+                           onchange="checkNum(this.value)" style="width: 60px" value="0.0"> 元
+                </td>
+                <td>&nbsp; &nbsp;</td>
+                <td style="color: #ab1e1e">合同总金额：</td>
+                <td>
+                    <input type="text" name="contractMoney" maxlength="12" id="contractMoney"
+                           onchange="checkNum(this.value)" style="width: 160px"> 元
+                </td>
+            </tr>
+            <tr>
+                <td style="color: #ab1e1e">合同应收（付）款金额:</td>
+                <td>
+                    <input name="receiveOrPay" type="radio" value="0">付款
+                    <input name="receiveOrPay" type="radio" value="1">收款
+                    <input type="text" name="receivableOrPayMoney" maxlength="12" onchange="checkNum(this.value)"
+                           style="width: 105px">元
+                </td>
+                <td>&nbsp; &nbsp;</td>
+                <td>款项类型：</td>
+                <td>
+                    <input type="text" name="#">
+                </td>
+            </tr>
+            <%--todo:未确定--%>
+            <tr>
+                <td style="color: #ab1e1e">结算金额:</td>
+                <td>
+                    <input name="receiveOrPay" type="radio" value="0">付款
+                    <input name="receiveOrPay" type="radio" value="1">收款
+                    <input type="text" name="receivableOrPayMoney" maxlength="12" onchange="checkNum(this.value)"
+                           style="width: 105px">元
+                </td>
+                <td>&nbsp; &nbsp;</td>
+                <td>是否超合同结算：</td>
+                <td>
+                    <input name="#" type="radio" value="2">是，已审核
+                    <input name="#" type="radio" value="1">是，未审核
+                    <input name="#" type="radio" value="0" checked="checked">否
+                </td>
+            </tr>
+            <tr>
+                <td style="color: #ab1e1e">质保期：</td>
+                <td>
+                    <select name="guaranteePeriod" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
+                            id="guaranteePeriod">
+                        <option value="" style="text-align: center">---------请选择---------</option>
+                        <option value="12" style="text-align: center">无须质保</option>
+                        <option value="0" style="text-align: center">半年</option>
+                        <option value="1" style="text-align: center">一年</option>
+                        <option value="2" style="text-align: center">两年</option>
+                        <option value="3" style="text-align: center">三年</option>
+                        <option value="4" style="text-align: center">四年</option>
+                        <option value="5" style="text-align: center">五年</option>
+                        <option value="6" style="text-align: center">六年</option>
+                        <option value="7" style="text-align: center">七年</option>
+                        <option value="8" style="text-align: center">八年</option>
+                        <option value="9" style="text-align: center">九年</option>
+                        <option value="10" style="text-align: center">十年</option>
+                        <option value="11" style="text-align: center">终身</option>
+                    </select>
+                </td>
+                <td>&nbsp; &nbsp;</td>
+                <td style="color: #ab1e1e">质保金：</td>
+                <td>
+                    <input type="text" name="performanceBond" value="0.00" maxlength="10" id="performanceBond"
+                           onchange="checkNum(this.value)" style="width: 165px">元
+                </td>
             </tr>
             <tr>
                 <td>备注：</td>

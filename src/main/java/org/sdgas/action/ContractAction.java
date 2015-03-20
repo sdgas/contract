@@ -43,15 +43,16 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setContractId(contractVO.getContractId());
         contract.setContractName(contractNameService.findById(Integer.valueOf(contractVO.getContractName())));
         contract.setContractMoney(Double.valueOf(contractVO.getContractMoney()));
+        contract.setContractSignCompany(contractVO.getContractSignCompany());
         contract.setPerformanceBond(Double.valueOf(contractVO.getPerformanceBond()));
         contract.setContractType(contractTypeService.findTypeById(Integer.valueOf(contractVO.getContractType())));
         contract.setContractBeginDate(ChangeTime.parseStringToShortDate(contractVO.getContractBeginDate()));
         contract.setSignContractDate(new Date());
+        contract.setUnit_price(Double.valueOf(contractVO.getUnit_price()));
         contract.setContractEndDate(ChangeTime.parseStringToShortDate(contractVO.getContractEndDate()));
         contract.setContractOperator(contractVO.getContractOperator());
         contract.setCount(Integer.valueOf(contractVO.getCount()));
-        contract.setContractSignCompany(contractVO.getContractSignCompany());
-
+        contract.setClosingContract(Integer.valueOf(contractVO.getClosingContract()));
         if (contractVO.getBudget() != null) {
             switch (Integer.valueOf(contractVO.getBudget())) {
                 case 0:
