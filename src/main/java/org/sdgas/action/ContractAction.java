@@ -52,7 +52,6 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setContractEndDate(ChangeTime.parseStringToShortDate(contractVO.getContractEndDate()));
         contract.setContractOperator(contractVO.getContractOperator());
         contract.setCount(Integer.valueOf(contractVO.getCount()));
-        contract.setClosingContract(Integer.valueOf(contractVO.getClosingContract()));
         if (contractVO.getBudget() != null) {
             switch (Integer.valueOf(contractVO.getBudget())) {
                 case 0:
@@ -114,7 +113,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         }
 
         contract.setMainContent(contractVO.getMainContent());
-        contract.setRemark(contractVO.getRemark());
+        contract.setRemark("款项类型：" + contractVO.getMoneyRemark().trim() + "     " + contractVO.getRemark());
+
         switch (Integer.valueOf(contractVO.getGuaranteePeriod())) {
             case 0:
                 contract.setGuaranteePeriod(GuaranteePeriod.HALF);
@@ -161,7 +161,20 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             contract.setReceivableOrPay(ReceiveOrPay.PAY);
         else
             contract.setReceivableOrPay(ReceiveOrPay.RECEIVE);
+        if (!contractVO.getClosingMoney().isEmpty())
+            contract.setClosingMoney(Double.valueOf(contractVO.getClosingMoney()));
         contract.setReceivableOrPayMoney(Double.valueOf(contractVO.getReceivableOrPayMoney()));
+        switch (Integer.valueOf(contractVO.getSettleAccount())) {
+            case 0:
+                contract.setSettleAccount(SettleAccount.N);
+                break;
+            case 1:
+                contract.setSettleAccount(SettleAccount.Y);
+                break;
+            case 2:
+                contract.setSettleAccount(SettleAccount.Y_N);
+                break;
+        }
 
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);

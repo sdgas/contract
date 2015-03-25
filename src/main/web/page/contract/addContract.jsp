@@ -209,7 +209,7 @@
                 <td style="color: #ab1e1e">合同总金额：</td>
                 <td>
                     <input type="text" name="contractMoney" maxlength="12" id="contractMoney"
-                           onchange="checkNum(this.value)" style="width: 160px"> 元
+                           onchange="checkNum2(this.value)" style="width: 160px"> 元
                 </td>
             </tr>
             <tr>
@@ -217,30 +217,29 @@
                 <td>
                     <input name="receiveOrPay" type="radio" value="0">付款
                     <input name="receiveOrPay" type="radio" value="1">收款
-                    <input type="text" name="receivableOrPayMoney" maxlength="12" onchange="checkNum(this.value)"
+                    <input type="text" name="receivableOrPayMoney" maxlength="12" id="receivableOrPayMoney" onchange="checkNum(this.value)"
                            style="width: 105px">元
                 </td>
                 <td>&nbsp; &nbsp;</td>
                 <td>款项类型：</td>
                 <td>
-                    <input type="text" name="#">
+                    <input type="text" name="moneyRemark">
                 </td>
             </tr>
-            <%--todo:未确定--%>
             <tr>
                 <td style="color: #ab1e1e">结算金额:</td>
                 <td>
                     <input name="receiveOrPay" type="radio" value="0">付款
                     <input name="receiveOrPay" type="radio" value="1">收款
-                    <input type="text" name="receivableOrPayMoney" maxlength="12" onchange="checkNum(this.value)"
+                    <input type="text" name="closingMoney" maxlength="12" onchange="checkNum(this.value)"
                            style="width: 105px">元
                 </td>
                 <td>&nbsp; &nbsp;</td>
                 <td>是否超合同结算：</td>
                 <td>
-                    <input name="#" type="radio" value="2">是，已审核
-                    <input name="#" type="radio" value="1">是，未审核
-                    <input name="#" type="radio" value="0" checked="checked">否
+                    <input name="settleAccount" type="radio" value="2">是，已审核
+                    <input name="settleAccount" type="radio" value="1">是，未审核
+                    <input name="settleAccount" type="radio" value="0" checked="checked">否
                 </td>
             </tr>
             <tr>

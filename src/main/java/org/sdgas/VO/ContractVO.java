@@ -23,10 +23,11 @@ public class ContractVO extends BaseVO {
     private String receivableOrPayMoney;
     private String receiveOrPay;
     private String stampTax;
+    private String settleAccount;
     private String count;
     private String contractSignCompany;
+    private String closingMoney;
     private String budget;
-    private String closingContract;
     private String biddingType;
     private String budgetType;
     private String budgetMoney;
@@ -36,6 +37,7 @@ public class ContractVO extends BaseVO {
     private String department;
     private String contractProperty;
     private String mainContent;
+    private String moneyRemark;
     private String remark;
 
     public String getContractId() {
@@ -246,12 +248,28 @@ public class ContractVO extends BaseVO {
         this.unit_price = unit_price;
     }
 
-    public String getClosingContract() {
-        return closingContract;
+    public String getSettleAccount() {
+        return settleAccount;
     }
 
-    public void setClosingContract(String closingContract) {
-        this.closingContract = closingContract;
+    public void setSettleAccount(String settleAccount) {
+        this.settleAccount = settleAccount;
+    }
+
+    public String getMoneyRemark() {
+        return moneyRemark;
+    }
+
+    public void setMoneyRemark(String moneyRemark) {
+        this.moneyRemark = moneyRemark;
+    }
+
+    public String getClosingMoney() {
+        return closingMoney;
+    }
+
+    public void setClosingMoney(String closingMoney) {
+        this.closingMoney = closingMoney;
     }
 }
 

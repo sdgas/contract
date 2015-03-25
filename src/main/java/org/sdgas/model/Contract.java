@@ -62,11 +62,6 @@ public class Contract {
     private Date contractBeginDate;
 
     /**
-     * 是否超合同结算  0否  1是
-     */
-    private int closingContract;
-
-    /**
      * 合同到期日期
      */
     private Date contractEndDate;
@@ -141,6 +136,16 @@ public class Contract {
      * 收、付标识   0付款  1收款
      */
     private ReceiveOrPay receivableOrPay;
+
+    /**
+     * 是否超结算  0否 1是，已审核  2是，未审核
+     */
+    private SettleAccount settleAccount;
+
+    /**
+     * 结算金额
+     */
+    private double closingMoney;
 
     /**
      * 备注
@@ -388,11 +393,21 @@ public class Contract {
         this.unit_price = unit_price;
     }
 
-    public int getClosingContract() {
-        return closingContract;
+    @Enumerated(EnumType.ORDINAL)
+    public SettleAccount getSettleAccount() {
+        return settleAccount;
     }
 
-    public void setClosingContract(int closingContract) {
-        this.closingContract = closingContract;
+    public void setSettleAccount(SettleAccount settleAccount) {
+        this.settleAccount = settleAccount;
+    }
+
+    @Column(precision = 12, scale = 2, nullable = false)
+    public double getClosingMoney() {
+        return closingMoney;
+    }
+
+    public void setClosingMoney(double closingMoney) {
+        this.closingMoney = closingMoney;
     }
 }

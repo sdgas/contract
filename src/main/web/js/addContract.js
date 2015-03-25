@@ -89,3 +89,12 @@ function checkNum(num) {
     }
     return true;
 }
+
+function checkNum2(num) {
+    if (!/^\d+(\.\d+)?$/.test(num)) {
+        alert("请输入正确的金额");
+        return false;
+    }
+    $('#receivableOrPayMoney')[0].value=num;
+    return true;
+}
