@@ -48,14 +48,8 @@
             <li>
                 <a href="<%=basePath%>page/user/alterPwd.jsp">修改账号密码</a>
             </li>
-            <li class="divider"></li>
-            <%--<li>
-                <a href="#"> 账号信息修改 </a>
-            </li>--%>
-            <li class="divider"></li>
         </ul>
     </div>
-
     <%--按钮2--%>
     <div class="btn-group" style="margin-top: 10px;">
         <%--btn-primary 颜色--%>
@@ -68,7 +62,7 @@
             </li>
             <li class="divider"></li>
             <li>
-                <a href="#"> 合同信息修改 </a>
+                <a href="Contract!findContract.action"> 维护合同信息 </a>
             </li>
             <li class="divider"></li>
             <li>

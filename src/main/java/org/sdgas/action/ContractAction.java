@@ -5,15 +5,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.sdgas.VO.ContractVO;
+import org.sdgas.base.PageView;
 import org.sdgas.model.*;
 import org.sdgas.service.*;
 import org.sdgas.util.ChangeTime;
+import org.sdgas.util.UserUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Created by 120378 on 2015-03-06.
@@ -180,6 +185,36 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);
         contractVO.setResultMessage("<script>alert('添加成功！');location.href='page/contract/addContract.jsp';</script>");
         return SUCCESS;
+    }
+
+    //查找用户的合同
+    public String findContract() {
+        if (UserUtil.checkUserLogIn(user)) {
+            contractVO.setResultMessage("<script>alert('请登录！');location.href='login.jsp';</script>");
+            return ERROR;
+        }
+        /** 每页显示的结果数 **/
+        int maxResult = 10;
+        /** 封装的页面数据 **/
+        PageView<Contract> pageView = new PageView<Contract>(maxResult,
+                contractVO.getPage());
+        int firstIndex = ((pageView.getCurrentPage() - 1) * pageView
+                .getMaxResult());// 开始索引
+
+        // 按照条件排序
+        LinkedHashMap<String, String> orderBy = new LinkedHashMap<String, String>();
+        orderBy.put("signContractDate", "DESC");
+        /** 列表条件 **/
+        StringBuffer jpql = new StringBuffer("1=1");
+        jpql.append("and department = " + user.getDepartment().getDepartmentId());
+
+        /** 列表条件的值 **/
+        List<Object> params = new ArrayList<Object>();
+        pageView.setQueryResult(contractService.getScrollData(Contract.class, firstIndex, maxResult, jpql.toString(),
+                params.toArray(), orderBy));
+        contractVO.setPageView(pageView);
+        view = "/page/contract/findContract.jsp";
+        return VIEW;
     }
 
     @Override
