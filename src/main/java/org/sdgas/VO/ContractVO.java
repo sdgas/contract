@@ -38,7 +38,43 @@ public class ContractVO extends BaseVO {
     private String contractProperty;
     private String mainContent;
     private String moneyRemark;
+    private String version;
+    private String stamp;
+    private String invoice;
+    private String supportFile;
     private String remark;
+
+    public String getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(String invoice) {
+        this.invoice = invoice;
+    }
+
+    public String getSupportFile() {
+        return supportFile;
+    }
+
+    public void setSupportFile(String supportFile) {
+        this.supportFile = supportFile;
+    }
+
+    public String getStamp() {
+        return stamp;
+    }
+
+    public void setStamp(String stamp) {
+        this.stamp = stamp;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
     public String getContractId() {
         return contractId;

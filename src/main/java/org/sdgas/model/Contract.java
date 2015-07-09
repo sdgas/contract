@@ -31,6 +31,12 @@ public class Contract {
     private double unit_price = 0.0d;
 
     /**
+     * 合同版本
+     * 0：非格式合同  1：格式合同
+     */
+    private int version;
+
+    /**
      * 履约保证金/质保金
      */
     private double performanceBond = 0.0d;
@@ -46,9 +52,14 @@ public class Contract {
     private ContractType contractType;
 
     /**
-     * 签订合同日期
+     * 申请会签日期
      */
     private Date signContractDate;
+
+    /**
+     * 发票
+     */
+    private int invoice;
 
     /**
      * 供应商的确定方式
@@ -104,12 +115,17 @@ public class Contract {
     /**
      * 印花税
      */
-    private StampTax stampTax;
+    private double stampTax = 0.0d;
 
     /**
      * 归档日期
      */
     private Date contractFilingDate;
+
+    /**
+     * 支持文件
+     */
+    private String supportFile;
 
     /**
      * 经办部门
@@ -146,6 +162,12 @@ public class Contract {
      * 结算金额
      */
     private double closingMoney;
+
+    /**
+     * 是否盖章
+     * 0未盖章   1已盖章
+     */
+    private int stamp;
 
     /**
      * 备注
@@ -357,12 +379,11 @@ public class Contract {
         this.guaranteePeriod = guaranteePeriod;
     }
 
-    @Enumerated(EnumType.ORDINAL)
-    public StampTax getStampTax() {
+    public double getStampTax() {
         return stampTax;
     }
 
-    public void setStampTax(StampTax stampTax) {
+    public void setStampTax(double stampTax) {
         this.stampTax = stampTax;
     }
 
@@ -409,5 +430,41 @@ public class Contract {
 
     public void setClosingMoney(double closingMoney) {
         this.closingMoney = closingMoney;
+    }
+
+    @Column(length = 4)
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+    @Column(length = 4)
+    public int getStamp() {
+        return stamp;
+    }
+
+    public void setStamp(int stamp) {
+        this.stamp = stamp;
+    }
+
+    @Column(length = 10)
+    public String getSupportFile() {
+        return supportFile;
+    }
+
+    public void setSupportFile(String supportFile) {
+        this.supportFile = supportFile;
+    }
+
+    @Column(length = 4)
+    public int getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(int invoice) {
+        this.invoice = invoice;
     }
 }

@@ -53,6 +53,11 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setContractType(contractTypeService.findTypeById(Integer.valueOf(contractVO.getContractType())));
         contract.setContractBeginDate(ChangeTime.parseStringToShortDate(contractVO.getContractBeginDate()));
         contract.setSignContractDate(new Date());
+        contract.setInvoice(Integer.valueOf(contractVO.getInvoice()));
+        contract.setSupportFile(contractVO.getSupportFile());
+        contract.setStampTax(Double.valueOf(contractVO.getStampTax()));
+        contract.setVersion(Integer.valueOf(contractVO.getVersion()));
+        contract.setStamp(Integer.valueOf(contractVO.getStamp()));
         contract.setUnit_price(Double.valueOf(contractVO.getUnit_price()));
         contract.setContractEndDate(ChangeTime.parseStringToShortDate(contractVO.getContractEndDate()));
         contract.setContractOperator(contractVO.getContractOperator());
@@ -91,7 +96,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             }
         }
 
-        if (contractVO.getBiddingType().equals("")) {
+        if (!contractVO.getBiddingType().isEmpty()) {
 
             switch (Integer.valueOf(contractVO.getBiddingType())) {
                 case 0:
