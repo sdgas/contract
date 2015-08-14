@@ -159,6 +159,11 @@ public class Contract {
     private SettleAccount settleAccount;
 
     /**
+     * 款项类型   0工程费  1履约保证金  2履约保函  3咨询费  4容量气价  5货款  6租赁费  7培训费  其他
+     */
+    private String paymentType;
+
+    /**
      * 结算金额
      */
     private double closingMoney;
@@ -466,5 +471,13 @@ public class Contract {
 
     public void setInvoice(int invoice) {
         this.invoice = invoice;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 }

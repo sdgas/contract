@@ -70,7 +70,7 @@
                 fileSizeLimit: 10240  //限制上传文件大小10M（单位：KB）
             });
 
-            mergeTable("t1",0,4);
+            mergeTable("t1", 0, 4);
         });
 
         function getContract() {
@@ -86,23 +86,23 @@
         }
 
         /* tableId:表格的ID,mergeColIndex:需要合并的列序号,beginRowIndex:合并开始的行序号 */
-        function mergeTable(tableId,mergeColIndex,beginRowIndex){
+        function mergeTable(tableId, mergeColIndex, beginRowIndex) {
             var table = document.getElementById(tableId);
-            if(table!=null){
+            if (table != null) {
                 var totalRows = table.rows.length;
-                for(var i=beginRowIndex;i<totalRows;i++){
+                for (var i = beginRowIndex; i < totalRows; i++) {
                     var rowSpan = 1;
                     var cell = table.rows[i].cells[mergeColIndex].innerHTML;
-                    for(var j=i+1;j<totalRows;j++){
-                        if(table.rows[j].cells[mergeColIndex].innerHTML==cell){
+                    for (var j = i + 1; j < totalRows; j++) {
+                        if (table.rows[j].cells[mergeColIndex].innerHTML == cell) {
                             rowSpan++;
                             table.rows[i].cells[mergeColIndex].rowSpan = rowSpan;//设置rowSpan
                             table.rows[j].cells[mergeColIndex].style.display = "none";//当前行被合并了，所以这里设置为none
-                        }else{
+                        } else {
                             break;
                         }
                     }
-                    i = i+rowSpan-1;//跳到最后一个相同的行，然后再+1就是另一个不相同的行啦
+                    i = i + rowSpan - 1;//跳到最后一个相同的行，然后再+1就是另一个不相同的行啦
                 }
             }
         }
@@ -113,8 +113,17 @@
             width: 300px;
         }
 
-        .mergeTable{width:100%;border:1px solid;border-collapse:collapse;table-layout:fixed;}
-        .mergeTable th,.mergeTable td{border:1px solid;text-align:center;}
+        .mergeTable {
+            width: 100%;
+            border: 1px solid;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .mergeTable th, .mergeTable td {
+            border: 1px solid;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -205,7 +214,7 @@
             <tr>
                 <td style="width: 120px">供应商确定方式：</td>
                 <td colspan="2"><select name="biddingType"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="biddingType">
+                                        style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="biddingType">
                     <option value="" style="text-align: center"> ---------请选择---------</option>
                     <option style="text-align: center" value="0">公开招标</option>
                     <option style="text-align: center" value="1">依法邀请招标</option>
@@ -353,12 +362,24 @@
                 </td>
             </tr>
             <tr>
+                <td>质保金到期日期:</td>
+                <td colspan="2">
+                    <input type="text" name="#" class="Wdate"
+                           onfocus="WdatePicker({skin:'whyGreen'})">
+                    </td>
+                <td>履约保证金：</td>
+                <td>
+                    <input type="text" name="#">
+                </td>
+            </tr>
+            <tr>
                 <td>发票：</td>
                 <td colspan="2">
                     <select name="invoice"
                             style="font-family: '微软雅黑';font-size: 16px;width: 180px">
                         <option value="" style="text-align: center"> ---------请选择---------</option>
                         <option style="text-align: center" value="17">17%增值税专用发票</option>
+                        <option style="text-align: center" value="11">11%增值税专用发票</option>
                         <option style="text-align: center" value="13">13%增值税专用发票</option>
                         <option style="text-align: center" value="6">6%增值税专用发票</option>
                         <option style="text-align: center" value="3">3%增值税专用发票</option>
