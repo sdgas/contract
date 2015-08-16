@@ -3,8 +3,8 @@ function getResult(departments) {
         + '---------请选择---------' + '</option>';
     for (var i = 0; i < departments.length; i++) {
         select_list += '<option style="text-align: center" value="'
-        + departments[i].departmentId + '">'
-        + departments[i].departmentName + "</option>";
+            + departments[i].departmentId + '">'
+            + departments[i].departmentName + "</option>";
     }
     $("#dep").html(select_list);
 }
@@ -14,8 +14,8 @@ function getContractType(contractTypes) {
         + '---------请选择---------' + '</option>';
     for (var i = 0; i < contractTypes.length; i++) {
         select_list += '<option style="text-align: center" value="'
-        + contractTypes[i].id + '">'
-        + contractTypes[i].contractType + "</option>";
+            + contractTypes[i].id + '">'
+            + contractTypes[i].contractType + "</option>";
     }
     $("#contractType").html(select_list);
 }
@@ -25,8 +25,8 @@ function getContractName(contractNames) {
         + '---------请选择---------' + '</option>';
     for (var i = 0; i < contractNames.length; i++) {
         select_list += '<option style="text-align: center" value="'
-        + contractNames[i].id + '">'
-        + contractNames[i].contractName + "</option>";
+            + contractNames[i].id + '">'
+            + contractNames[i].contractName + "</option>";
     }
     $("#contractName").html(select_list);
 }
@@ -95,6 +95,12 @@ function checkNum2(num) {
         alert("请输入正确的金额");
         return false;
     }
-    $('#receivableOrPayMoney')[0].value=num;
+    $('#receivableOrPayMoney')[0].value = num;
     return true;
+}
+
+function others(selectedVal) {
+    if (selectedVal == 9) {
+        $("#paymentType").css('display', '');
+    }
 }

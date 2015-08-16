@@ -37,9 +37,20 @@ public class Contract {
     private int version;
 
     /**
+     * 合同版本提供
+     * 0我司  1外单位
+     */
+    private int contractProvide;
+
+    /**
      * 履约保证金/质保金
      */
     private double performanceBond = 0.0d;
+
+    /**
+     * 质保金到期日期
+     */
+    private Date duePerformanceBond;
 
     /**
      * 质保期
@@ -52,9 +63,20 @@ public class Contract {
     private ContractType contractType;
 
     /**
-     * 申请会签日期
+     * 会签日期
      */
     private Date signContractDate;
+
+    /**
+     * 验收日期
+     */
+    private Date acceptance;
+
+    /**
+     * 咨询律师
+     * 1是 0否
+     */
+    private int lawer;
 
     /**
      * 发票
@@ -108,19 +130,15 @@ public class Contract {
     private double budgetMoney = 0.0d;
 
     /**
-     * 审结日期
+     * 审结日期（提交到招采部时间）
+
      */
     private Date contractCloseDate;
 
     /**
-     * 印花税
+     * 印花税 0未购买 1已购买 2无须购买
      */
-    private double stampTax = 0.0d;
-
-    /**
-     * 归档日期
-     */
-    private Date contractFilingDate;
+    private int stampTax;
 
     /**
      * 支持文件
@@ -146,7 +164,7 @@ public class Contract {
     /**
      * 应收（付）金额
      */
-    private double receivableOrPayMoney;
+    private Double receivableOrPayMoney=0.0d;
 
     /**
      * 收、付标识   0付款  1收款
@@ -159,14 +177,14 @@ public class Contract {
     private SettleAccount settleAccount;
 
     /**
-     * 款项类型   0工程费  1履约保证金  2履约保函  3咨询费  4容量气价  5货款  6租赁费  7培训费  其他
+     * 款项类型   0工程费  1履约保证金  2履约保函  3咨询费  4容量气价  5款货  6租赁费  7培训费  -1其他
      */
     private String paymentType;
 
     /**
      * 结算金额
      */
-    private double closingMoney;
+   // private double closingMoney;
 
     /**
      * 是否盖章
@@ -330,15 +348,6 @@ public class Contract {
         this.contractCloseDate = contractCloseDate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date getContractFilingDate() {
-        return contractFilingDate;
-    }
-
-    public void setContractFilingDate(Date contractFilingDate) {
-        this.contractFilingDate = contractFilingDate;
-    }
-
     @Column(length = 15)
     public String getBudgetType() {
         return budgetType;
@@ -357,7 +366,7 @@ public class Contract {
         this.budgetMoney = budgetMoney;
     }
 
-    @Column(length = 30)
+    @Column(length = 255)
     public String getContractSignCompany() {
         return contractSignCompany;
     }
@@ -384,20 +393,20 @@ public class Contract {
         this.guaranteePeriod = guaranteePeriod;
     }
 
-    public double getStampTax() {
+    public int getStampTax() {
         return stampTax;
     }
 
-    public void setStampTax(double stampTax) {
+    public void setStampTax(int stampTax) {
         this.stampTax = stampTax;
     }
 
     @Column(precision = 12, scale = 2, nullable = false)
-    public double getReceivableOrPayMoney() {
+    public Double getReceivableOrPayMoney() {
         return receivableOrPayMoney;
     }
 
-    public void setReceivableOrPayMoney(double receivableOrPayMoney) {
+    public void setReceivableOrPayMoney(Double receivableOrPayMoney) {
         this.receivableOrPayMoney = receivableOrPayMoney;
     }
 
@@ -428,14 +437,14 @@ public class Contract {
         this.settleAccount = settleAccount;
     }
 
-    @Column(precision = 12, scale = 2, nullable = false)
+    /*@Column(precision = 12, scale = 2, nullable = false)
     public double getClosingMoney() {
         return closingMoney;
     }
 
     public void setClosingMoney(double closingMoney) {
         this.closingMoney = closingMoney;
-    }
+    }*/
 
     @Column(length = 4)
     public int getVersion() {
@@ -479,5 +488,39 @@ public class Contract {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public int getContractProvide() {
+        return contractProvide;
+    }
+
+    public void setContractProvide(int contractProvide) {
+        this.contractProvide = contractProvide;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getDuePerformanceBond() {
+        return duePerformanceBond;
+    }
+
+    public void setDuePerformanceBond(Date duePerformanceBond) {
+        this.duePerformanceBond = duePerformanceBond;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getAcceptance() {
+        return acceptance;
+    }
+
+    public void setAcceptance(Date acceptance) {
+        this.acceptance = acceptance;
+    }
+
+    public int getLawer() {
+        return lawer;
+    }
+
+    public void setLawer(int lawer) {
+        this.lawer = lawer;
     }
 }

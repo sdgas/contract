@@ -45,23 +45,36 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     @Override
     public String execute() {
         Contract contract = new Contract();
-        contract.setContractId(contractVO.getContractId());
-        contract.setContractName(contractNameService.findById(Integer.valueOf(contractVO.getContractName())));
-        contract.setContractMoney(Double.valueOf(contractVO.getContractMoney()));
-        contract.setContractSignCompany(contractVO.getContractSignCompany());
-        contract.setPerformanceBond(Double.valueOf(contractVO.getPerformanceBond()));
-        contract.setContractType(contractTypeService.findTypeById(Integer.valueOf(contractVO.getContractType())));
-        contract.setContractBeginDate(ChangeTime.parseStringToShortDate(contractVO.getContractBeginDate()));
-        contract.setSignContractDate(new Date());
-        contract.setInvoice(Integer.valueOf(contractVO.getInvoice()));
-        contract.setSupportFile(contractVO.getSupportFile());
-        contract.setStampTax(Double.valueOf(contractVO.getStampTax()));
-        contract.setVersion(Integer.valueOf(contractVO.getVersion()));
-        contract.setStamp(Integer.valueOf(contractVO.getStamp()));
-        contract.setUnit_price(Double.valueOf(contractVO.getUnit_price()));
-        contract.setContractEndDate(ChangeTime.parseStringToShortDate(contractVO.getContractEndDate()));
-        contract.setContractOperator(contractVO.getContractOperator());
-        contract.setCount(Integer.valueOf(contractVO.getCount()));
+        contract.setContractId(contractVO.getContractId()); //合同编号
+        contract.setContractName(contractNameService.findById(Integer.valueOf(contractVO.getContractName()))); //合同名称
+        contract.setContractMoney(Double.valueOf(contractVO.getContractMoney()));//合同签订金额
+        contract.setContractSignCompany(contractVO.getContractSignCompany());//签约对象（甲方;乙方;第三方）
+        contract.setPerformanceBond(Double.valueOf(contractVO.getPerformanceBond()));//质保金
+        contract.setContractType(contractTypeService.findTypeById(Integer.valueOf(contractVO.getContractType())));//合同类别
+        contract.setContractBeginDate(ChangeTime.parseStringToShortDate(contractVO.getContractBeginDate()));//合同生效时间
+        contract.setSignContractDate(new Date());//合同签订日期
+        contract.setInvoice(Integer.valueOf(contractVO.getInvoice()));//发票
+        contract.setSupportFile(contractVO.getSupportFile());//支持文件
+
+        //印花税
+        if (!contractVO.getStampTax().isEmpty())
+            contract.setStampTax(Integer.valueOf(contractVO.getStampTax()));
+
+        contract.setVersion(Integer.valueOf(contractVO.getVersion()));//格式版本
+        contract.setStamp(Integer.valueOf(contractVO.getStamp()));//盖章
+
+        System.out.println("单价金额:"+contractVO.getUnit_priced());
+        //单价金额
+        if (!"0.0".equals(contractVO.getUnit_priced()))
+            contract.setUnit_price(Double.valueOf(contractVO.getUnit_priced()));
+        else
+            contract.setUnit_price(0.0d);
+
+        contract.setContractEndDate(ChangeTime.parseStringToShortDate(contractVO.getContractEndDate()));//合同到期日期
+        contract.setContractOperator(contractVO.getContractOperator());//经办人
+        contract.setCount(Integer.valueOf(contractVO.getCount()));//合同原件份数
+
+        //预算
         if (contractVO.getBudget() != null) {
             switch (Integer.valueOf(contractVO.getBudget())) {
                 case 0:
@@ -73,13 +86,15 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 default:
                     break;
             }
-            contract.setBudgetType(contractVO.getBudgetType());
-            contract.setBudgetMoney(Double.valueOf(contractVO.getBudgetMoney()));
+            contract.setBudgetType(contractVO.getBudgetType());//预算类别
+            contract.setBudgetMoney(Double.valueOf(contractVO.getBudgetMoney()));//预算剩余金额
         }
 
+        //经办部门
         if (!contractVO.getDepartment().isEmpty())
             contract.setDepartment(departmentService.findDepartmentById(Integer.valueOf(contractVO.getDepartment())));
 
+        //合同属性
         if (contractVO.getContractProperty() != null) {
             switch (Integer.valueOf(contractVO.getContractProperty())) {
                 case 0:
@@ -96,6 +111,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             }
         }
 
+        //供应商确定方式
         if (!contractVO.getBiddingType().isEmpty()) {
 
             switch (Integer.valueOf(contractVO.getBiddingType())) {
@@ -122,9 +138,10 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             }
         }
 
-        contract.setMainContent(contractVO.getMainContent());
-        contract.setRemark("款项类型：" + contractVO.getMoneyRemark().trim() + "     " + contractVO.getRemark());
+        contract.setMainContent(contractVO.getMainContent());//合同主要内容描述
+        contract.setPaymentType(contractVO.getPaymentType());//款项类型
 
+        //质保期
         switch (Integer.valueOf(contractVO.getGuaranteePeriod())) {
             case 0:
                 contract.setGuaranteePeriod(GuaranteePeriod.HALF);
@@ -167,13 +184,16 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 break;
         }
 
-        if ("0".equals(contractVO.getReceiveOrPay()))
+        //收、付标识   0付款  1收款
+        if ("0".equals(contractVO.getReceivableOrPay()))
             contract.setReceivableOrPay(ReceiveOrPay.PAY);
         else
             contract.setReceivableOrPay(ReceiveOrPay.RECEIVE);
-        if (!contractVO.getClosingMoney().isEmpty())
-            contract.setClosingMoney(Double.valueOf(contractVO.getClosingMoney()));
-        contract.setReceivableOrPayMoney(Double.valueOf(contractVO.getReceivableOrPayMoney()));
+        /*if (!contractVO.getClosingMoney().isEmpty())
+            contract.setClosingMoney(Double.valueOf(contractVO.getClosingMoney()));*/
+        contract.setReceivableOrPayMoney(Double.valueOf(contractVO.getReceivableOrPayMoney()));//应收（付）金额
+
+        //是否超结算
         switch (Integer.valueOf(contractVO.getSettleAccount())) {
             case 0:
                 contract.setSettleAccount(SettleAccount.N);
@@ -185,6 +205,11 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 contract.setSettleAccount(SettleAccount.Y_N);
                 break;
         }
+
+        contract.setDuePerformanceBond(ChangeTime.parseStringToShortDate(contractVO.getDuePerformanceBond()));//质保金到期日期
+        contract.setContractProvide(Integer.valueOf(contractVO.getContractProvide()));//合同版本提供
+        contract.setRemark(contractVO.getRemark());//备注
+        contract.setLawer(Integer.valueOf(contractVO.getLawer()));//律师咨询
 
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);

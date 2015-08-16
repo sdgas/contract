@@ -9,40 +9,42 @@ import java.io.File;
  */
 public class ContractVO extends BaseVO {
 
-    private String contractId;
-    private String contractName;
-    private String contractMoney;
-    private String unit_price;
-    private String performanceBond;
-    private String guaranteePeriod;
-    private String contractType;
-    private String signContractDate;
-    private String contractBeginDate;
-    private String contractEndDate;
-    private String contractOperator;
-    private String receivableOrPayMoney;
-    private String receiveOrPay;
-    private String stampTax;
-    private String settleAccount;
-    private String count;
-    private String contractSignCompany;
-    private String closingMoney;
-    private String budget;
-    private String biddingType;
-    private String budgetType;
-    private String budgetMoney;
+    private String contractId;//合同编号
+    private String contractName;//合同名称
+    private String contractMoney;// 合同金额
+    private String unit_priced;//单价金额
+    private String version;//合同版本 0：非格式合同  1：格式合同
+    private String contractProvide;//合同版本提供  0我司  1外单位
+    private String performanceBond;//履约保证金/质保金
+    private String duePerformanceBond;//质保金到期日期
+    private String guaranteePeriod;//质保期
+    private String contractType;//合同类别
+    private String acceptance;//验收日期
+    private String lawer;//咨询律师  1是 0否
+    private String invoice; //发票
+    private String biddingType;//供应商的确定方式 0公开招标  1依法邀请招标  2内部邀请招标  3直接发包  4询价比价  5其他
 
-    private String contractCloseDate;
-    private String contractFilingDate;
-    private String department;
-    private String contractProperty;
-    private String mainContent;
-    private String moneyRemark;
-    private String version;
-    private String stamp;
-    private String invoice;
-    private String supportFile;
-    private String remark;
+    private String contractBeginDate;//合同生效日期
+    private String contractEndDate;//合同到期日期
+    private String contractOperator;//合同经办人
+    private String count;//合同原件份数
+    private String contractSignCompany; //签约公司
+
+    private String budget;//预算  0预算内，1预算外
+    private String budgetType;//预算类别
+    private String budgetMoney;//预算剩下金额
+    private String contractCloseDate; //审结日期（提交到招采部时间）
+    private String stampTax;//印花税 0未购买 1已购买 2无须购买
+    private String supportFile;//支持文件
+    private String department;//经办部门
+    private String contractProperty;//合同属性 0新签，1续签，2改签，3注销
+    private String mainContent;//合同主要内容
+    private String receivableOrPayMoney;//应收（付）金额
+    private String receivableOrPay;//收、付标识   0付款  1收款
+    private String settleAccount;//是否超结算  0否 1是，已审核  2是，未审核
+    private String paymentType;//款项类型   0工程费  1履约保证金  2履约保函  3咨询费  4容量气价  5款货  6租赁费  7培训费  -1其他
+    private String stamp;//是否盖章  0未盖章   1已盖章
+    private String remark;//备注
 
     public String getInvoice() {
         return invoice;
@@ -58,14 +60,6 @@ public class ContractVO extends BaseVO {
 
     public void setSupportFile(String supportFile) {
         this.supportFile = supportFile;
-    }
-
-    public String getStamp() {
-        return stamp;
-    }
-
-    public void setStamp(String stamp) {
-        this.stamp = stamp;
     }
 
     public String getVersion() {
@@ -90,14 +84,6 @@ public class ContractVO extends BaseVO {
 
     public void setContractName(String contractName) {
         this.contractName = contractName;
-    }
-
-    public String getSignContractDate() {
-        return signContractDate;
-    }
-
-    public void setSignContractDate(String signContractDate) {
-        this.signContractDate = signContractDate;
     }
 
     public String getContractBeginDate() {
@@ -146,14 +132,6 @@ public class ContractVO extends BaseVO {
 
     public void setContractCloseDate(String contractCloseDate) {
         this.contractCloseDate = contractCloseDate;
-    }
-
-    public String getContractFilingDate() {
-        return contractFilingDate;
-    }
-
-    public void setContractFilingDate(String contractFilingDate) {
-        this.contractFilingDate = contractFilingDate;
     }
 
     public String getDepartment() {
@@ -228,14 +206,6 @@ public class ContractVO extends BaseVO {
         this.budgetMoney = budgetMoney;
     }
 
-    public String getContractProperty() {
-        return contractProperty;
-    }
-
-    public void setContractProperty(String contractProperty) {
-        this.contractProperty = contractProperty;
-    }
-
     public String getBiddingType() {
         return biddingType;
     }
@@ -268,22 +238,6 @@ public class ContractVO extends BaseVO {
         this.stampTax = stampTax;
     }
 
-    public String getReceiveOrPay() {
-        return receiveOrPay;
-    }
-
-    public void setReceiveOrPay(String receiveOrPay) {
-        this.receiveOrPay = receiveOrPay;
-    }
-
-    public String getUnit_price() {
-        return unit_price;
-    }
-
-    public void setUnit_price(String unit_price) {
-        this.unit_price = unit_price;
-    }
-
     public String getSettleAccount() {
         return settleAccount;
     }
@@ -292,20 +246,76 @@ public class ContractVO extends BaseVO {
         this.settleAccount = settleAccount;
     }
 
-    public String getMoneyRemark() {
-        return moneyRemark;
+    public String getUnit_priced() {
+        return unit_priced;
     }
 
-    public void setMoneyRemark(String moneyRemark) {
-        this.moneyRemark = moneyRemark;
+    public void setUnit_priced(String unit_priced) {
+        this.unit_priced = unit_priced;
     }
 
-    public String getClosingMoney() {
-        return closingMoney;
+    public String getContractProvide() {
+        return contractProvide;
     }
 
-    public void setClosingMoney(String closingMoney) {
-        this.closingMoney = closingMoney;
+    public void setContractProvide(String contractProvide) {
+        this.contractProvide = contractProvide;
+    }
+
+    public String getDuePerformanceBond() {
+        return duePerformanceBond;
+    }
+
+    public void setDuePerformanceBond(String duePerformanceBond) {
+        this.duePerformanceBond = duePerformanceBond;
+    }
+
+    public String getAcceptance() {
+        return acceptance;
+    }
+
+    public void setAcceptance(String acceptance) {
+        this.acceptance = acceptance;
+    }
+
+    public String getLawer() {
+        return lawer;
+    }
+
+    public void setLawer(String lawer) {
+        this.lawer = lawer;
+    }
+
+    public String getReceivableOrPay() {
+        return receivableOrPay;
+    }
+
+    public void setReceivableOrPay(String receivableOrPay) {
+        this.receivableOrPay = receivableOrPay;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public String getContractProperty() {
+        return contractProperty;
+    }
+
+    public void setContractProperty(String contractProperty) {
+        this.contractProperty = contractProperty;
+    }
+
+    public String getStamp() {
+        return stamp;
+    }
+
+    public void setStamp(String stamp) {
+        this.stamp = stamp;
     }
 }
 
