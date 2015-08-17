@@ -49,12 +49,13 @@
 <body>
 <%@ include file="/page/share/menu.jsp" %>
 <div id="content">
-    <form action="#" method="post">
+    <form action="Contract!findContractByField.action" method="post">
         <div class="form-group" align="center">
             <table>
                 <tr align="center">
-                    <td><input type="text" class="form-control"
-                               placeholder="合同名称\签约对象" name="project">
+                    <td colspan="10">
+                        <input type="text" class="form-control"
+                               placeholder="合同编号\签约对象" name="project">
                         <button type="submit" class="btn btn-default">查询</button>
                     </td>
                 </tr>
@@ -94,7 +95,7 @@
                             ${s.count}
                     </td>
                     <td>
-                        <a href="">${contract.contractId}</a>
+                        <a href="Contract!findOneContract.action?contractId=${contract.contractId}">${contract.contractId}</a>
                     </td>
                     <td>
                             ${contract.contractName.contractName}

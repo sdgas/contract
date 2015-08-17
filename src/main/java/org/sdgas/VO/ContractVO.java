@@ -1,5 +1,6 @@
 package org.sdgas.VO;
 
+import org.sdgas.model.Contract;
 import org.sdgas.model.ContractProperty;
 
 import java.io.File;
@@ -45,6 +46,25 @@ public class ContractVO extends BaseVO {
     private String paymentType;//款项类型   0工程费  1履约保证金  2履约保函  3咨询费  4容量气价  5款货  6租赁费  7培训费  -1其他
     private String stamp;//是否盖章  0未盖章   1已盖章
     private String remark;//备注
+
+    private Contract contract;
+    private String project;
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
 
     public String getInvoice() {
         return invoice;

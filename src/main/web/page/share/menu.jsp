@@ -65,7 +65,7 @@
             <a href="Contract!findContract.action"> 维护合同信息 </a>
         </li>
         <%-- <li class="divider"></li>
-         <li>
+        <li>
              <a href="#"> 续签合同 </a>
          </li>
          <li class="divider"></li>

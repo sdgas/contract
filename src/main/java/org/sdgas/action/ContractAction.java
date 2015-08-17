@@ -63,7 +63,6 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setVersion(Integer.valueOf(contractVO.getVersion()));//格式版本
         contract.setStamp(Integer.valueOf(contractVO.getStamp()));//盖章
 
-        System.out.println("单价金额:" + contractVO.getUnit_priced());
         //单价金额
         if (!"0.0".equals(contractVO.getUnit_priced()))
             contract.setUnit_price(Double.valueOf(contractVO.getUnit_priced()));
@@ -217,14 +216,14 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         return SUCCESS;
     }
 
-    //查找用户的合同
+    //查找合同
     public String findContract() {
         if (UserUtil.checkUserLogIn(user)) {
             contractVO.setResultMessage("<script>alert('请登录！');location.href='login.jsp';</script>");
             return ERROR;
         }
         /** 每页显示的结果数 **/
-        int maxResult = 10;
+        int maxResult = 20;
         /** 封装的页面数据 **/
         PageView<Contract> pageView = new PageView<Contract>(maxResult,
                 contractVO.getPage());
@@ -244,6 +243,49 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 params.toArray(), orderBy));
         contractVO.setPageView(pageView);
         view = "/page/contract/findContract.jsp";
+        return VIEW;
+    }
+
+    public String findContractByField() {
+
+        if (UserUtil.checkUserLogIn(user)) {
+            contractVO.setResultMessage("<script>alert('请登录！');location.href='login.jsp';</script>");
+            return ERROR;
+        }
+        /** 每页显示的结果数 **/
+        int maxResult = 20;
+        /** 封装的页面数据 **/
+        PageView<Contract> pageView = new PageView<Contract>(maxResult,
+                contractVO.getPage());
+        int firstIndex = ((pageView.getCurrentPage() - 1) * pageView
+                .getMaxResult());// 开始索引
+
+        // 按照条件排序
+        LinkedHashMap<String, String> orderBy = new LinkedHashMap<String, String>();
+        orderBy.put("signContractDate", "DESC");
+        /** 列表条件 **/
+        StringBuffer jpql = new StringBuffer("");
+        jpql.append("contractId like '%" + contractVO.getProject() + "%' or contractSignCompany like '%" + contractVO.getProject() + "%'");
+        jpql.append("and department = " + user.getDepartment().getDepartmentId());
+
+        /** 列表条件的值 **/
+        List<Object> params = new ArrayList<Object>();
+        pageView.setQueryResult(contractService.getScrollData(Contract.class, firstIndex, maxResult, jpql.toString(),
+                params.toArray(), orderBy));
+        contractVO.setPageView(pageView);
+        view = "/page/contract/findContract.jsp";
+        return VIEW;
+    }
+
+    public String findOneContract() {
+
+        Contract contract = contractService.findContractById(contractVO.getContractId());
+        if (contract == null) {
+            logger.info("用户：" + user.getUserName() + "查找了一份无效合同（" + contractVO.getContractId() + ")IP:" + ip);
+            contractVO.setResultMessage("<script>alert('找不到改合同！请与管理员联系');location.href='Contract!findContract.action';</script>");
+        }
+        contractVO.setContract(contract);
+        view = "/page/contract/showContract.jsp";
         return VIEW;
     }
 
