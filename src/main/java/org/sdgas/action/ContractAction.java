@@ -63,7 +63,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setVersion(Integer.valueOf(contractVO.getVersion()));//格式版本
         contract.setStamp(Integer.valueOf(contractVO.getStamp()));//盖章
 
-        System.out.println("单价金额:"+contractVO.getUnit_priced());
+        System.out.println("单价金额:" + contractVO.getUnit_priced());
         //单价金额
         if (!"0.0".equals(contractVO.getUnit_priced()))
             contract.setUnit_price(Double.valueOf(contractVO.getUnit_priced()));
@@ -189,8 +189,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             contract.setReceivableOrPay(ReceiveOrPay.PAY);
         else
             contract.setReceivableOrPay(ReceiveOrPay.RECEIVE);
-        /*if (!contractVO.getClosingMoney().isEmpty())
-            contract.setClosingMoney(Double.valueOf(contractVO.getClosingMoney()));*/
+
         contract.setReceivableOrPayMoney(Double.valueOf(contractVO.getReceivableOrPayMoney()));//应收（付）金额
 
         //是否超结算
@@ -211,6 +210,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setRemark(contractVO.getRemark());//备注
         contract.setLawer(Integer.valueOf(contractVO.getLawer()));//律师咨询
 
+        contract.setState(ContractState.COUNTERSIGN);//合同状态
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);
         contractVO.setResultMessage("<script>alert('添加成功！');location.href='page/contract/addContract.jsp';</script>");

@@ -131,7 +131,6 @@ public class Contract {
 
     /**
      * 审结日期（提交到招采部时间）
-
      */
     private Date contractCloseDate;
 
@@ -164,7 +163,7 @@ public class Contract {
     /**
      * 应收（付）金额
      */
-    private Double receivableOrPayMoney=0.0d;
+    private Double receivableOrPayMoney = 0.0d;
 
     /**
      * 收、付标识   0付款  1收款
@@ -184,7 +183,7 @@ public class Contract {
     /**
      * 结算金额
      */
-   // private double closingMoney;
+    // private double closingMoney;
 
     /**
      * 是否盖章
@@ -196,6 +195,11 @@ public class Contract {
      * 备注
      */
     private String remark;
+
+    /**
+     * 合同状态
+     */
+    private ContractState state;
 
     @Id
     public String getContractId() {
@@ -437,15 +441,6 @@ public class Contract {
         this.settleAccount = settleAccount;
     }
 
-    /*@Column(precision = 12, scale = 2, nullable = false)
-    public double getClosingMoney() {
-        return closingMoney;
-    }
-
-    public void setClosingMoney(double closingMoney) {
-        this.closingMoney = closingMoney;
-    }*/
-
     @Column(length = 4)
     public int getVersion() {
         return version;
@@ -498,7 +493,7 @@ public class Contract {
         this.contractProvide = contractProvide;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     public Date getDuePerformanceBond() {
         return duePerformanceBond;
     }
@@ -507,7 +502,7 @@ public class Contract {
         this.duePerformanceBond = duePerformanceBond;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     public Date getAcceptance() {
         return acceptance;
     }
@@ -522,5 +517,14 @@ public class Contract {
 
     public void setLawer(int lawer) {
         this.lawer = lawer;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    public ContractState getState() {
+        return state;
+    }
+
+    public void setState(ContractState state) {
+        this.state = state;
     }
 }
