@@ -29,6 +29,42 @@
     <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
 
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            //placeholder功能的实现
+            var doc = document,
+                    inputs = doc.getElementsByTagName('input'),
+                    supportPlaceholder = 'placeholder'in doc.createElement('input'),
+
+                    placeholder = function (input) {
+                        var text = input.getAttribute('placeholder'),
+                                defaultValue = input.defaultValue;
+                        if (defaultValue == '') {
+                            input.value = text
+                        }
+                        input.onfocus = function () {
+                            if (input.value === text) {
+                                this.value = ''
+                            }
+                        };
+                        input.onblur = function () {
+                            if (input.value === '') {
+                                this.value = text
+                            }
+                        }
+                    };
+
+            if (!supportPlaceholder) {
+                for (var i = 0, len = inputs.length; i < len; i++) {
+                    var input = inputs[i],
+                            text = input.getAttribute('placeholder');
+                    if (input.type === 'text' && text) {
+                        placeholder(input)
+                    }
+                }
+            }
+        });
+
         function topage(page) {
             var form = document.getElementById("myform");
             document.getElementById("page").setAttribute("value", page);

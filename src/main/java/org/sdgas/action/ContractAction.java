@@ -46,6 +46,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     public String execute() {
         Contract contract = new Contract();
         contract.setContractId(contractVO.getContractId()); //合同编号
+        contract.setAcceptance(ChangeTime.parseStringToShortDate(contractVO.getAcceptance()));//验收时间
         contract.setContractName(contractNameService.findById(Integer.valueOf(contractVO.getContractName()))); //合同名称
         contract.setContractMoney(Double.valueOf(contractVO.getContractMoney()));//合同签订金额
         contract.setContractSignCompany(contractVO.getContractSignCompany());//签约对象（甲方;乙方;第三方）

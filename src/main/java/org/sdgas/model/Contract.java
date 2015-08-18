@@ -171,6 +171,11 @@ public class Contract {
     private ReceiveOrPay receivableOrPay;
 
     /**
+     * 应收(付)时间
+     */
+    private String paymentDate;
+
+    /**
      * 是否超结算  0否 1是，已审核  2是，未审核
      */
     private SettleAccount settleAccount;
@@ -526,5 +531,14 @@ public class Contract {
 
     public void setState(ContractState state) {
         this.state = state;
+    }
+
+    @Column(length = 100, nullable = false)
+    public String getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
     }
 }

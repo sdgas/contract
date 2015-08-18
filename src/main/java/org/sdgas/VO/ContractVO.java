@@ -24,7 +24,7 @@ public class ContractVO extends BaseVO {
     private String lawer;//咨询律师  1是 0否
     private String invoice; //发票
     private String biddingType;//供应商的确定方式 0公开招标  1依法邀请招标  2内部邀请招标  3直接发包  4询价比价  5其他
-
+    private String paymentDate;//应收（付）时间
     private String contractBeginDate;//合同生效日期
     private String contractEndDate;//合同到期日期
     private String contractOperator;//合同经办人
@@ -336,6 +336,14 @@ public class ContractVO extends BaseVO {
 
     public void setStamp(String stamp) {
         this.stamp = stamp;
+    }
+
+    public String getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
     }
 }
 

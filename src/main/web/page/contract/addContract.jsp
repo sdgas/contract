@@ -47,65 +47,7 @@
     <script src='<%=basePath%>dwr/interface/contractTypeService.js' type="text/javascript"></script>
     <script src='<%=basePath%>dwr/interface/contractNameService.js' type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            departmentService.findAllDepartment(getResult);
-            contractTypeService.findAll(getContractType);
-            contractNameService.findAll(getContractName);
 
-            $('#uploadify').uploadify({
-                uploader: 'Attachment.action',           // 服务器端处理地址
-                swf: '<%=basePath%>uploadify/uploadify.swf',    // 上传使用的 Flash
-                width: 60,                          // 按钮的宽度
-                height: 23,                         // 按钮的高度
-                buttonText: "选择文件",              // 按钮上的文字
-                buttonCursor: 'hand',               // 按钮的鼠标图标
-                fileObjName: 'uploadify',            // 上传参数名称 后台<span style="color:#ff0000;">action里面的属性uploadify</span>
-                // 两个配套使用
-                fileTypeExts: "*.jpg;*.png;*.doc;*.pdf",             // 扩展名
-                fileTypeDesc: "请选择 jpg png doc pdf文件",     // 文件说明
-                auto: false,                // 选择之后，自动开始上传
-                multi: true,               // 是否支持同时上传多个文件
-                queueSizeLimit: 5,          // 允许多文件上传的时候，同时上传文件的个数
-                removeCompleted: false,  //上传完后保存列表
-                fileSizeLimit: 10240  //限制上传文件大小10M（单位：KB）
-            });
-
-            mergeTable("t1", 0, 4);
-        });
-
-        function getContract() {
-            var contractId = $('#contractId')[0].value;
-            $.ajax({
-                type: 'POST',
-                url: "Attachment!contractIdGet.action",
-                data: {
-                    contract: contractId
-                },
-                dataType: "json"
-            })
-        }
-
-        /* tableId:表格的ID,mergeColIndex:需要合并的列序号,beginRowIndex:合并开始的行序号 */
-        function mergeTable(tableId, mergeColIndex, beginRowIndex) {
-            var table = document.getElementById(tableId);
-            if (table != null) {
-                var totalRows = table.rows.length;
-                for (var i = beginRowIndex; i < totalRows; i++) {
-                    var rowSpan = 1;
-                    var cell = table.rows[i].cells[mergeColIndex].innerHTML;
-                    for (var j = i + 1; j < totalRows; j++) {
-                        if (table.rows[j].cells[mergeColIndex].innerHTML == cell) {
-                            rowSpan++;
-                            table.rows[i].cells[mergeColIndex].rowSpan = rowSpan;//设置rowSpan
-                            table.rows[j].cells[mergeColIndex].style.display = "none";//当前行被合并了，所以这里设置为none
-                        } else {
-                            break;
-                        }
-                    }
-                    i = i + rowSpan - 1;//跳到最后一个相同的行，然后再+1就是另一个不相同的行啦
-                }
-            }
-        }
     </script>
     <style type="text/css">
         /*修改进度条长度*/
@@ -305,7 +247,6 @@
                            onchange="checkNum2(this.value)" style="width: 155px"> 元
                 </td>
             </tr>
-            <%--todo:询问?--%>
             <tr>
                 <td style="color: #ab1e1e">合同应收（付）款金额:</td>
                 <td colspan="2">
@@ -315,8 +256,19 @@
                            onchange="checkNum(this.value)"
                            style="width: 105px">元
                 </td>
-                <td>款项类型：</td>
+                <td>应付（收）时间:</td>
                 <td>
+                    <input type="text" placeholder="yyyy-mm-dd,yyyy-mm-dd" name="paymentDate">
+                </td>
+            </tr>
+            <tr>
+                <td>验收时间：</td>
+                <td>
+                    <input type="text" name="acceptance" class="Wdate"
+                           onfocus="WdatePicker({skin:'whyGreen'})">
+                </td>
+                <td>款项类型：</td>
+                <td colspan="2">
                     <select name="paymentType" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
                             onchange="others(this.selectedIndex)">
                         <option value="" style="text-align: center">---------请选择---------</option>
@@ -325,7 +277,7 @@
                         <option value="履约保函" style="text-align: center">履约保函</option>
                         <option value="咨询费" style="text-align: center">咨询费</option>
                         <option value="容量气价" style="text-align: center">容量气价</option>
-                        <option value="款货" style="text-align: center">款货</option>
+                        <option value="款货" style="text-align: center">货款</option>
                         <option value="租赁费" style="text-align: center">租赁费</option>
                         <option value="培训费" style="text-align: center">培训费</option>
                         <option value="其他" style="text-align: center">其他</option>
@@ -345,18 +297,18 @@
                 <td>
                     <select name="contractProvide" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
                             onchange="others(this.selectedIndex)">
-                    <option value="" style="text-align: center">---------请选择---------</option>
-                    <option value="0" style="text-align: center">我司</option>
-                    <option value="1" style="text-align: center">外单位</option>
-                </select>
+                        <option value="" style="text-align: center">---------请选择---------</option>
+                        <option value="0" style="text-align: center">我司</option>
+                        <option value="1" style="text-align: center">外单位</option>
+                    </select>
                 </td>
                 <td>律师咨询：</td>
                 <td colspan="2">
                     <select name="lawer" style="font-family: '微软雅黑';font-size: 16px;width: 180px">
-                    <option value="" style="text-align: center">---------请选择---------</option>
-                    <option value="1" style="text-align: center">是</option>
-                    <option value="0" style="text-align: center">否</option>
-                </select>
+                        <option value="" style="text-align: center">---------请选择---------</option>
+                        <option value="1" style="text-align: center">是</option>
+                        <option value="0" style="text-align: center">否</option>
+                    </select>
             </tr>
             <tr>
                 <td>是否超合同结算：</td>
