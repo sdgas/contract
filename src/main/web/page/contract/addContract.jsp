@@ -250,8 +250,8 @@
             <tr>
                 <td style="color: #ab1e1e">合同应收（付）款金额:</td>
                 <td colspan="2">
-                    <input name="receiveOrPay" type="radio" value="0">付款
-                    <input name="receiveOrPay" type="radio" value="1">收款
+                    <input name="receivableOrPay" type="radio" value="0">付款
+                    <input name="receivableOrPay" type="radio" value="1">收款
                     <input type="text" name="receivableOrPayMoney" maxlength="12" id="receivableOrPayMoney"
                            onchange="checkNum(this.value)"
                            style="width: 105px">元

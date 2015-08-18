@@ -32,46 +32,13 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="<%=basePath%>js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
-    <script src="<%=basePath%>js/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript"
-            src="<%=basePath%>js/My97DatePicker/WdatePicker.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/addContract.js"></script>
 
-    <%--uploadify--%>
-    <script type="text/javascript" src="<%=basePath%>uploadify/jquery.uploadify.js"></script>
-    <script type="text/javascript" src="<%=basePath%>uploadify/jquery.uploadify.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>uploadify/uploadify.css">
-    <%--加载dwr--%>
-    <script src='<%=basePath%>dwr/util.js' type="text/javascript"></script>
-    <script src='<%=basePath%>dwr/engine.js' type="text/javascript"></script>
-    <script src='<%=basePath%>dwr/interface/departmentService.js' type="text/javascript"></script>
-    <script src='<%=basePath%>dwr/interface/contractTypeService.js' type="text/javascript"></script>
-    <script src='<%=basePath%>dwr/interface/contractNameService.js' type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            departmentService.findAllDepartment(getResult);
-            contractTypeService.findAll(getContractType);
-            contractNameService.findAll(getContractName);
 
-            $('#uploadify').uploadify({
-                uploader: 'Attachment.action',           // 服务器端处理地址
-                swf: '<%=basePath%>uploadify/uploadify.swf',    // 上传使用的 Flash
-                width: 60,                          // 按钮的宽度
-                height: 23,                         // 按钮的高度
-                buttonText: "选择文件",              // 按钮上的文字
-                buttonCursor: 'hand',               // 按钮的鼠标图标
-                fileObjName: 'uploadify',            // 上传参数名称 后台<span style="color:#ff0000;">action里面的属性uploadify</span>
-                // 两个配套使用
-                fileTypeExts: "*.jpg;*.png;*.doc;*.pdf",             // 扩展名
-                fileTypeDesc: "请选择 jpg png doc pdf文件",     // 文件说明
-                auto: false,                // 选择之后，自动开始上传
-                multi: true,               // 是否支持同时上传多个文件
-                queueSizeLimit: 5,          // 允许多文件上传的时候，同时上传文件的个数
-                removeCompleted: false,  //上传完后保存列表
-                fileSizeLimit: 10240  //限制上传文件大小10M（单位：KB）
-            });
+        $(document).ready(function () {
 
             mergeTable("t1", 0, 4);
+
         });
 
         function getContract() {
@@ -107,12 +74,9 @@
                 }
             }
         }
+
     </script>
     <style type="text/css">
-        /*修改进度条长度*/
-        .uploadify-queue {
-            width: 300px;
-        }
 
         .mergeTable {
             width: 100%;
@@ -191,26 +155,25 @@
                     ${contract.count}
                 </td>
             </tr>
-            <tr rowspan="3">
+            <tr>
                 <td>签约对象</td>
                 <td style="color: #ab1e1e">甲方：</td>
                 <td colspan="3">
-    <textarea cols="55" rows="1" name="contractSignCompany" type="text"
-              id="contractSignCompany"></textarea>
+                    ${oneSign}
                 </td>
             </tr>
             <tr>
                 <td>签约对象</td>
                 <td style="color: #ab1e1e">乙方：</td>
                 <td colspan="3">
-                    <textarea cols="55" rows="1" name="contractSignCompany" type="text"></textarea>
+                    ${twoSign}
                 </td>
             </tr>
             <tr>
                 <td>签约对象</td>
                 <td style="color: #ab1e1e">第三方：</td>
                 <td colspan="3">
-                    <textarea cols="55" rows="1" name="contractSignCompany" type="text"></textarea>
+                    ${threeSign}
                 </td>
             </tr>
             <tr>
@@ -263,13 +226,11 @@
             <tr>
                 <td style="color: #ab1e1e">合同生效日期：</td>
                 <td colspan="2">
-                    <input type="text" name="contractBeginDate" id="begin" class="Wdate"
-                           onfocus="WdatePicker({skin:'whyGreen'})">
+                    <fmt:formatDate value="${contract.contractBeginDate}" type="date"/>
                 </td>
                 <td style="color: #ab1e1e">合同到期日期：</td>
                 <td>
-                    <input type="text" name="contractEndDate" id="end" class="Wdate"
-                           onfocus="WdatePicker({skin:'whyGreen'})">
+                    <fmt:formatDate value="${contract.contractEndDate}" type="date"/>
                 </td>
             </tr>
             <tr>
@@ -282,168 +243,206 @@
                 <td style="color: #ab1e1e">合同签订金额：</td>
                 <td colspan="2">
                     <span style="color: #ab1e1e">单价金额：</span>
-                    <input type="text" name="unit_priced" maxlength="12" id="unit_price"
-                           onchange="checkNum(this.value)" style="width: 60px" value="0.0"> 元
+                    ${contract.unit_price}元
                 </td>
                 <td style="color: #ab1e1e">合同总价金额：</td>
                 <td>
-                    <input type="text" name="contractMoney" maxlength="12" id="contractMoney"
-                           onchange="checkNum2(this.value)" style="width: 155px"> 元
+                    ${contract.contractMoney}元
                 </td>
             </tr>
             <tr>
                 <td style="color: #ab1e1e">合同应收（付）款金额:</td>
                 <td colspan="2">
-                    <input name="receiveOrPay" type="radio" value="0">付款
-                    <input name="receiveOrPay" type="radio" value="1">收款
-                    <input type="text" name="receivableOrPayMoney" maxlength="12" id="receivableOrPayMoney"
-                           onchange="checkNum(this.value)"
-                           style="width: 105px">元
+                    <c:set var="RECEIVE" value="<%=ReceiveOrPay.RECEIVE %>"/>
+                    <c:set var="PAY" value="<%=ReceiveOrPay.PAY %>"/>
+
+                    <c:if test="${contract.receivableOrPay eq RECEIVE}">
+                        ${contract.receivableOrPayMoney}元
+                    </c:if>
+                    <c:if test="${contract.receivableOrPay eq PAY}">
+                        -${contract.receivableOrPayMoney}元
+                    </c:if>
+
                 </td>
                 <td>应付（收）时间:</td>
                 <td>
-                    <input type="text" placeholder="yyyy-mm-dd,yyyy-mm-dd" name="paymentDate">
+                    ${contract.paymentDate}
                 </td>
             </tr>
             <tr>
                 <td>验收时间：</td>
                 <td>
-                    <input type="text" name="acceptance" class="Wdate"
-                           onfocus="WdatePicker({skin:'whyGreen'})">
+                    <fmt:formatDate value="${contract.acceptance}" type="date"/>
+
                 </td>
                 <td>款项类型：</td>
                 <td colspan="2">
-                    <select name="paymentType" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
-                            onchange="others(this.selectedIndex)">
-                        <option value="" style="text-align: center">---------请选择---------</option>
-                        <option value="工程费" style="text-align: center">工程费</option>
-                        <option value="履约保证金" style="text-align: center">履约保证金</option>
-                        <option value="履约保函" style="text-align: center">履约保函</option>
-                        <option value="咨询费" style="text-align: center">咨询费</option>
-                        <option value="容量气价" style="text-align: center">容量气价</option>
-                        <option value="款货" style="text-align: center">货款</option>
-                        <option value="租赁费" style="text-align: center">租赁费</option>
-                        <option value="培训费" style="text-align: center">培训费</option>
-                        <option value="其他" style="text-align: center">其他</option>
-                    </select>
-                    <input name="paymentType" id="paymentType" style="display:none">
+                    ${contract.paymentType}
                 </td>
             </tr>
             <tr>
-                <%--  <td style="color: #ab1e1e">结算金额:</td>
-                 <td colspan="2">
-                     <input name="receiveOrPay" type="radio" value="0">付款
-                     <input name="receiveOrPay" type="radio" value="1">收款
-                     <input type="text" name="closingMoney" maxlength="12" onchange="checkNum(this.value)"
-                            style="width: 105px">元
-                 </td>--%>
                 <td style="color: #ab1e1e">合同版本提供:</td>
                 <td>
-                    <select name="contractProvide" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
-                            onchange="others(this.selectedIndex)">
-                        <option value="" style="text-align: center">---------请选择---------</option>
-                        <option value="0" style="text-align: center">我司</option>
-                        <option value="1" style="text-align: center">外单位</option>
-                    </select>
+                    <c:if test="${contract.contractProvide eq 0}">
+                        我司
+                    </c:if>
+                    <c:if test="${contract.contractProvide eq 1}">
+                        外单位
+                    </c:if>
                 </td>
                 <td>律师咨询：</td>
                 <td colspan="2">
-                    <select name="lawer" style="font-family: '微软雅黑';font-size: 16px;width: 180px">
-                        <option value="" style="text-align: center">---------请选择---------</option>
-                        <option value="1" style="text-align: center">是</option>
-                        <option value="0" style="text-align: center">否</option>
-                    </select>
+
+                    <c:if test="${contract.lawer eq 0}">
+                    否
+                    </c:if>
+                    <c:if test="${contract.lawer eq 1}">
+                    是
+                    </c:if>
             </tr>
             <tr>
                 <td>是否超合同结算：</td>
                 <td>
-                    <input name="settleAccount" type="radio" value="2">是，已审核<br/>
-                    <input name="settleAccount" type="radio" value="1">是，未审核<br/>
-                    <input name="settleAccount" type="radio" value="0" checked="checked">否
+
+                    <c:set var="Y" value="<%=SettleAccount.Y %>"/>
+                    <c:set var="Y_N" value="<%=SettleAccount.Y_N %>"/>
+                    <c:set var="N" value="<%=SettleAccount.N %>"/>
+
+                    <c:if test="${contract.settleAccount eq N}">
+                        否
+                    </c:if>
+                    <c:if test="${contract.settleAccount eq Y_N}">
+                        是，未审核
+                    </c:if>
+                    <c:if test="${contract.settleAccount eq Y}">
+                        是，已审核
+                    </c:if>
                 </td>
 
                 <td style="color: #ab1e1e">质保期：</td>
                 <td colspan="2">
-                    <select name="guaranteePeriod" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
-                            id="guaranteePeriod">
-                        <option value="12" style="text-align: center">无须质保</option>
-                        <option value="0" style="text-align: center">半年</option>
-                        <option value="1" style="text-align: center">一年</option>
-                        <option value="2" style="text-align: center">两年</option>
-                        <option value="3" style="text-align: center">三年</option>
-                        <option value="4" style="text-align: center">四年</option>
-                        <option value="5" style="text-align: center">五年</option>
-                        <option value="6" style="text-align: center">六年</option>
-                        <option value="7" style="text-align: center">七年</option>
-                        <option value="8" style="text-align: center">八年</option>
-                        <option value="9" style="text-align: center">九年</option>
-                        <option value="10" style="text-align: center">十年</option>
-                        <option value="11" style="text-align: center">终身</option>
-                    </select>
+
+                    <c:set var="HALF" value="<%=GuaranteePeriod.HALF %>"/>
+                    <c:set var="ONE" value="<%=GuaranteePeriod.ONE %>"/>
+                    <c:set var="TWO" value="<%=GuaranteePeriod.TWO %>"/>
+                    <c:set var="THREE" value="<%=GuaranteePeriod.THREE %>"/>
+                    <c:set var="FOUR" value="<%=GuaranteePeriod.FOUR %>"/>
+                    <c:set var="FIVE" value="<%=GuaranteePeriod.FIVE %>"/>
+                    <c:set var="SIX" value="<%=GuaranteePeriod.SIX %>"/>
+                    <c:set var="SEVEN" value="<%=GuaranteePeriod.SEVEN %>"/>
+                    <c:set var="EIGHT" value="<%=GuaranteePeriod.EIGHT %>"/>
+                    <c:set var="NINE" value="<%=GuaranteePeriod.NINE %>"/>
+                    <c:set var="TEN" value="<%=GuaranteePeriod.TEN %>"/>
+                    <c:set var="LIFELONG" value="<%=GuaranteePeriod.LIFELONG %>"/>
+                    <c:set var="NO" value="<%=GuaranteePeriod.NO %>"/>
+
+                    <c:if test="${contract.guaranteePeriod eq HALF}">
+                        半年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq ONE}">
+                        一年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq TWO}">
+                        两年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq THREE}">
+                        三年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq FOUR}">
+                        四年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq FIVE}">
+                        五年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq SIX}">
+                        六年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq SEVEN}">
+                        七年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq EIGHT}">
+                        八年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq NINE}">
+                        九年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq TEN}">
+                        十年
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq LIFELONG}">
+                        终身
+                    </c:if>
+                    <c:if test="${contract.guaranteePeriod eq NO}">
+                        无需担保
+                    </c:if>
                 </td>
 
             </tr>
             <tr>
                 <td style="color: #ab1e1e">质保金：</td>
                 <td>
-                    <input type="text" name="performanceBond" value="0.00" maxlength="10" id="performanceBond"
-                           onchange="checkNum(this.value)" style="width: 155px">元
+                    ${contract.performanceBond}元
                 </td>
 
                 <td>质保金到期日期:</td>
                 <td colspan="2">
-                    <input type="text" name="duePerformanceBond" class="Wdate"
-                           onfocus="WdatePicker({skin:'whyGreen'})">
+                    <fmt:formatDate value="${contract.duePerformanceBond}" type="date"/>
                 </td>
-                <%-- <td>履约保证金：</td>
-                 <td>
-                     <input type="text" name="#">
-                 </td>--%>
             </tr>
             <tr>
                 <td>发票：</td>
                 <td colspan="2">
-                    <select name="invoice"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px">
-                        <option value="" style="text-align: center"> ---------请选择---------</option>
-                        <option style="text-align: center" value="17">17%增值税专用发票</option>
-                        <option style="text-align: center" value="11">11%增值税专用发票</option>
-                        <option style="text-align: center" value="13">13%增值税专用发票</option>
-                        <option style="text-align: center" value="6">6%增值税专用发票</option>
-                        <option style="text-align: center" value="3">3%增值税专用发票</option>
-                        <option style="text-align: center" value="0">普通发票</option>
-                    </select>
+
+                    <c:if test="${contract.invoice eq 17}">
+                        17%增值税专用发票
+                    </c:if>
+                    <c:if test="${contract.invoice eq 11}">
+                        11%增值税专用发票
+                    </c:if>
+                    <c:if test="${contract.invoice eq 13}">
+                        13%增值税专用发票
+                    </c:if>
+                    <c:if test="${contract.invoice eq 6}">
+                        6%增值税专用发票
+                    </c:if>
+                    <c:if test="${contract.invoice eq 3}">
+                        3%增值税专用发票
+                    </c:if>
+                    <c:if test="${contract.invoice eq 0}">
+                        普通发票
+                    </c:if>
                 </td>
                 <td>印花税：</td>
                 <td>
-                    <select name="stampTax"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px">
-                        <option value="" style="text-align: center"> ---------请选择---------</option>
-                        <option style="text-align: center" value="0">未购买</option>
-                        <option style="text-align: center" value="1">已购买</option>
-                        <option style="text-align: center" value="2">无须购买</option>
-                    </select>
+                    <c:if test="${contract.stampTax eq 0}">
+                        未购买
+                    </c:if>
+                    <c:if test="${contract.stampTax eq 1}">
+                        已购买
+                    </c:if>
+                    <c:if test="${contract.stampTax eq 2}">
+                        无需购买
+                    </c:if>
                 </td>
             </tr>
             <tr>
                 <td>备注：</td>
                 <td colspan="4">
-                    <textarea cols="65" rows="3" name="remark"></textarea>
+                    ${contract.remark}
                 </td>
             </tr>
             <tr>
                 <td>附件：</td>
                 <td colspan="4">
-                    <input type="file" name="uploadify" id="uploadify"/>
-                    <a href="javascript:$('#uploadify').uploadify('upload', '*')">上传文件</a>
+
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td colspan="5" align="center">
                     <input type="submit" value="提交" onclick="return confirm();">
                     <input type="reset" value="重置">
                 </td>
-            </tr>
+            </tr>--%>
         </table>
     </form>
 </div>

@@ -29,7 +29,11 @@ public class ContractVO extends BaseVO {
     private String contractEndDate;//合同到期日期
     private String contractOperator;//合同经办人
     private String count;//合同原件份数
-    private String contractSignCompany; //签约公司
+
+    private String contractSignCompany;
+    private String oneSign; //签约公司,甲方
+    private String twoSign; //签约公司,乙方
+    private String threeSign; //签约公司,第三方
 
     private String budget;//预算  0预算内，1预算外
     private String budgetType;//预算类别
@@ -49,6 +53,14 @@ public class ContractVO extends BaseVO {
 
     private Contract contract;
     private String project;
+
+    public String getContractSignCompany() {
+        return contractSignCompany;
+    }
+
+    public void setContractSignCompany(String contractSignCompany) {
+        this.contractSignCompany = contractSignCompany;
+    }
 
     public String getProject() {
         return project;
@@ -130,12 +142,28 @@ public class ContractVO extends BaseVO {
         this.contractOperator = contractOperator;
     }
 
-    public String getContractSignCompany() {
-        return contractSignCompany;
+    public String getOneSign() {
+        return oneSign;
     }
 
-    public void setContractSignCompany(String contractSignCompany) {
-        this.contractSignCompany = contractSignCompany;
+    public void setOneSign(String oneSign) {
+        this.oneSign = oneSign;
+    }
+
+    public String getTwoSign() {
+        return twoSign;
+    }
+
+    public void setTwoSign(String twoSign) {
+        this.twoSign = twoSign;
+    }
+
+    public String getThreeSign() {
+        return threeSign;
+    }
+
+    public void setThreeSign(String threeSign) {
+        this.threeSign = threeSign;
     }
 
     public String getBudgetType() {

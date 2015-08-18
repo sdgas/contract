@@ -287,6 +287,10 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             contractVO.setResultMessage("<script>alert('找不到改合同！请与管理员联系');location.href='Contract!findContract.action';</script>");
         }
         contractVO.setContract(contract);
+        String tmp[] = contract.getContractSignCompany().split(",");
+        contractVO.setOneSign(tmp[0]);
+        contractVO.setTwoSign(tmp[1]);
+        contractVO.setThreeSign(tmp[2]);
         view = "/page/contract/showContract.jsp";
         return VIEW;
     }
