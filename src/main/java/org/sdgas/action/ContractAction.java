@@ -210,6 +210,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setRemark(contractVO.getRemark());//备注
         contract.setLawer(Integer.valueOf(contractVO.getLawer()));//律师咨询
 
+        contract.setPaymentDate(contractVO.getPaymentDate());
         contract.setState(ContractState.COUNTERSIGN);//合同状态
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);

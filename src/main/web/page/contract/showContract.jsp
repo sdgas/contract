@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page import="org.sdgas.model.*" %>
 <%@include file="/page/share/taglib.jsp" %>
 <%
     String path = request.getContextPath();
@@ -149,53 +150,53 @@
             <tr>
                 <td>合同类别：</td>
                 <td colspan="2">
-                    <select name="contractType" id="contractType"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px"></select>
+                    ${contract.contractType.contractType}
                 </td>
                 <td>预算计划：</td>
                 <td>
-                    <input type="radio" name="budget" value="0" onclick="display()">预算内
-                    <input type="radio" name="budget" value="1" onclick="displayNone()">预算外
+                    <c:set var="in" value="<%=Budget.IN %>"/>
+                    <c:set var="out" value="<%=Budget.OUT %>"/>
+                    <c:if test="${contract.budget eq in}">
+                        <span>预算内</span>
+                    </c:if>
+                    <c:if test="${contract.budget eq out}">
+                        <span>预算外</span>
+                    </c:if>
                 </td>
             </tr>
-            <tr style="display:none" id="displayTr">
-                <td>预算类别：</td>
-                <td colspan="2">
-                    <input type="text" name="budgetType">
-                </td>
-                <td>预算剩余金额：</td>
-                <td>
-                    <input type="text" name="budgetMoney" onchange="checkNum(this.value)">元
-                </td>
-            </tr>
+            <c:if test="${contract.budget eq in}">
+                <tr>
+                    <td>预算类别：</td>
+                    <td colspan="2">
+                            ${contract.budgetType}
+                    </td>
+                    <td>预算剩余金额：</td>
+                    <td>
+                            ${contract.budgetMoney}元
+                    </td>
+                </tr>
+            </c:if>
             <tr>
                 <td>合同属性：</td>
                 <td colspan="2">
-                    <input type="radio" name="contractProperty" value="0">新签
-                    <input type="radio" name="contractProperty" value="1">续签
-                    <input type="radio" name="contractProperty" value="2">改签
+                    <c:set var="new" value="<%=ContractProperty.NEW %>"/>
+                    <c:set var="renew" value="<%=ContractProperty.RENEW %>"/>
+                    <c:set var="change" value="<%=ContractProperty.CHANGE %>"/>
+                    <c:if test="${contract.contractProperty eq new}"> 新签 </c:if>
+                    <c:if test="${contract.contractProperty eq renew}"> 续签 </c:if>
+                    <c:if test="${contract.contractProperty eq change}"> 改签 </c:if>
                 </td>
                 <td style="color: #ab1e1e">合同原件份数：</td>
                 <td>
-                    <select name="count" style="font-family: '微软雅黑';font-size: 16px;width: 180px">
-                        <option value="" style="text-align: center"> ---------请选择---------</option>
-                        <option value="2" style="text-align: center"> 2</option>
-                        <option value="3" style="text-align: center"> 3</option>
-                        <option value="4" style="text-align: center"> 4</option>
-                        <option value="5" style="text-align: center"> 5</option>
-                        <option value="6" style="text-align: center"> 6</option>
-                        <option value="7" style="text-align: center"> 7</option>
-                        <option value="8" style="text-align: center"> 8</option>
-                        <option value="9" style="text-align: center"> 9</option>
-                    </select>
+                    ${contract.count}
                 </td>
             </tr>
             <tr rowspan="3">
                 <td>签约对象</td>
                 <td style="color: #ab1e1e">甲方：</td>
                 <td colspan="3">
-                    <textarea cols="55" rows="1" name="contractSignCompany" type="text"
-                              id="contractSignCompany"></textarea>
+    <textarea cols="55" rows="1" name="contractSignCompany" type="text"
+              id="contractSignCompany"></textarea>
                 </td>
             </tr>
             <tr>
@@ -214,66 +215,50 @@
             </tr>
             <tr>
                 <td style="width: 120px">供应商确定方式：</td>
-                <td colspan="2"><select name="biddingType"
-                                        style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="biddingType">
-                    <option value="" style="text-align: center"> ---------请选择---------</option>
-                    <option style="text-align: center" value="0">公开招标</option>
-                    <option style="text-align: center" value="1">依法邀请招标</option>
-                    <option style="text-align: center" value="2">内部邀请招标</option>
-                    <option style="text-align: center" value="3">直接发包</option>
-                    <option style="text-align: center" value="4">询价比价</option>
-                    <option style="text-align: center" value="5">其他</option>
-                </select>
+                <td colspan="2">
+
+                    <c:set var="OPEN" value="<%=BiddingType.OPEN %>"/>
+                    <c:set var="LAW_INVITE" value="<%=BiddingType.LAW_INVITE %>"/>
+                    <c:set var="IN_INVITE" value="<%=BiddingType.IN_INVITE %>"/>
+                    <c:set var="DIRECT" value="<%=BiddingType.DIRECT %>"/>
+                    <c:set var="COMPARE" value="<%=BiddingType.COMPARE %>"/>
+                    <c:set var="OTHERS" value="<%=BiddingType.OTHERS %>"/>
+
+                    <c:if test="${contract.biddingType eq OPEN}"> 公开招标 </c:if>
+                    <c:if test="${contract.biddingType eq LAW_INVITE}"> 依法邀请招标 </c:if>
+                    <c:if test="${contract.biddingType eq IN_INVITE}"> 内部邀请招标 </c:if>
+                    <c:if test="${contract.biddingType eq DIRECT}"> 直接发包 </c:if>
+                    <c:if test="${contract.biddingType eq COMPARE}"> 询价比价 </c:if>
+                    <c:if test="${contract.biddingType eq OTHERS}"> 其他 </c:if>
+
                 </td>
 
                 <td style="color: #ab1e1e">合同版本：</td>
-                <td><input name="version" type="radio" value="1">格式合同<input name="version" type="radio" value="0">非格式合同
+                <td>
+                    <c:if test="${contract.version eq 1}"> 格式合同 </c:if>
+                    <c:if test="${contract.version eq 0}"> 非格式合同 </c:if>
                 </td>
             </tr>
             <tr>
                 <td style="color: #ab1e1e">对方单位是否盖章：</td>
                 <td colspan="2">
-                    <input name="stamp" type="radio" value="1" checked="checked">是
-                    <input name="stamp" type="radio" value="0">否
+                    <c:if test="${contract.stamp eq 0}"> 否 </c:if>
+                    <c:if test="${contract.stamp eq 1}"> 是 </c:if>
                 </td>
                 <td style="color: #ab1e1e">支持文件：</td>
                 <td>
-                    <select name="supportFile"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px">
-                        <option value="" style="text-align: center"> ---------请选择---------</option>
-                        <option value="政府批文" style="text-align: center"> 政府批文</option>
-                        <option value="固定资产请购单" style="text-align: center"> 固定资产请购单</option>
-                        <option value="固定资产出租出借表" style="text-align: center"> 固定资产出租出借表</option>
-                        <option value="集团流转单" style="text-align: center"> 集团流转单</option>
-                        <option value="事前审批表" style="text-align: center"> 事前审批表</option>
-                        <option value="三方比价表" style="text-align: center"> 供应商询价采购单</option>
-                        <option value="供应商报价单" style="text-align: center"> 供应商报价单</option>
-                        <option value="港投报价单" style="text-align: center"> 港投报价单</option>
-                        <option value="预结算价格审核资料" style="text-align: center"> 预结算价格审核资料</option>
-                        <option value="上一年度生效合同复印件" style="text-align: center"> 上一年度生效合同复印件</option>
-                        <option value="顺燃-内部管理规定" style="text-align: center"> 顺燃-内部管理规定</option>
-                        <option value="顺燃-内部请示" style="text-align: center"> 顺燃-内部请示</option>
-                        <option value="营业执照" style="text-align: center"> 营业执照</option>
-                        <option value="税务登记证" style="text-align: center"> 税务登记证</option>
-                        <option value="组织机构代码证" style="text-align: center"> 组织机构代码证</option>
-                        <option value="生产许可证" style="text-align: center"> 生产许可证</option>
-                        <option value="签约用户-申请" style="text-align: center"> 签约用户-申请</option>
-                        <option value="身份证复印件" style="text-align: center"> 身份证复印件</option>
-                        <option value="设计图" style="text-align: center"> 设计图</option>
-                        <option value="开户许可证" style="text-align: center"> 开户许可证</option>
-                        <option value="核准变更登记通知书" style="text-align: center"> 核准变更登记通知书</option>
-                        <option value="培训申请表" style="text-align: center"> 培训申请表</option>
-                    </select>
+                    ${contract.supportFile}
                 </td>
             </tr>
             <tr>
                 <td>经办部门：</td>
                 <td colspan="2">
-                    <select name="department" id="dep"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px"></select>
+                    ${contract.department.departmentName}
                 </td>
                 <td style="color: #ab1e1e">经办人：</td>
-                <td><input type="text" name="contractOperator" id="contractOperator"></td>
+                <td>
+                    ${contract.contractOperator}
+                </td>
             </tr>
             <tr>
                 <td style="color: #ab1e1e">合同生效日期：</td>
@@ -290,7 +275,7 @@
             <tr>
                 <td style="color: #ab1e1e">合同主要内容：</td>
                 <td colspan="4">
-                    <textarea cols="65" rows="3" name="mainContent" id="mainContent"></textarea>
+                    ${contract.mainContent}
                 </td>
             </tr>
             <tr>
@@ -306,7 +291,6 @@
                            onchange="checkNum2(this.value)" style="width: 155px"> 元
                 </td>
             </tr>
-            <%--todo:询问?--%>
             <tr>
                 <td style="color: #ab1e1e">合同应收（付）款金额:</td>
                 <td colspan="2">
@@ -316,8 +300,19 @@
                            onchange="checkNum(this.value)"
                            style="width: 105px">元
                 </td>
-                <td>款项类型：</td>
+                <td>应付（收）时间:</td>
                 <td>
+                    <input type="text" placeholder="yyyy-mm-dd,yyyy-mm-dd" name="paymentDate">
+                </td>
+            </tr>
+            <tr>
+                <td>验收时间：</td>
+                <td>
+                    <input type="text" name="acceptance" class="Wdate"
+                           onfocus="WdatePicker({skin:'whyGreen'})">
+                </td>
+                <td>款项类型：</td>
+                <td colspan="2">
                     <select name="paymentType" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
                             onchange="others(this.selectedIndex)">
                         <option value="" style="text-align: center">---------请选择---------</option>
@@ -326,7 +321,7 @@
                         <option value="履约保函" style="text-align: center">履约保函</option>
                         <option value="咨询费" style="text-align: center">咨询费</option>
                         <option value="容量气价" style="text-align: center">容量气价</option>
-                        <option value="款货" style="text-align: center">款货</option>
+                        <option value="款货" style="text-align: center">货款</option>
                         <option value="租赁费" style="text-align: center">租赁费</option>
                         <option value="培训费" style="text-align: center">培训费</option>
                         <option value="其他" style="text-align: center">其他</option>
