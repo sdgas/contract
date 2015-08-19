@@ -62,16 +62,16 @@
         </li>
         <li class="divider"></li>
         <li>
-            <a href="Contract!findContract.action"> 维护合同信息 </a>
+            <a href="Contract!findContract.action"> 查看合同信息 </a>
         </li>
-        <%-- <li class="divider"></li>
-        <li>
-             <a href="#"> 续签合同 </a>
-         </li>
          <li class="divider"></li>
-         <li>
-             <a href="#"> 改签合同 </a>
-         </li>--%>
+        <li>
+             <a href="/page/contract/addPayment.jsp"> 录入实际款项信息 </a>
+         </li>
+        <%--<li class="divider"></li>
+        <li>
+            <a href="#"> 改签合同 </a>
+        </li>--%>
     </ul>
 </div>
 

@@ -18,9 +18,8 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>Purchasing</title>
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
+    <title>合同管理系统</title>
+    <meta http-equiv="pragma" content="no-cache">    <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="content－Type" content="text/html;charset=UTF-8">
     <meta http-equiv="window-target" content="_top">
     <meta http-equiv="expires" content="0">

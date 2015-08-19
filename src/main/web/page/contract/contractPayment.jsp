@@ -434,9 +434,7 @@
             <tr>
                 <td>附件：</td>
                 <td colspan="4">
-                    <s:iterator value="attachments" var="a">
-                        <a href="">${a.attachmentName}</a>
-                    </s:iterator>
+
                 </td>
             </tr>
             <%--<tr>

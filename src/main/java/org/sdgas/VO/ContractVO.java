@@ -1,9 +1,9 @@
 package org.sdgas.VO;
 
-import org.sdgas.model.Contract;
-import org.sdgas.model.ContractProperty;
+import org.sdgas.model.*;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 120378 on 2015-03-06.
@@ -53,6 +53,16 @@ public class ContractVO extends BaseVO {
 
     private Contract contract;
     private String project;
+
+    private List<Attachment> attachments = new ArrayList<Attachment>();
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
+    }
 
     public String getContractSignCompany() {
         return contractSignCompany;

@@ -3,7 +3,9 @@ package org.sdgas.service.impl;
 import org.sdgas.VO.AttachmentVO;
 import org.sdgas.base.DaoSupport;
 import org.sdgas.model.Attachment;
+import org.sdgas.model.Contract;
 import org.sdgas.service.AttachmentService;
+import org.sdgas.service.ContractService;
 import org.sdgas.util.ChangeTime;
 
 import java.io.*;
@@ -13,7 +15,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 120378 on 2015-03-09.
@@ -25,11 +30,13 @@ public class AttachmentServiceImpl extends DaoSupport<Attachment> implements Att
 
     private static String SAVE_PATH_DIR = "D:/contract/attachment/";
     private Logger logger = LogManager.getLogger(AttachmentServiceImpl.class);
+    private ContractService contractService;
 
     @Override
     public List<Attachment> findByContractId(String contract) {
-        /*todo:待完善*/
-        return null;
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("contract", contract);
+        return this.findByFields(Attachment.class, params);
     }
 
     @Override
@@ -61,5 +68,10 @@ public class AttachmentServiceImpl extends DaoSupport<Attachment> implements Att
             return "";
         }
         return name;
+    }
+
+    @Resource(name = "contractServiceImpl")
+    public void setContractService(ContractService contractService) {
+        this.contractService = contractService;
     }
 }

@@ -33,6 +33,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     private ContractNameService contractNameService;
     private ContractTypeService contractTypeService;
     private DepartmentService departmentService;
+    private AttachmentService attachmentService;
 
     private static final Logger logger = LogManager.getLogger(ContractAction.class);
 
@@ -291,7 +292,14 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contractVO.setOneSign(tmp[0]);
         contractVO.setTwoSign(tmp[1]);
         contractVO.setThreeSign(tmp[2]);
-        view = "/page/contract/showContract.jsp";
+
+        List<Attachment> attachments = attachmentService.findByContractId(contract.getContractId());
+        contractVO.setAttachments(attachments);
+
+        if (contractVO.getFlag() == 1) {
+            view = "/page/contract/contractPayment.jsp";
+        } else
+            view = "/page/contract/showContract.jsp";
         return VIEW;
     }
 
@@ -318,5 +326,10 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     @Resource(name = "departmentServiceImpl")
     public void setDepartmentService(DepartmentService departmentService) {
         this.departmentService = departmentService;
+    }
+
+    @Resource(name = "attachmentServiceImpl")
+    public void setAttachmentService(AttachmentService attachmentService) {
+        this.attachmentService = attachmentService;
     }
 }
