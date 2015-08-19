@@ -18,7 +18,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>修改合同信息</title>
+    <title>合同信息</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="content－Type" content="text/html;charset=UTF-8">
@@ -32,13 +32,19 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="<%=basePath%>js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
+    <script src="<%=basePath%>js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript"
+            src="<%=basePath%>js/My97DatePicker/WdatePicker.js"></script>
 
     <script type="text/javascript">
 
         $(document).ready(function () {
 
             mergeTable("t1", 0, 4);
-
+            mergeTable("t2", 0, 1);//一次性付款
+            mergeTable("t2", 1, 2);//一次性付款金额
+            mergeTable("t2", 2, 1);//分期付款
+            mergeTable("t2", 6, 2);//留空
         });
 
         function getContract() {
@@ -434,15 +440,55 @@
             <tr>
                 <td>附件：</td>
                 <td colspan="4">
-
+                    <s:iterator value="attachments" var="a">
+                        <a href="FileDownload.action?flag=1&fileName=${a.attachmentName}">${a.attachmentName}</a>
+                    </s:iterator>
                 </td>
             </tr>
-            <%--<tr>
-                <td colspan="5" align="center">
-                    <input type="submit" value="提交" onclick="return confirm();">
-                    <input type="reset" value="重置">
+        </table>
+    </form>
+    <%--todo:录入收付款信息--%>
+    <form action="#" method="post">
+        <input type="hidden" name="contract" value="${contract.contractId}">
+        <table id="t2" class="mergeTable">
+            <tr>
+                <td colspan="7">
+                    <c:if test="${contract.receivableOrPay eq RECEIVE}">
+                        <span style="font-size: x-large">收款进度</span>
+                        <c:set var="r" value="收"/>
+                    </c:if>
+                    <c:if test="${contract.receivableOrPay eq PAY}">
+                        <span style="font-size: x-large">付款进度</span>
+                        <c:set var="r" value="付"/>
+                    </c:if>
                 </td>
-            </tr>--%>
+            </tr>
+            <tr>
+                <td>一次性${r}款</td>
+                <td>${r}款金额</td>
+                <td>分期${r}款</td>
+                <td>应${r}款日期</td>
+                <td>实${r}款日期</td>
+                <td>${r}款金额</td>
+                <td>备注</td>
+            </tr>
+            <s:iterator value="date" var="a">
+                <tr>
+                    <td>一次性${r}款</td>
+                    <td>
+                        <c:if test="${once eq F}">0.0元</c:if>
+                    </td>
+                    <td>分期${r}款</td>
+                    <td>${a}</td>
+                    <td>
+                        <input type="text" name="paymentDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen'})" style="width: 120px">
+                    </td>
+                    <td>
+                        <input type="text" name="payMoney" maxlength="10" style="width: 120px">元
+                    </td>
+                    <td></td>
+                </tr>
+            </s:iterator>
         </table>
     </form>
 </div>

@@ -10,7 +10,7 @@ public enum ReceiveOrPay {
      */
     RECEIVE {
         public int getState() {
-            return 0;
+            return 3;
         }
     },
     /**
@@ -18,7 +18,7 @@ public enum ReceiveOrPay {
      */
     PAY {
         public int getState() {
-            return 1;
+            return 0;
         }
     };
 

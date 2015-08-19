@@ -10,5 +10,21 @@ import java.util.List;
  */
 public interface PaymentService extends DAO {
 
-    public List<Payment> findByContractId(String contractId);
+    /**
+     * 根据合同编号查找付款信息
+     *
+     * @param contractId 合同编号
+     * @return 付款信息
+     */
+    public Payment findByContractId(String contractId);
+
+    /**
+     * 保存或更新付款信息
+     *
+     * @param contract     合同编号
+     * @param paymentDate  付款日期
+     * @param paymentMoney 付款金额
+     * @return
+     */
+    public Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney);
 }

@@ -55,6 +55,24 @@ public class ContractVO extends BaseVO {
     private String project;
 
     private List<Attachment> attachments = new ArrayList<Attachment>();
+    private String [] date;
+    private String once;
+
+    public String getOnce() {
+        return once;
+    }
+
+    public void setOnce(String once) {
+        this.once = once;
+    }
+
+    public String[] getDate() {
+        return date;
+    }
+
+    public void setDate(String[] date) {
+        this.date = date;
+    }
 
     public List<Attachment> getAttachments() {
         return attachments;

@@ -131,7 +131,7 @@
                             ${s.count}
                     </td>
                     <td>
-                        <a href="Contract!findOneContract.action?flag=1&contractId=${contract.contractId}">${contract.contractId}</a>
+                        <a href="Contract!findOneContract.action?flag=2&contractId=${contract.contractId}">${contract.contractId}</a>
                     </td>
                     <td>
                             ${contract.contractName.contractName}

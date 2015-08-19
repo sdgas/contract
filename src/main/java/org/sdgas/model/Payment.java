@@ -22,7 +22,7 @@ public class Payment {
     /**
      * 付款时间
      */
-    private Date paymentDate;
+    private String paymentDate;
 
     /**
      * 付款金额
@@ -49,12 +49,11 @@ public class Payment {
         this.contract = contract;
     }
 
-    @Temporal(TemporalType.DATE)
-    public Date getPaymentDate() {
+    public String getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Date paymentDate) {
+    public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
     }
 

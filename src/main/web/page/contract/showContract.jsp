@@ -18,7 +18,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>修改合同信息</title>
+    <title>合同信息</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="content－Type" content="text/html;charset=UTF-8">
@@ -255,7 +255,6 @@
                 <td colspan="2">
                     <c:set var="RECEIVE" value="<%=ReceiveOrPay.RECEIVE %>"/>
                     <c:set var="PAY" value="<%=ReceiveOrPay.PAY %>"/>
-
                     <c:if test="${contract.receivableOrPay eq RECEIVE}">
                         ${contract.receivableOrPayMoney}元
                     </c:if>

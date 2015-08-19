@@ -245,10 +245,11 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         pageView.setQueryResult(contractService.getScrollData(Contract.class, firstIndex, maxResult, jpql.toString(),
                 params.toArray(), orderBy));
         contractVO.setPageView(pageView);
-        if(contractVO.getFlag()==2)
+
+        if (contractVO.getFlag() == 1)
             view = "/page/contract/addPayment.jsp";
         else
-        view = "/page/contract/findContract.jsp";
+            view = "/page/contract/findContract.jsp";
         return VIEW;
     }
 
@@ -296,10 +297,17 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contractVO.setTwoSign(tmp[1]);
         contractVO.setThreeSign(tmp[2]);
 
+        String[] date = contract.getPaymentDate().split(",|，");
+        if (date.length == 1)
+            contractVO.setOnce("T");
+        else
+            contractVO.setOnce("F");
+
         List<Attachment> attachments = attachmentService.findByContractId(contract.getContractId());
         contractVO.setAttachments(attachments);
+        contractVO.setDate(date);
 
-        if (contractVO.getFlag() == 1) {
+        if (contractVO.getFlag() == 2) {
             view = "/page/contract/contractPayment.jsp";
         } else
             view = "/page/contract/showContract.jsp";

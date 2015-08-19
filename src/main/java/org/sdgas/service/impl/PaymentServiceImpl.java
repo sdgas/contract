@@ -23,10 +23,33 @@ public class PaymentServiceImpl extends DaoSupport<Payment> implements PaymentSe
     private ContractService contractService;
 
     @Override
-    public List<Payment> findByContractId(String contractId) {
+    public Payment findByContractId(String contractId) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("contractId", contractService.find(Contract.class, contractId));
-        return this.findByFields(Contract.class, params);
+        return (Payment) this.findSpecialObject(Contract.class, params);
+    }
+
+    @Override
+    public Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney) {
+        String[] tmp = paymentMoney.split(",");
+        double money = 0.0d;
+        for (String str : tmp) {
+            money += Double.valueOf(str);
+        }
+
+        Payment payment = this.findByContractId(contract);
+        if (payment == null) {
+            payment = new Payment();
+            payment.setContract(contractService.find(Contract.class, contract));
+            payment.setPaymentDate(paymentDate);
+            payment.setPayMoney(money);
+            this.save(payment);
+        } else {
+            payment.setPaymentDate(paymentDate);
+            payment.setPayMoney(money);
+            this.update(payment);
+        }
+        return payment;
     }
 
     @Resource(name = "contractServiceImpl")

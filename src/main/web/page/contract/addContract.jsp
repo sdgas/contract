@@ -297,7 +297,6 @@
                 <td>
                     <select name="contractProvide" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
                             onchange="others(this.selectedIndex)">
-                        <option value="" style="text-align: center">---------请选择---------</option>
                         <option value="0" style="text-align: center">我司</option>
                         <option value="1" style="text-align: center">外单位</option>
                     </select>
@@ -305,9 +304,8 @@
                 <td>律师咨询：</td>
                 <td colspan="2">
                     <select name="lawer" style="font-family: '微软雅黑';font-size: 16px;width: 180px">
-                        <option value="" style="text-align: center">---------请选择---------</option>
-                        <option value="1" style="text-align: center">是</option>
                         <option value="0" style="text-align: center">否</option>
+                        <option value="1" style="text-align: center">是</option>
                     </select>
             </tr>
             <tr>

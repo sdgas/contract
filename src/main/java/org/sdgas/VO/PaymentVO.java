@@ -7,7 +7,7 @@ public class PaymentVO extends BaseVO {
 
     private String contract;//合同编号
     private String paymentDate;//付款时间
-    private double payMoney;//付款金额
+    private String payMoney;//付款金额
 
     public String getContract() {
         return contract;
@@ -25,11 +25,11 @@ public class PaymentVO extends BaseVO {
         this.paymentDate = paymentDate;
     }
 
-    public double getPayMoney() {
+    public String getPayMoney() {
         return payMoney;
     }
 
-    public void setPayMoney(double payMoney) {
+    public void setPayMoney(String payMoney) {
         this.payMoney = payMoney;
     }
 }
