@@ -245,6 +245,9 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         pageView.setQueryResult(contractService.getScrollData(Contract.class, firstIndex, maxResult, jpql.toString(),
                 params.toArray(), orderBy));
         contractVO.setPageView(pageView);
+        if(contractVO.getFlag()==2)
+            view = "/page/contract/addPayment.jsp";
+        else
         view = "/page/contract/findContract.jsp";
         return VIEW;
     }

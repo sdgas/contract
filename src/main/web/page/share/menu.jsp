@@ -66,7 +66,7 @@
         </li>
          <li class="divider"></li>
         <li>
-             <a href="/page/contract/addPayment.jsp"> 录入实际款项信息 </a>
+             <a href="Contract!findContract.action?flag=1"> 录入实际款项信息 </a>
          </li>
         <%--<li class="divider"></li>
         <li>
