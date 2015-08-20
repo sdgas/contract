@@ -448,7 +448,7 @@
         </table>
     </form>
     <%--todo:录入收付款信息--%>
-    <form action="#" method="post">
+    <form action="Payment.action" method="post">
         <input type="hidden" name="contract" value="${contract.contractId}">
         <table id="t2" class="mergeTable">
             <tr>
@@ -476,17 +476,21 @@
                 <tr>
                     <td>一次性${r}款</td>
                     <td>
-                        <c:if test="${once eq F}">0.0元</c:if>
+                        <c:if test="${once eq 'F'}">0.0元</c:if>
+                        <c:if test="${once ne 'F'}">
+                            <input type="text" name="payMoney">
+                        </c:if>
                     </td>
                     <td>分期${r}款</td>
                     <td>${a}</td>
                     <td>
-                        <input type="text" name="paymentDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen'})" style="width: 120px">
+                        <input type="text" name="paymentDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen'})"
+                               style="width: 120px">
                     </td>
                     <td>
                         <input type="text" name="payMoney" maxlength="10" style="width: 120px">元
                     </td>
-                    <td></td>
+                    <td><input type="text" name="remark"></td>
                 </tr>
             </s:iterator>
         </table>

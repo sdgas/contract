@@ -29,6 +29,12 @@ public class Payment {
      */
     private double payMoney;
 
+    /**
+     * 备注
+     * @return
+     */
+    private String remark;
+
     @Id
     @GeneratedValue
     public int getId() {
@@ -64,5 +70,14 @@ public class Payment {
 
     public void setPayMoney(double payMoney) {
         this.payMoney = payMoney;
+    }
+
+    @Column(length = 255)
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

@@ -30,7 +30,7 @@ public class PaymentServiceImpl extends DaoSupport<Payment> implements PaymentSe
     }
 
     @Override
-    public Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney) {
+    public Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney, String remark) {
         String[] tmp = paymentMoney.split(",");
         double money = 0.0d;
         for (String str : tmp) {
@@ -43,10 +43,12 @@ public class PaymentServiceImpl extends DaoSupport<Payment> implements PaymentSe
             payment.setContract(contractService.find(Contract.class, contract));
             payment.setPaymentDate(paymentDate);
             payment.setPayMoney(money);
+            payment.setRemark(remark);
             this.save(payment);
         } else {
             payment.setPaymentDate(paymentDate);
             payment.setPayMoney(money);
+            payment.setRemark(payment.getRemark() + "<br/>" + remark);
             this.update(payment);
         }
         return payment;

@@ -24,7 +24,8 @@ public interface PaymentService extends DAO {
      * @param contract     合同编号
      * @param paymentDate  付款日期
      * @param paymentMoney 付款金额
+     * @param remark       备注
      * @return
      */
-    public Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney);
+    public Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney, String remark);
 }
