@@ -34,6 +34,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     private ContractTypeService contractTypeService;
     private DepartmentService departmentService;
     private AttachmentService attachmentService;
+    private PaymentService paymentService;
 
     private static final Logger logger = LogManager.getLogger(ContractAction.class);
 
@@ -306,8 +307,17 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         List<Attachment> attachments = attachmentService.findByContractId(contract.getContractId());
         contractVO.setAttachments(attachments);
         contractVO.setDate(date);
+        contractVO.setDn(date.length + "");
 
         if (contractVO.getFlag() == 2) {
+            Payment payment = paymentService.findByContractId(contract.getContractId());
+            if (payment != null) {
+                contractVO.setPayment(payment);
+                contractVO.setPaymentDates(payment.getPaymentDate().trim().split(","));
+                contractVO.setPaymentMoneys(payment.getPayMoney().trim().split(","));
+                contractVO.setPn(payment.getPaymentDate().trim().split(",").length + "");
+                System.out.println(contractVO.getPn());
+            }
             view = "/page/contract/contractPayment.jsp";
         } else
             view = "/page/contract/showContract.jsp";
@@ -342,5 +352,10 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     @Resource(name = "attachmentServiceImpl")
     public void setAttachmentService(AttachmentService attachmentService) {
         this.attachmentService = attachmentService;
+    }
+
+    @Resource(name = "paymentServiceImpl")
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
     }
 }

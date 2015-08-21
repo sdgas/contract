@@ -55,8 +55,53 @@ public class ContractVO extends BaseVO {
     private String project;
 
     private List<Attachment> attachments = new ArrayList<Attachment>();
-    private String [] date;
-    private String once;
+    private String[] date;//付款日期
+    private String once;//是否一次性付款
+    private Payment payment;//付款信息
+    private String[] paymentDates;
+    private String[] paymentMoneys;
+    private String dn;//分期数量
+    private String pn;
+
+    public String getDn() {
+        return dn;
+    }
+
+    public void setDn(String dn) {
+        this.dn = dn;
+    }
+
+    public String getPn() {
+        return pn;
+    }
+
+    public void setPn(String pn) {
+        this.pn = pn;
+    }
+
+    public String[] getPaymentDates() {
+        return paymentDates;
+    }
+
+    public void setPaymentDates(String[] paymentDates) {
+        this.paymentDates = paymentDates;
+    }
+
+    public String[] getPaymentMoneys() {
+        return paymentMoneys;
+    }
+
+    public void setPaymentMoneys(String[] paymentMoneys) {
+        this.paymentMoneys = paymentMoneys;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 
     public String getOnce() {
         return once;

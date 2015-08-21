@@ -35,12 +35,11 @@ public class PaymentAction extends MyActionSupport implements ModelDriven<Paymen
 
     private static final Logger logger = LogManager.getLogger(PaymentAction.class);
 
-    //todo:未测试
     //添加付（收）款信息
     public String execute() {
         Payment payment = paymentService.saveOrUpdatePay(paymentVO.getContract(), paymentVO.getPaymentDate(), paymentVO.getPayMoney(),paymentVO.getRemark());
         logger.info("用户：" + user.getUserName() + "添加付款信息成功（" + payment.getContract() + ")IP:" + ip);
-        paymentVO.setResultMessage("<script>alert('添加付款信息成功！');location.href='#';</script>");
+        paymentVO.setResultMessage("<script>alert('添加付款信息成功！');location.href='Contract!findContract.action?flag=1';</script>");
         return SUCCESS;
     }
 

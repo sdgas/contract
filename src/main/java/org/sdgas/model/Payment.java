@@ -27,10 +27,16 @@ public class Payment {
     /**
      * 付款金额
      */
-    private double payMoney;
+    private String payMoney;
+
+    /**
+     * 合同剩下金额
+     */
+    private double leftMoney;
 
     /**
      * 备注
+     *
      * @return
      */
     private String remark;
@@ -46,7 +52,7 @@ public class Payment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "contractId")
+    @JoinColumn(name = "contractId", unique = true)
     public Contract getContract() {
         return contract;
     }
@@ -63,12 +69,12 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    @Column(precision = 12, scale = 2, nullable = false)
-    public double getPayMoney() {
+    @Column(nullable = false)
+    public String getPayMoney() {
         return payMoney;
     }
 
-    public void setPayMoney(double payMoney) {
+    public void setPayMoney(String payMoney) {
         this.payMoney = payMoney;
     }
 
@@ -79,5 +85,14 @@ public class Payment {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Column(precision = 12, scale = 2, nullable = false)
+    public double getLeftMoney() {
+        return leftMoney;
+    }
+
+    public void setLeftMoney(double leftMoney) {
+        this.leftMoney = leftMoney;
     }
 }

@@ -45,6 +45,7 @@
             mergeTable("t2", 1, 2);//一次性付款金额
             mergeTable("t2", 2, 1);//分期付款
             mergeTable("t2", 6, 2);//留空
+
         });
 
         function getContract() {
@@ -472,27 +473,43 @@
                 <td>${r}款金额</td>
                 <td>备注</td>
             </tr>
-            <s:iterator value="date" var="a">
+            <s:iterator value="date" var="a" status="i">
                 <tr>
                     <td>一次性${r}款</td>
                     <td>
                         <c:if test="${once eq 'F'}">0.0元</c:if>
                         <c:if test="${once ne 'F'}">
-                            <input type="text" name="payMoney">
+                            <input type="text" name="payMoney" style="width: 120px">元
                         </c:if>
                     </td>
                     <td>分期${r}款</td>
                     <td>${a}</td>
                     <td>
-                        <input type="text" name="paymentDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen'})"
-                               style="width: 120px">
+                        <c:if test="${pn>i.index}">${paymentDates[i.index]}</c:if>
+                        <c:if test="${pn<i.index}">
+                            <input type="text" name="paymentDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen'})"
+                                   style="width: 120px">
+                        </c:if>
                     </td>
                     <td>
-                        <input type="text" name="payMoney" maxlength="10" style="width: 120px">元
+                        <c:if test="${pn>i.index}">${paymentMoneys[i.index]}</c:if>
+                        <c:if test="${pn<i.index}">
+                            <input type="text" name="payMoney" maxlength="10" style="width: 120px"
+                                   value="">元
+                        </c:if>
+
                     </td>
-                    <td><input type="text" name="remark"></td>
+                    <td>
+                        <textarea rows="3" cols="15" name="remark"></textarea>
+                    </td>
                 </tr>
             </s:iterator>
+            <tr>
+                <td colspan="3">
+                    <input name="tijiao" value="添加" type="submit">
+                </td>
+            </tr>
+
         </table>
     </form>
 </div>

@@ -25,16 +25,18 @@ public class PaymentServiceImpl extends DaoSupport<Payment> implements PaymentSe
     @Override
     public Payment findByContractId(String contractId) {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("contractId", contractService.find(Contract.class, contractId));
-        return (Payment) this.findSpecialObject(Contract.class, params);
+        params.put("contract", contractService.findContractById(contractId));
+        return (Payment) this.findSpecialObject(Payment.class, params);
     }
 
     @Override
     public Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney, String remark) {
-        String[] tmp = paymentMoney.split(",");
+        String tep[] = paymentMoney.split(",");
         double money = 0.0d;
-        for (String str : tmp) {
-            money += Double.valueOf(str);
+        for (String str : tep) {
+            if (!str.trim().isEmpty()) {
+                money += Double.valueOf(str);
+            }
         }
 
         Payment payment = this.findByContractId(contract);
@@ -42,13 +44,15 @@ public class PaymentServiceImpl extends DaoSupport<Payment> implements PaymentSe
             payment = new Payment();
             payment.setContract(contractService.find(Contract.class, contract));
             payment.setPaymentDate(paymentDate);
-            payment.setPayMoney(money);
+            payment.setPayMoney(paymentMoney);
             payment.setRemark(remark);
+            payment.setLeftMoney(contractService.findContractById(contract).getContractMoney() - money);
             this.save(payment);
         } else {
             payment.setPaymentDate(paymentDate);
-            payment.setPayMoney(money);
+            payment.setPayMoney(paymentMoney);
             payment.setRemark(payment.getRemark() + "<br/>" + remark);
+            payment.setLeftMoney(contractService.findContractById(contract).getContractMoney() - money);
             this.update(payment);
         }
         return payment;
