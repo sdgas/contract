@@ -49,8 +49,8 @@ public class PaymentServiceImpl extends DaoSupport<Payment> implements PaymentSe
             payment.setLeftMoney(contractService.findContractById(contract).getContractMoney() - money);
             this.save(payment);
         } else {
-            payment.setPaymentDate(paymentDate);
-            payment.setPayMoney(paymentMoney);
+            payment.setPaymentDate(payment.getPaymentDate() + paymentDate);
+            payment.setPayMoney(payment.getPayMoney() + paymentMoney);
             payment.setRemark(payment.getRemark() + "<br/>" + remark);
             payment.setLeftMoney(contractService.findContractById(contract).getContractMoney() - money);
             this.update(payment);

@@ -485,17 +485,17 @@
                     <td>分期${r}款</td>
                     <td>${a}</td>
                     <td>
-                        <c:if test="${pn>i.index}">${paymentDates[i.index]}</c:if>
-                        <c:if test="${pn<i.index}">
+                        <c:if test="${pn gt i.index}">${paymentDates[i.index]}</c:if>
+                        <c:if test="${pn eq 0 or pn le i.index}">
                             <input type="text" name="paymentDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen'})"
                                    style="width: 120px">
                         </c:if>
                     </td>
                     <td>
-                        <c:if test="${pn>i.index}">${paymentMoneys[i.index]}</c:if>
-                        <c:if test="${pn<i.index}">
-                            <input type="text" name="payMoney" maxlength="10" style="width: 120px"
-                                   value="">元
+                        <c:if test="${pn gt i.index}">${paymentMoneys[i.index]}</c:if>
+
+                        <c:if test="${pn eq 0 or pn le i.index}">
+                            <input type="text" name="payMoney" maxlength="10" style="width: 120px">元
                         </c:if>
 
                     </td>
@@ -505,7 +505,7 @@
                 </tr>
             </s:iterator>
             <tr>
-                <td colspan="3">
+                <td colspan="7">
                     <input name="tijiao" value="添加" type="submit">
                 </td>
             </tr>

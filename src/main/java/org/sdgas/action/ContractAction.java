@@ -317,6 +317,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 contractVO.setPaymentMoneys(payment.getPayMoney().trim().split(","));
                 contractVO.setPn(payment.getPaymentDate().trim().split(",").length + "");
                 System.out.println(contractVO.getPn());
+            } else {
+                contractVO.setPn(0 + "");
             }
             view = "/page/contract/contractPayment.jsp";
         } else
