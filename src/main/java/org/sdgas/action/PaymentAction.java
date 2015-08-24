@@ -26,7 +26,6 @@ public class PaymentAction extends MyActionSupport implements ModelDriven<Paymen
     private PaymentVO paymentVO = new PaymentVO();
 
     private PaymentService paymentService;
-    private ContractService contractService;
 
     //获取当前登录用户
     HttpSession session = ServletActionContext.getRequest().getSession();
@@ -51,10 +50,5 @@ public class PaymentAction extends MyActionSupport implements ModelDriven<Paymen
     @Resource(name = "paymentServiceImpl")
     public void setPaymentService(PaymentService paymentService) {
         this.paymentService = paymentService;
-    }
-
-    @Resource(name = "contractServiceImpl")
-    public void setContractService(ContractService contractService) {
-        this.contractService = contractService;
     }
 }

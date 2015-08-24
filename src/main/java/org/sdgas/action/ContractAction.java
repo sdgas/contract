@@ -299,10 +299,6 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contractVO.setThreeSign(tmp[2]);
 
         String[] date = contract.getPaymentDate().split(",|，");
-        if (date.length == 1)
-            contractVO.setOnce("T");
-        else
-            contractVO.setOnce("F");
 
         List<Attachment> attachments = attachmentService.findByContractId(contract.getContractId());
         contractVO.setAttachments(attachments);
@@ -315,12 +311,14 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 contractVO.setPayment(payment);
                 contractVO.setPaymentDates(payment.getPaymentDate().trim().split(","));
                 contractVO.setPaymentMoneys(payment.getPayMoney().trim().split(","));
+                contractVO.setPaymentRemarks(payment.getRemark().trim().split(","));
                 contractVO.setPn(payment.getPaymentDate().trim().split(",").length + "");
-                System.out.println(contractVO.getPn());
             } else {
                 contractVO.setPn(0 + "");
             }
             view = "/page/contract/contractPayment.jsp";
+        } else if (contractVO.getFlag() == 3) {
+            view = "/page/contract/auditingContract.jsp";
         } else
             view = "/page/contract/showContract.jsp";
         return VIEW;

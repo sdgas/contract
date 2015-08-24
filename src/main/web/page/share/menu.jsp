@@ -56,24 +56,24 @@
         <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
             合同管理 <span class="caret"></span>
         </button>
-    <ul class="dropdown-menu" role="menu">
-        <li>
-            <a href="<%=basePath%>page/contract/addContract.jsp"> 新增合同 </a>
-        </li>
-        <li class="divider"></li>
-        <li>
-            <a href="Contract!findContract.action"> 查看合同信息 </a>
-        </li>
-         <li class="divider"></li>
-        <li>
-             <a href="Contract!findContract.action?flag=1"> 录入实际款项信息 </a>
-         </li>
-        <%--<li class="divider"></li>
-        <li>
-            <a href="#"> 改签合同 </a>
-        </li>--%>
-    </ul>
-</div>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="<%=basePath%>page/contract/addContract.jsp"> 新增合同 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="Contract!findContract.action"> 查看合同信息 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="Contract!findContract.action?flag=1"> 录入实际款项信息 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="Contract!findContract.action？flag=3"> 合同审核 </a>
+            </li>
+        </ul>
+    </div>
 
     <%--按钮3--%>
     <div class="btn-group" style="margin-top: 10px;">

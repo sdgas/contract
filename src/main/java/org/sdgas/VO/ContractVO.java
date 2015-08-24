@@ -56,12 +56,20 @@ public class ContractVO extends BaseVO {
 
     private List<Attachment> attachments = new ArrayList<Attachment>();
     private String[] date;//付款日期
-    private String once;//是否一次性付款
     private Payment payment;//付款信息
     private String[] paymentDates;
     private String[] paymentMoneys;
+    private String[] paymentRemarks;
     private String dn;//分期数量
     private String pn;
+
+    public String[] getPaymentRemarks() {
+        return paymentRemarks;
+    }
+
+    public void setPaymentRemarks(String[] paymentRemarks) {
+        this.paymentRemarks = paymentRemarks;
+    }
 
     public String getDn() {
         return dn;
@@ -101,14 +109,6 @@ public class ContractVO extends BaseVO {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
-    }
-
-    public String getOnce() {
-        return once;
-    }
-
-    public void setOnce(String once) {
-        this.once = once;
     }
 
     public String[] getDate() {

@@ -453,7 +453,7 @@
         <input type="hidden" name="contract" value="${contract.contractId}">
         <table id="t2" class="mergeTable">
             <tr>
-                <td colspan="7">
+                <td colspan="5">
                     <c:if test="${contract.receivableOrPay eq RECEIVE}">
                         <span style="font-size: x-large">收款进度</span>
                         <c:set var="r" value="收"/>
@@ -465,9 +465,9 @@
                 </td>
             </tr>
             <tr>
-                <td>一次性${r}款</td>
-                <td>${r}款金额</td>
-                <td>分期${r}款</td>
+                <%--<td>一次性${r}款</td>
+                <td>${r}款金额</td>--%>
+                <td>${r}款信息</td>
                 <td>应${r}款日期</td>
                 <td>实${r}款日期</td>
                 <td>${r}款金额</td>
@@ -475,14 +475,14 @@
             </tr>
             <s:iterator value="date" var="a" status="i">
                 <tr>
-                    <td>一次性${r}款</td>
-                    <td>
-                        <c:if test="${once eq 'F'}">0.0元</c:if>
-                        <c:if test="${once ne 'F'}">
-                            <input type="text" name="payMoney" style="width: 120px">元
-                        </c:if>
-                    </td>
-                    <td>分期${r}款</td>
+                        <%--<td>一次性${r}款</td>
+                        <td>
+                            <c:if test="${once eq 'F'}">0.0元</c:if>
+                            <c:if test="${once ne 'F'}">
+                                <input type="text" name="payMoney" style="width: 120px">元
+                            </c:if>
+                        </td>--%>
+                    <td>${r}款信息</td>
                     <td>${a}</td>
                     <td>
                         <c:if test="${pn gt i.index}">${paymentDates[i.index]}</c:if>
@@ -500,16 +500,21 @@
 
                     </td>
                     <td>
-                        <textarea rows="3" cols="15" name="remark"></textarea>
+                        <c:if test="${pn gt i.index}">${paymentRemarks[i.index]}</c:if>
+
+                        <c:if test="${pn eq 0 or pn le i.index}">
+                            <textarea rows="3" cols="15" name="remark"></textarea>
+                        </c:if>
                     </td>
                 </tr>
             </s:iterator>
-            <tr>
-                <td colspan="7">
-                    <input name="tijiao" value="添加" type="submit">
-                </td>
-            </tr>
-
+            <c:if test="">
+                <tr>
+                    <td colspan="5">
+                        <input name="tijiao" value="添加" type="submit">
+                    </td>
+                </tr>
+            </c:if>
         </table>
     </form>
 </div>
