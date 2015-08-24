@@ -70,7 +70,7 @@
             </li>
             <li class="divider"></li>
             <li>
-                <a href="Contract!findContract.action？flag=3"> 合同审核 </a>
+                <a href="Contract!findContract.action?flag=3"> 合同审核 </a>
             </li>
         </ul>
     </div>

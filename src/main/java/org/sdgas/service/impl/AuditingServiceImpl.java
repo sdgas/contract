@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,10 +22,10 @@ public class AuditingServiceImpl extends DaoSupport<Auditing> implements Auditin
     private ContractService contractService;
 
     @Override
-    public Auditing findByContractId(String contractId) {
+    public List<Auditing> findByContractId(String contractId) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("contract", contractService.findContractById(contractId));
-        return (Auditing) this.findSpecialObject(Auditing.class, params);
+        return this.findByFields(Auditing.class, params);
     }
 
     @Resource(name = "contractServiceImpl")

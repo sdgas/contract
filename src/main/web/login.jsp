@@ -19,7 +19,7 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 
     <link href="css/landing_page.css" rel="stylesheet"
           type="text/css" media="screen"/>

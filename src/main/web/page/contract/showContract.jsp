@@ -75,6 +75,16 @@
             }
         }
 
+        function subForm(selectNum) {
+            if (selectNum == 1) {
+                $("form")[0].action = "Contract!findOneContract.action";
+                $("#flag").val("2");
+            } else {
+                $("form")[0].action = "Contract!findOneContract.action";
+                $("#flag").val("4");
+            }
+        }
+
     </script>
     <style type="text/css">
 
@@ -94,8 +104,8 @@
 <body>
 <%@ include file="/page/share/menu.jsp" %>
 <div id="content">
-    <form action="Contract!findOneContract.action" method="post" enctype="multipart/form-data">
-        <input name="flag" value="2" type="hidden">
+    <form action="#" method="post" enctype="multipart/form-data" >
+        <input name="flag" value="" type="hidden" id="flag">
         <input name="contractId" value="${contract.contractId}" type="hidden">
         <table id="t1" class="mergeTable">
             <tr>
@@ -441,8 +451,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="5" align="center">
-                    <input type="submit" value="查看付款信息">
+                <td colspan="3" align="center">
+                    <input type="submit" value="查看付款信息" onclick="subForm(1)">
+                </td>
+                <td colspan="2" align="center">
+                    <input type="submit" value="查看审核信息" onclick="subForm(2)">
                 </td>
             </tr>
         </table>

@@ -3,6 +3,8 @@ package org.sdgas.service;
 import org.sdgas.base.DAO;
 import org.sdgas.model.Auditing;
 
+import java.util.List;
+
 /**
  * Created by 120378 on 2015/8/24.
  */
@@ -14,5 +16,5 @@ public interface AuditingService extends DAO {
      * @param contractId 合同编号
      * @return 审核信息
      */
-    public Auditing findByContractId(String contractId);
+    public List<Auditing> findByContractId(String contractId);
 }

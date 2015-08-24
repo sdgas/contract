@@ -32,16 +32,12 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="<%=basePath%>js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
-    <script src="<%=basePath%>js/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript"
-            src="<%=basePath%>js/My97DatePicker/WdatePicker.js"></script>
 
     <script type="text/javascript">
 
         $(document).ready(function () {
 
             mergeTable("t1", 0, 4);
-            mergeTable("t2", 0, 1);//分期付款
         });
 
         function getContract() {
@@ -258,7 +254,6 @@
                 <td colspan="2">
                     <c:set var="RECEIVE" value="<%=ReceiveOrPay.RECEIVE %>"/>
                     <c:set var="PAY" value="<%=ReceiveOrPay.PAY %>"/>
-
                     <c:if test="${contract.receivableOrPay eq RECEIVE}">
                         ${contract.receivableOrPayMoney}元
                     </c:if>
@@ -444,70 +439,20 @@
             </tr>
         </table>
     </form>
-    <form action="Payment.action" method="post">
-        <input type="hidden" name="contract" value="${contract.contractId}">
-        <table id="t2" class="mergeTable">
+    <form action="#" method="post">
+        <input name="contract" value="${contract.contractId}" type="hidden">
+        <table>
             <tr>
-                <td colspan="5">
-                    <c:if test="${contract.receivableOrPay eq RECEIVE}">
-                        <span style="font-size: x-large">收款进度</span>
-                        <c:set var="r" value="收"/>
-                    </c:if>
-                    <c:if test="${contract.receivableOrPay eq PAY}">
-                        <span style="font-size: x-large">付款进度</span>
-                        <c:set var="r" value="付"/>
-                    </c:if>
-                </td>
+                <td colspan="6" ><span style="font-size: x-large">合同审核</span></td>
             </tr>
-            <tr>
-                <%--<td>一次性${r}款</td>
-                <td>${r}款金额</td>--%>
-                <td>${r}款信息</td>
-                <td>应${r}款日期</td>
-                <td>实${r}款日期</td>
-                <td>${r}款金额</td>
-                <td>备注</td>
-            </tr>
-            <s:iterator value="date" var="a" status="i">
+            <s:iterator value="auditings" var="a">
                 <tr>
-                        <%--<td>一次性${r}款</td>
-                        <td>
-                            <c:if test="${once eq 'F'}">0.0元</c:if>
-                            <c:if test="${once ne 'F'}">
-                                <input type="text" name="payMoney" style="width: 120px">元
-                            </c:if>
-                        </td>--%>
-                    <td>${r}款信息</td>
-                    <td>${a}</td>
-                    <td>
-                        <c:if test="${pn gt i.index}">${paymentDates[i.index]}</c:if>
-                        <c:if test="${pn eq 0 or pn le i.index}">
-                            <input type="text" name="paymentDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen'})"
-                                   style="width: 120px">
-                        </c:if>
-                    </td>
-                    <td>
-                        <c:if test="${pn gt i.index}">${paymentMoneys[i.index]}</c:if>
-
-                        <c:if test="${pn eq 0 or pn le i.index}">
-                            <input type="text" name="payMoney" maxlength="10" style="width: 120px">元
-                        </c:if>
-
-                    </td>
-                    <td>
-                        <c:if test="${pn gt i.index}">${paymentRemarks[i.index]}</c:if>
-
-                        <c:if test="${pn eq 0 or pn le i.index}">
-                            <textarea rows="3" cols="15" name="remark"></textarea>
-                        </c:if>
+                    <td colspan="3">审核结果：</td>
+                    <td colspan="4">
+                            ${a.state}( ${a.remark})
                     </td>
                 </tr>
             </s:iterator>
-                <tr>
-                    <td colspan="5">
-                        <input name="tijiao" value="添加" type="submit">
-                    </td>
-                </tr>
         </table>
     </form>
 </div>

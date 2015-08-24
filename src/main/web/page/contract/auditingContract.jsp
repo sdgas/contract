@@ -94,9 +94,7 @@
 <body>
 <%@ include file="/page/share/menu.jsp" %>
 <div id="content">
-    <form action="Contract!findOneContract.action" method="post" enctype="multipart/form-data">
-        <input name="flag" value="2" type="hidden">
-        <input name="contractId" value="${contract.contractId}" type="hidden">
+    <form action="#" method="post" enctype="multipart/form-data">
         <table id="t1" class="mergeTable">
             <tr>
                 <td colspan="5" align="center">
@@ -440,9 +438,37 @@
                     </s:iterator>
                 </td>
             </tr>
+        </table>
+    </form>
+    <form action="Auditing.action" method="post">
+        <input name="contract" value="${contract.contractId}" type="hidden">
+        <table>
             <tr>
-                <td colspan="5" align="center">
-                    <input type="submit" value="查看付款信息">
+                <td colspan="6"><span style="font-size: x-large">合同审核</span></td>
+            </tr>
+            <tr>
+                <td colspan="3">审核结果：</td>
+                <td colspan="3">
+                    <select name="state" style="font-family: '微软雅黑';font-size: 16px;width: 180px">
+                        <option value="" style="text-align: center"> ---------请选择---------</option>
+                        <option value="审核通过" style="text-align: center"> 审核通过</option>
+                        <option value="合同滞签" style="text-align: center"> 合同滞签</option>
+                        <option value="合同会签表填写错漏" style="text-align: center"> 合同会签表填写错漏</option>
+                        <option value="支持文件（附件）资料不完整" style="text-align: center"> 支持文件（附件）资料不完整</option>
+                        <option value="合同要素条款不完整" style="text-align: center"> 合同要素条款不完整</option>
+                        <option value="合同条款不合理" style="text-align: center"> 合同条款不合理</option>
+                    </select>
+                </td>
+                </tr>
+            <tr>
+                <td colspan="3">备注：</td>
+                <td colspan="3">
+                    <textarea rows="2" cols="50" name="remark"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" align="center">
+                    <input name="tijiao" type="submit" value="提交">
                 </td>
             </tr>
         </table>

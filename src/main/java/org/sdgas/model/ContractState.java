@@ -36,6 +36,15 @@ public enum ContractState {
         public int getContractState() {
             return 3;
         }
+    },
+
+    /**
+     * 付款
+     */
+    PAY{
+        public int getContractState() {
+            return 4;
+        }
     };
 
     public abstract int getContractState();

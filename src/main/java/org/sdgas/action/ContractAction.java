@@ -35,6 +35,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     private DepartmentService departmentService;
     private AttachmentService attachmentService;
     private PaymentService paymentService;
+    private AuditingService auditingService;
 
     private static final Logger logger = LogManager.getLogger(ContractAction.class);
 
@@ -240,6 +241,10 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         /** 列表条件 **/
         StringBuffer jpql = new StringBuffer("1=1");
         jpql.append("and department = " + user.getDepartment().getDepartmentId());
+        if (contractVO.getFlag() == 3)
+            jpql.append("and state='3'");
+        if (contractVO.getFlag() == 1)
+            jpql.append("and state='4'");
 
         /** 列表条件的值 **/
         List<Object> params = new ArrayList<Object>();
@@ -249,6 +254,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
 
         if (contractVO.getFlag() == 1)
             view = "/page/contract/addPayment.jsp";
+        else if (contractVO.getFlag() == 3)
+            view = "/page/contract/auditing.jsp";
         else
             view = "/page/contract/findContract.jsp";
         return VIEW;
@@ -319,6 +326,10 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             view = "/page/contract/contractPayment.jsp";
         } else if (contractVO.getFlag() == 3) {
             view = "/page/contract/auditingContract.jsp";
+        } else if (contractVO.getFlag() == 4) {
+            List<Auditing> auditings = auditingService.findByContractId(contractVO.getContractId());
+            contractVO.setAuditings(auditings);
+            view = "/page/contract/showAuditing.jsp";
         } else
             view = "/page/contract/showContract.jsp";
         return VIEW;
@@ -357,5 +368,10 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     @Resource(name = "paymentServiceImpl")
     public void setPaymentService(PaymentService paymentService) {
         this.paymentService = paymentService;
+    }
+
+    @Resource(name = "auditingServiceImpl")
+    public void setAuditingService(AuditingService auditingService) {
+        this.auditingService = auditingService;
     }
 }

@@ -62,6 +62,15 @@ public class ContractVO extends BaseVO {
     private String[] paymentRemarks;
     private String dn;//分期数量
     private String pn;
+    private List<Auditing> auditings = new ArrayList<Auditing>();//审核信息
+
+    public List<Auditing> getAuditings() {
+        return auditings;
+    }
+
+    public void setAuditings(List<Auditing> auditings) {
+        this.auditings = auditings;
+    }
 
     public String[] getPaymentRemarks() {
         return paymentRemarks;
