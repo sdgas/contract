@@ -28,13 +28,13 @@
 
     <link rel="stylesheet" href="<%=basePath%>css/base2.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="<%=basePath%>js/jquery.min.js"></script>
+    <script src="<%=basePath%>/js/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="<%=basePath%>js/bootstrap.min.js"></script>
+    <script src="<%=basePath%>/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
-    <script src="<%=basePath%>js/jquery.min.js"></script>
+    <script src="<%=basePath%>/js/jquery.min.js"></script>
     <script language="javascript" type="text/javascript"
-            src="<%=basePath%>js/My97DatePicker/WdatePicker.js"></script>
+            src="<%=basePath%>/js/My97DatePicker/WdatePicker.js"></script>
 
     <script type="text/javascript">
 
@@ -444,7 +444,7 @@
             </tr>
         </table>
     </form>
-    <form action="Payment.action" method="post">
+    <form action="<%=basePath%>/Payment.action" method="post">
         <input type="hidden" name="contract" value="${contract.contractId}">
         <table id="t2" class="mergeTable">
             <tr>
@@ -503,11 +503,11 @@
                     </td>
                 </tr>
             </s:iterator>
-                <tr>
-                    <td colspan="5">
-                        <input name="tijiao" value="添加" type="submit">
-                    </td>
-                </tr>
+            <tr>
+                <td colspan="5">
+                    <input name="tijiao" value="添加" type="submit">
+                </td>
+            </tr>
         </table>
     </form>
 </div>

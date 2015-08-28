@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    departmentService.findAllDepartment(getResult);
+        departmentService.findAllDepartment(getResult);
     contractTypeService.findAll(getContractType);
     contractNameService.findAll(getContractName);
 
@@ -56,10 +56,18 @@ $(document).ready(function () {
             }
         }
     }
+
+    enterKey();
+    getType();
 });
 
 function getContract() {
     var contractId = $('#contractId')[0].value;
+    var reg = /^[A-Z|a-z]{2}\d{2}-[A-Z|a-z]{3}-\d{4}$/;
+    if (!reg.test(contractId)) {
+        alert("请输入正确的合同编号");
+        return false;
+    }
     $.ajax({
         type: 'POST',
         url: "Attachment!contractIdGet.action",
@@ -172,6 +180,33 @@ function confirm() {
     } else if ($("#biddingType")[0].value == "") {
         alert("请选择供应商确定方式!");
         return false;
+    } else if ($("#contractName")[0].value == "") {
+        alert("请选择合同名称!");
+        return false;
+    } else if ($("#contractType")[0].value == "") {
+        alert("请选择合同类别!");
+        return false;
+    } else if ($("#acceptance")[0].value == "") {
+        alert("请选择验收日期!");
+        return false;
+    } else if ($("#invoice")[0].value == "") {
+        alert("请选择发票类别!");
+        return false;
+    } else if ($("#supportFile")[0].value == "") {
+        alert("请选择支持文件!");
+        return false;
+    } else if ($("#budgetIN")[0].value == "" || $("#budgetOUT")[0].value == "") {
+        alert("请选择预算类别!");
+        return false;
+    } else if ($("#paymentDate")[0].value == "yyyy-mm-dd,yyyy-mm-dd") {
+        alert("请选择应收（付）时间!");
+        return false;
+    } else if ($("#dep")[0].value == "") {
+        alert("请选择经办部门!");
+        return false;
+    } else if ($("#paymentTypeA")[0].value == "") {
+        alert("请选择款项类型!");
+        return false;
     } else
         return true;
 }
@@ -197,4 +232,59 @@ function others(selectedVal) {
     if (selectedVal == 9) {
         $("#paymentType").css('display', '');
     }
+}
+
+function checkDate() {
+    var payment = new Array;
+    if ($("#paymentDate")[0].value.indexOf(",") > 0)
+        payment = $("#paymentDate")[0].value.split(",");
+    else if ($("#paymentDate")[0].value.indexOf("，") > 0)
+        payment = $("#paymentDate")[0].value.split("，");
+
+    var reg = /^\d{4}-\d{1,2}-\d{1,2}$/;
+    for (var i = 0; payment.length; i++) {
+        alert("d" + payment[i].trim());
+        if (payment[i].trim() != "" && !reg.test(payment[i])) {
+            alert("请输入正确的付款时间");
+            return false;
+        }
+    }
+    return true;
+}
+
+
+var elemType;//选中控件类型
+var elemObj; //选中控件对象
+function enterKey() {
+//获取页面所有控件
+    var elems = document.forms[0].elements;
+    var len = elems.length;
+//设置回车键跳跃的控件类型
+    var elemTypeAry = ["text", "textarea", "select-one", "button", "radio", "checkbox"];
+    var elemTypeStr = elemTypeAry.join("");
+    for (var i = 0; i < len; i++) {
+//获取控件类型
+        elemType = elems[i].type;
+//若是列表中的类型控件则为其注册事件
+        if (elemTypeStr.indexOf(elemType) != -1) {
+//控件获得焦点后为全局变量赋值
+            elems[i].onfocus = function () {
+//若当前按钮为typeBtn则不为其注册onfocus事件
+                if (this.id == "typeBtnId")return;
+//获得当前控件类型
+                elemType = this.type;
+//获得当前控件对象
+                elemObj = this;
+            }
+//若按键为Enter则改为Tab即跳到下一控件
+            elems[i].onkeydown = function () {
+                if (event.keyCode == 13)event.keyCode = 9
+            };
+        }
+    }
+}
+//显示当前选中控件类型
+function getType() {
+//由于点击按钮后按钮获得焦点所需要将焦点重置为之前的控件上
+    elemObj.focus();
 }

@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 /**
  * Created by 120378 on 2015/8/24.

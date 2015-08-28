@@ -85,7 +85,7 @@
 <body>
 <%@ include file="/page/share/menu.jsp" %>
 <div id="content">
-    <form action="Contract!findContractByField.action" method="post">
+    <form action="<%=basePath%>Contract!findContractByField.action" method="post">
         <div class="form-group" align="center">
             <table>
                 <tr align="center">
@@ -131,7 +131,7 @@
                             ${s.count}
                     </td>
                     <td>
-                        <a href="Contract!findOneContract.action?flag=3&contractId=${contract.contractId}">${contract.contractId}</a>
+                        <a href="<%=basePath%>Contract!findOneContract.action?flag=3&contractId=${contract.contractId}">${contract.contractId}</a>
                     </td>
                     <td>
                             ${contract.contractName.contractName}

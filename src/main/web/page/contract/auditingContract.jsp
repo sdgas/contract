@@ -434,13 +434,13 @@
                 <td>附件：</td>
                 <td colspan="4">
                     <s:iterator value="attachments" var="a">
-                        <a href="FileDownload.action?flag=1&fileName=${a.attachmentName}">${a.attachmentName}</a>
+                        <a href="<%=basePath%>/FileDownload.action?flag=1&fileName=${a.attachmentName}">${a.attachmentName}</a>
                     </s:iterator>
                 </td>
             </tr>
         </table>
     </form>
-    <form action="Auditing.action" method="post">
+    <form action="<%=basePath%>Auditing.action" method="post">
         <input name="contract" value="${contract.contractId}" type="hidden">
         <table>
             <tr>

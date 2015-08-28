@@ -11,7 +11,7 @@
 <div id="head_line"></div>
 <div id="head" style="width: 1050px">
 
-    <a href="index.jsp" style="border: none;"> <img
+    <a href="<%=basePath%>/index.jsp" style="border: none;"> <img
             src="<%=basePath%>img/logo.bmp"
             style="border: none;margin-right: 10px;width: 300px;height: 80px;"/>
     </a>
@@ -20,7 +20,7 @@
         <c:if test="${session.person == null}">
             <%--<span style="font-size:15px; font-family:'微软雅黑'; color: #000000; position: absolute;top: 3px;right: 22%;">--%>
 			<span style="font-size:15px; font-family:'微软雅黑'; color: #000000;">
-				&nbsp&nbsp你好！&nbsp&nbsp <a href="<%=basePath%>login.jsp">登陆</a>
+				&nbsp&nbsp你好！&nbsp&nbsp <a href="<%=basePath%>/login.jsp">登陆</a>
 			</span>
         </c:if>
         <c:if test="${session.person != null}">
@@ -62,15 +62,15 @@
             </li>
             <li class="divider"></li>
             <li>
-                <a href="Contract!findContract.action"> 查看合同信息 </a>
+                <a href="<%=basePath%>/Contract!findContract.action"> 查看合同信息 </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="Contract!findContract.action?flag=1"> 录入实际款项信息 </a>
+                <a href="<%=basePath%>/Contract!findContract.action?flag=1"> 录入实际款项信息 </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="Contract!findContract.action?flag=3"> 合同审核 </a>
+                <a href="<%=basePath%>/Contract!findContract.action?flag=3"> 合同审核 </a>
             </li>
         </ul>
     </div>

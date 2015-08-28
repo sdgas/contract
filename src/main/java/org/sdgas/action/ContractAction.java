@@ -207,8 +207,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 contract.setSettleAccount(SettleAccount.Y_N);
                 break;
         }
-
-        contract.setDuePerformanceBond(ChangeTime.parseStringToShortDate(contractVO.getDuePerformanceBond()));//质保金到期日期
+        if (!contractVO.getDuePerformanceBond().trim().isEmpty())
+            contract.setDuePerformanceBond(ChangeTime.parseStringToShortDate(contractVO.getDuePerformanceBond()));//质保金到期日期
         contract.setContractProvide(Integer.valueOf(contractVO.getContractProvide()));//合同版本提供
         contract.setRemark(contractVO.getRemark());//备注
         contract.setLawer(Integer.valueOf(contractVO.getLawer()));//律师咨询
@@ -217,14 +217,14 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setState(ContractState.COUNTERSIGN);//合同状态
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);
-        contractVO.setResultMessage("<script>alert('添加成功！');location.href='page/contract/addContract.jsp';</script>");
+        contractVO.setResultMessage("<script>alert('添加成功！');location.href='/contract/page/contract/addContract.jsp';</script>");
         return SUCCESS;
     }
 
     //查找合同
     public String findContract() {
         if (UserUtil.checkUserLogIn(user)) {
-            contractVO.setResultMessage("<script>alert('请登录！');location.href='login.jsp';</script>");
+            contractVO.setResultMessage("<script>alert('请登录！');location.href='/login.jsp';</script>");
             return ERROR;
         }
         /** 每页显示的结果数 **/
@@ -240,7 +240,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         orderBy.put("signContractDate", "DESC");
         /** 列表条件 **/
         StringBuffer jpql = new StringBuffer("1=1");
-        jpql.append("and department = " + user.getDepartment().getDepartmentId());
+        if (!user.getUserName().equals("管理员"))
+            jpql.append("and department = " + user.getDepartment().getDepartmentId());
         if (contractVO.getFlag() == 3)
             jpql.append("and state='3'");
         if (contractVO.getFlag() == 1)
@@ -281,7 +282,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         /** 列表条件 **/
         StringBuffer jpql = new StringBuffer("");
         jpql.append("contractId like '%" + contractVO.getProject() + "%' or contractSignCompany like '%" + contractVO.getProject() + "%'");
-        jpql.append("and department = " + user.getDepartment().getDepartmentId());
+        if (!user.getUserName().equals("管理员"))
+            jpql.append("and department = " + user.getDepartment().getDepartmentId());
 
         /** 列表条件的值 **/
         List<Object> params = new ArrayList<Object>();

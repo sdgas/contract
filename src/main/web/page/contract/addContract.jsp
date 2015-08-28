@@ -70,7 +70,7 @@
 <body>
 <%@ include file="/page/share/menu.jsp" %>
 <div id="content">
-    <form action="Contract.action" method="post" enctype="multipart/form-data">
+    <form action="<%=basePath%>/Contract.action" method="post" enctype="multipart/form-data">
         <table id="t1" class="mergeTable">
             <tr>
                 <td colspan="5" align="center">
@@ -94,8 +94,8 @@
                 </td>
                 <td>预算计划：</td>
                 <td>
-                    <input type="radio" name="budget" value="0" onclick="display()">预算内
-                    <input type="radio" name="budget" value="1" onclick="displayNone()">预算外
+                    <input type="radio" name="budget" value="0" onclick="display()" id="budgetIN">预算内
+                    <input type="radio" name="budget" value="1" onclick="displayNone()" id="budgetOUT">预算外
                 </td>
             </tr>
             <tr style="display:none" id="displayTr">
@@ -111,13 +111,13 @@
             <tr>
                 <td>合同属性：</td>
                 <td colspan="2">
-                    <input type="radio" name="contractProperty" value="0">新签
+                    <input type="radio" name="contractProperty" value="0" checked="checked">新签
                     <input type="radio" name="contractProperty" value="1">续签
                     <input type="radio" name="contractProperty" value="2">改签
                 </td>
                 <td style="color: #ab1e1e">合同原件份数：</td>
                 <td>
-                    <select name="count" style="font-family: '微软雅黑';font-size: 16px;width: 180px">
+                    <select name="count" style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="count">
                         <option value="" style="text-align: center"> ---------请选择---------</option>
                         <option value="2" style="text-align: center"> 2</option>
                         <option value="3" style="text-align: center"> 3</option>
@@ -167,7 +167,9 @@
                 </td>
 
                 <td style="color: #ab1e1e">合同版本：</td>
-                <td><input name="version" type="radio" value="1">格式合同<input name="version" type="radio" value="0">非格式合同
+                <td>
+                    <input name="version" type="radio" value="1" checked="checked">格式合同
+                    <input name="version" type="radio" value="0">非格式合同
                 </td>
             </tr>
             <tr>
@@ -179,7 +181,7 @@
                 <td style="color: #ab1e1e">支持文件：</td>
                 <td>
                     <select name="supportFile"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px">
+                            style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="supportFile">
                         <option value="" style="text-align: center"> ---------请选择---------</option>
                         <option value="政府批文" style="text-align: center"> 政府批文</option>
                         <option value="固定资产请购单" style="text-align: center"> 固定资产请购单</option>
@@ -219,12 +221,12 @@
                 <td style="color: #ab1e1e">合同生效日期：</td>
                 <td colspan="2">
                     <input type="text" name="contractBeginDate" id="begin" class="Wdate"
-                           onfocus="WdatePicker({skin:'whyGreen'})">
+                           onclick="WdatePicker({skin:'whyGreen'})">
                 </td>
                 <td style="color: #ab1e1e">合同到期日期：</td>
                 <td>
                     <input type="text" name="contractEndDate" id="end" class="Wdate"
-                           onfocus="WdatePicker({skin:'whyGreen'})">
+                           onclick="WdatePicker({skin:'whyGreen'})">
                 </td>
             </tr>
             <tr>
@@ -249,7 +251,7 @@
             <tr>
                 <td style="color: #ab1e1e">合同应收（付）款金额:</td>
                 <td colspan="2">
-                    <input name="receivableOrPay" type="radio" value="0">付款
+                    <input name="receivableOrPay" type="radio" value="0" checked="checked">付款
                     <input name="receivableOrPay" type="radio" value="1">收款
                     <input type="text" name="receivableOrPayMoney" maxlength="12" id="receivableOrPayMoney"
                            onchange="checkNum(this.value)"
@@ -257,19 +259,19 @@
                 </td>
                 <td>应付（收）时间:</td>
                 <td>
-                    <input type="text" placeholder="yyyy-mm-dd,yyyy-mm-dd" name="paymentDate">
+                    <input type="text" placeholder="yyyy-mm-dd,yyyy-mm-dd" name="paymentDate" id="paymentDate" onchange="checkDate()">
                 </td>
             </tr>
             <tr>
                 <td>验收时间：</td>
                 <td>
                     <input type="text" name="acceptance" class="Wdate"
-                           onfocus="WdatePicker({skin:'whyGreen'})">
+                           onclick="WdatePicker({skin:'whyGreen'})" id="acceptance">
                 </td>
                 <td>款项类型：</td>
                 <td colspan="2">
                     <select name="paymentType" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
-                            onchange="others(this.selectedIndex)">
+                            onchange="others(this.selectedIndex)" id="paymentTypeA">
                         <option value="" style="text-align: center">---------请选择---------</option>
                         <option value="工程费" style="text-align: center">工程费</option>
                         <option value="履约保证金" style="text-align: center">履约保证金</option>
@@ -285,13 +287,7 @@
                 </td>
             </tr>
             <tr>
-                <%--  <td style="color: #ab1e1e">结算金额:</td>
-                 <td colspan="2">
-                     <input name="receiveOrPay" type="radio" value="0">付款
-                     <input name="receiveOrPay" type="radio" value="1">收款
-                     <input type="text" name="closingMoney" maxlength="12" onchange="checkNum(this.value)"
-                            style="width: 105px">元
-                 </td>--%>
+
                 <td style="color: #ab1e1e">合同版本提供:</td>
                 <td>
                     <select name="contractProvide" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
@@ -346,18 +342,14 @@
                 <td>质保金到期日期:</td>
                 <td colspan="2">
                     <input type="text" name="duePerformanceBond" class="Wdate"
-                           onfocus="WdatePicker({skin:'whyGreen'})">
+                           onclick="WdatePicker({skin:'whyGreen'})">
                 </td>
-                <%-- <td>履约保证金：</td>
-                 <td>
-                     <input type="text" name="#">
-                 </td>--%>
             </tr>
             <tr>
                 <td>发票：</td>
                 <td colspan="2">
                     <select name="invoice"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px">
+                            style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="invoice">
                         <option value="" style="text-align: center"> ---------请选择---------</option>
                         <option style="text-align: center" value="17">17%增值税专用发票</option>
                         <option style="text-align: center" value="11">11%增值税专用发票</option>

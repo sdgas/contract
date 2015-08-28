@@ -80,7 +80,7 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVO> 
             session.removeAttribute("person");
             //session.invalidate();
         }
-        view = "/login.jsp";
+        view = "login.jsp";
         return VIEW;
     }
 
