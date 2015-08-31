@@ -11,7 +11,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
+            + path;
 %>
 <html>
 <head>
@@ -24,13 +24,13 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 
-    <link rel="stylesheet" href="<%=basePath%>css/base2.css">
+    <link rel="stylesheet" href="<%=basePath%>/css/base2.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="<%=basePath%>js/jquery.min.js"></script>
+    <script src="<%=basePath%>/js/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="<%=basePath%>js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
-    <script src="<%=basePath%>js/jquery.min.js"></script>
+    <script src="<%=basePath%>/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css">
+    <script src="<%=basePath%>/js/jquery.min.js"></script>
 </head>
 <body>
 <%@ include file="/page/share/menu.jsp" %>
@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="FileDownload.action">合同管理流程.pdf</a>
+                    <a href="<%=basePath%>/FileDownload.action">合同管理流程.pdf</a>
                 </td>
             </tr>
         </table>

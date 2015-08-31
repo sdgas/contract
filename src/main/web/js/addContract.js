@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     $('#uploadify').uploadify({
         uploader: 'Attachment.action',           // 服务器端处理地址
-        swf: '<%=basePath%>/uploadify/uploadify.swf',    // 上传使用的 Flash
+        swf: '/contract/uploadify/uploadify.swf',    // 上传使用的 Flash
         width: 60,                          // 按钮的宽度
         height: 23,                         // 按钮的高度
         buttonText: "选择文件",              // 按钮上的文字

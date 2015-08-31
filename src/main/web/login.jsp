@@ -5,7 +5,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
+            + path;
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -21,13 +21,13 @@
     <meta http-equiv="description" content="This is my page">
     <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 
-    <link href="css/landing_page.css" rel="stylesheet"
+    <link href="<%=basePath%>/css/landing_page.css" rel="stylesheet"
           type="text/css" media="screen"/>
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/js/jquery.min.js"></script>
     <script type="text/javascript"
-            src="<%=basePath%>js/jquery.carouFredSel-6.2.1.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/login.js"></script>
+            src="<%=basePath%>/js/jquery.carouFredSel-6.2.1.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/js/login.js"></script>
 
 </head>
 <body>
@@ -35,7 +35,7 @@
 <div class="main_con">
     <div class="slider">
         <div id="slider">
-            <img width="965" height="405" src="img/background1.jpg">
+            <img width="965" height="405" src="<%=basePath%>/img/background1.jpg">
         </div>
         <div class="pager" id="slider_page"></div>
     </div>

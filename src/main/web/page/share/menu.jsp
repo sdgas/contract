@@ -12,7 +12,7 @@
 <div id="head" style="width: 1050px">
 
     <a href="<%=basePath%>/index.jsp" style="border: none;"> <img
-            src="<%=basePath%>img/logo.bmp"
+            src="<%=basePath%>/img/logo.bmp"
             style="border: none;margin-right: 10px;width: 300px;height: 80px;"/>
     </a>
 
@@ -27,7 +27,7 @@
             <%--<span style="font-family:'微软雅黑'; color: #000000; position: absolute;top: 3px;right: 18%;">欢迎 ${person.position.positionName}&nbsp&nbsp${person.userName}&nbsp--%>
 			<span style="font-family:'微软雅黑'; color: #000000;">欢迎
 				${person.position.positionName}&nbsp&nbsp${person.userName}&nbsp; <a
-                        href="<%=basePath%>page/user/alterPwd.jsp">修改密码</a> <a
+                        href="<%=basePath%>/page/user/alterPwd.jsp">修改密码</a> <a
                         href="Login!loginOut.action">退出</a>
 			</span>
         </c:if>
@@ -42,11 +42,11 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="<%=basePath%>page/user/addPerson.jsp">增加账号</a>
+                <a href="<%=basePath%>/page/user/addPerson.jsp">增加账号</a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="<%=basePath%>page/user/alterPwd.jsp">修改账号密码</a>
+                <a href="<%=basePath%>/page/user/alterPwd.jsp">修改账号密码</a>
             </li>
         </ul>
     </div>
@@ -58,7 +58,7 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="<%=basePath%>page/contract/addContract.jsp"> 新增合同 </a>
+                <a href="<%=basePath%>/page/contract/addContract.jsp"> 新增合同 </a>
             </li>
             <li class="divider"></li>
             <li>
@@ -82,7 +82,7 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="<%=basePath%>page/policy/downloadList.jsp">相关制度下载</a>
+                <a href="<%=basePath%>/page/policy/downloadList.jsp">相关制度下载</a>
             </li>
         </ul>
     </div>
