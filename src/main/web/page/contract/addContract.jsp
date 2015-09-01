@@ -371,7 +371,7 @@
                 </td>
             </tr>
             <tr>
-                <td>备注：</td>
+                <td>合同违约条款描述：</td>
                 <td colspan="4">
                     <textarea cols="65" rows="3" name="remark"></textarea>
                 </td>
