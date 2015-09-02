@@ -50,6 +50,7 @@ public class ContractVO extends BaseVO {
     private String paymentType;//款项类型   0工程费  1履约保证金  2履约保函  3咨询费  4容量气价  5款货  6租赁费  7培训费  -1其他
     private String stamp;//是否盖章  0未盖章   1已盖章
     private String remark;//备注
+    private String signContractDate; //会签日期
 
     private Contract contract;
     private String project;
@@ -454,6 +455,14 @@ public class ContractVO extends BaseVO {
 
     public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
+    }
+
+    public String getSignContractDate() {
+        return signContractDate;
+    }
+
+    public void setSignContractDate(String signContractDate) {
+        this.signContractDate = signContractDate;
     }
 }
 

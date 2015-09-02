@@ -281,7 +281,26 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         orderBy.put("signContractDate", "DESC");
         /** 列表条件 **/
         StringBuffer jpql = new StringBuffer("");
-        jpql.append("contractId like '%" + contractVO.getProject() + "%' or contractSignCompany like '%" + contractVO.getProject() + "%'");
+        //String temp = contractVO.getProject();
+
+        if (!contractVO.getProject().trim().isEmpty()) {
+            String tmp = contractVO.getProject();
+            jpql.append("contractId like '%" + tmp + "%' or contractSignCompany like '%"
+                    + tmp + "%' or contractOperator like '%" + tmp + "%' ");
+        } else jpql.append("1=1");
+
+        if (!contractVO.getContractEndDate().trim().isEmpty()) {
+            jpql.append(" and contractEndDate = '" + contractVO.getContractEndDate() + "'");
+        }
+        if (!contractVO.getSignContractDate().trim().isEmpty()) {
+            jpql.append(" and signContractDate >='" + contractVO.getSignContractDate() + " 00:00:00' and signContractDate <='" + contractVO.getSignContractDate() + " 23:59:59')");
+        }
+        if (!contractVO.getContractName().trim().isEmpty()) {
+            jpql.append(" and contractName = '" + contractVO.getContractName() + "'");
+        }
+        if (!contractVO.getDepartment().trim().isEmpty()) {
+            jpql.append(" and department = '" + contractVO.getDepartment().trim() + "'");
+        }
         if (!user.getUserName().equals("管理员"))
             jpql.append("and department = " + user.getDepartment().getDepartmentId());
 

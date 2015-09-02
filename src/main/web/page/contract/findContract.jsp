@@ -27,10 +27,19 @@
     <script language="javascript" type="text/javascript"
             src="<%=basePath%>/js/My97DatePicker/WdatePicker.js"></script>
     <link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css">
+    <%--加载dwr--%>
+    <script src='<%=basePath%>/dwr/util.js' type="text/javascript"></script>
+    <script src='<%=basePath%>/dwr/engine.js' type="text/javascript"></script>
+    <script src='<%=basePath%>/dwr/interface/departmentService.js' type="text/javascript"></script>
+    <script src='<%=basePath%>/dwr/interface/contractNameService.js' type="text/javascript"></script>
 
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+            departmentService.findAllDepartment(getResult);
+            contractNameService.findAll(getContractName);
+
             //placeholder功能的实现
             var doc = document,
                     inputs = doc.getElementsByTagName('input'),
@@ -80,6 +89,28 @@
             }
             obj.style.backgroundColor = bgcolor;
         }
+
+        function getResult(departments) {
+            var select_list = '<option value="" style="text-align: center">'
+                    + '---------请选择---------' + '</option>';
+            for (var i = 0; i < departments.length; i++) {
+                select_list += '<option style="text-align: center" value="'
+                        + departments[i].departmentId + '">'
+                        + departments[i].departmentName + "</option>";
+            }
+            $("#dep").html(select_list);
+        }
+
+        function getContractName(contractNames) {
+            var select_list = '<option value="" style="text-align: center">'
+                    + '---------请选择---------' + '</option>';
+            for (var i = 0; i < contractNames.length; i++) {
+                select_list += '<option style="text-align: center" value="'
+                        + contractNames[i].id + '">'
+                        + contractNames[i].contractName + "</option>";
+            }
+            $("#contractName").html(select_list);
+        }
     </script>
 </head>
 <body>
@@ -89,9 +120,35 @@
         <div class="form-group" align="center">
             <table>
                 <tr align="center">
-                    <td colspan="10">
-                        <input type="text" class="form-control"
-                               placeholder="合同编号\签约对象" name="project">
+                    <td>关键字</td>
+                    <td>
+                        <input type="text" class="form-control" name="project">
+                    </td>
+                    <td>合同名称</td>
+                    <td>
+                        <select name="contractName" id="contractName"
+                                style="font-family: '微软雅黑';font-size: 16px;width: 180px"></select>
+                    </td>
+                    <td>经办部门：</td>
+                    <td>
+                        <select name="department" id="dep"
+                                style="font-family: '微软雅黑';font-size: 16px;width: 180px"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>合同会签日期：</td>
+                    <td>
+                        <input type="text" name="signContractDate" class="Wdate"
+                               onclick="WdatePicker({skin:'whyGreen'})">
+                    </td>
+                    <td>合同到期日期：</td>
+                    <td>
+                        <input type="text" name="contractEndDate" class="Wdate"
+                               onclick="WdatePicker({skin:'whyGreen'})">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
                         <button type="submit" class="btn btn-default">查询</button>
                     </td>
                 </tr>
