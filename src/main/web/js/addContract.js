@@ -1,5 +1,5 @@
 $(document).ready(function () {
-        departmentService.findAllDepartment(getResult);
+    departmentService.findAllDepartment(getResult);
     contractTypeService.findAll(getContractType);
     contractNameService.findAll(getContractName);
 
@@ -135,9 +135,13 @@ function getContractName(contractNames) {
 
 function display() {
     $("#displayTr").css('display', '');
+    $("#displayTr2").css('display', 'none');
 }
 function displayNone() {
+    $("#displayTr2").css('display', '');
     $("#displayTr").css('display', 'none');
+    $("#budgetType").val("");
+    $("#budgetMoney").val("");
 }
 
 // 获取目录对应格式

@@ -82,15 +82,16 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             switch (Integer.valueOf(contractVO.getBudget())) {
                 case 0:
                     contract.setBudget(Budget.IN);
+                    contract.setBudgetType(contractVO.getBudgetType());//预算类别
+                    contract.setBudgetMoney(Double.valueOf(contractVO.getBudgetMoney()));//预算剩余金额
                     break;
                 case 1:
                     contract.setBudget(Budget.OUT);
+                    contract.setOutBudget(Integer.valueOf(contractVO.getOutBudget()));
                     break;
                 default:
                     break;
             }
-            contract.setBudgetType(contractVO.getBudgetType());//预算类别
-            contract.setBudgetMoney(Double.valueOf(contractVO.getBudgetMoney()));//预算剩余金额
         }
 
         //经办部门
@@ -281,7 +282,6 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         orderBy.put("signContractDate", "DESC");
         /** 列表条件 **/
         StringBuffer jpql = new StringBuffer("");
-        //String temp = contractVO.getProject();
 
         if (!contractVO.getProject().trim().isEmpty()) {
             String tmp = contractVO.getProject();

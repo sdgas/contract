@@ -101,11 +101,18 @@
             <tr style="display:none" id="displayTr">
                 <td>预算类别：</td>
                 <td colspan="2">
-                    <input type="text" name="budgetType">
+                    <input type="text" name="budgetType" id="budgetType">
                 </td>
                 <td>预算剩余金额：</td>
                 <td>
-                    <input type="text" name="budgetMoney" onchange="checkNum(this.value)">元
+                    <input type="text" name="budgetMoney" onchange="checkNum(this.value)" id="budgetMoney">元
+                </td>
+            </tr>
+            <tr style="display:none" id="displayTr2">
+                <td colspan="2">上报审核：</td>
+                <td colspan="3">
+                    <input type="radio" name="outBudget" value="0">未通过审批
+                    <input type="radio" name="outBudget" value="1">已通过审批
                 </td>
             </tr>
             <tr>

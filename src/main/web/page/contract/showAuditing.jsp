@@ -139,6 +139,17 @@
                     </td>
                 </tr>
             </c:if>
+            <c:if test="${contract.budget eq out}">
+                <tr>
+                    <td colspan="2">
+                        上报审核：
+                    </td>
+                    <td colspan="3">
+                        <c:if test="${contract.outBudget eq 0}"><span>未通过审批</span></c:if>
+                        <c:if test="${contract.outBudget eq 1}"><span>已通过审批</span></c:if>
+                    </td>
+                </tr>
+            </c:if>
             <tr>
                 <td>合同属性：</td>
                 <td colspan="2">
@@ -447,9 +458,9 @@
             </tr>
             <s:iterator value="auditings" var="a">
                 <tr>
-                    <td colspan="3">审核结果：</td>
+                    <td colspan="3">情况说明：</td>
                     <td colspan="4">
-                            ${a.state}( ${a.remark})
+                            ${a.state}(${a.remark})
                     </td>
                 </tr>
             </s:iterator>

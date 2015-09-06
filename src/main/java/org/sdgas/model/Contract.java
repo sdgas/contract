@@ -125,6 +125,11 @@ public class Contract {
     private String budgetType;
 
     /**
+     * 预算外
+     */
+    private int outBudget;
+
+    /**
      * 预算剩下金额
      */
     private double budgetMoney = 0.0d;
@@ -540,5 +545,13 @@ public class Contract {
 
     public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
+    }
+
+    public int getOutBudget() {
+        return outBudget;
+    }
+
+    public void setOutBudget(int outBudget) {
+        this.outBudget = outBudget;
     }
 }

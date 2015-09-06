@@ -45,7 +45,7 @@
            <%--<img width="265" height="80" src="img/login.jpg">--%>
         </div>
         <div class="login_bar">
-            <form id="ffLogin" action="Login.action" method="post">
+            <form id="ffLogin" action="<%=basePath%>/Login.action" method="post">
                 <div class="i">
                     <input id="userId" class="ipt usr_name" name="userId" type="text"
                            maxlength="10" onkeydown="loginidclick(this);">

@@ -36,6 +36,7 @@ public class ContractVO extends BaseVO {
     private String threeSign; //签约公司,第三方
 
     private String budget;//预算  0预算内，1预算外
+    private String outBudget;//预算外  0未通过审批   1已通过审批
     private String budgetType;//预算类别
     private String budgetMoney;//预算剩下金额
     private String contractCloseDate; //审结日期（提交到招采部时间）
@@ -463,6 +464,14 @@ public class ContractVO extends BaseVO {
 
     public void setSignContractDate(String signContractDate) {
         this.signContractDate = signContractDate;
+    }
+
+    public String getOutBudget() {
+        return outBudget;
+    }
+
+    public void setOutBudget(String outBudget) {
+        this.outBudget = outBudget;
     }
 }
 

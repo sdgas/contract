@@ -122,7 +122,7 @@
                 <tr align="center">
                     <td>关键字</td>
                     <td>
-                        <input type="text" class="form-control" name="project">
+                        <input type="text" name="project">
                     </td>
                     <td>合同名称</td>
                     <td>
