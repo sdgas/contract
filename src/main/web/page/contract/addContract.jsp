@@ -180,39 +180,44 @@
                 </td>
             </tr>
             <tr>
-                <td style="color: #ab1e1e">对方单位是否盖章：</td>
+
+                <td>是否超合同结算：</td>
                 <td colspan="2">
+                    <input name="settleAccount" type="radio" value="2">是，已审核&nbsp; &nbsp;
+                    <input name="settleAccount" type="radio" value="1">是，未审核 &nbsp; &nbsp;
+                    <input name="settleAccount" type="radio" value="0" checked="checked">否
+                </td>
+                <td style="color: #ab1e1e">对方单位是否盖章：</td>
+                <td>
                     <input name="stamp" type="radio" value="1" checked="checked">是
                     <input name="stamp" type="radio" value="0">否
                 </td>
+            </tr>
+            <tr>
                 <td style="color: #ab1e1e">支持文件：</td>
-                <td>
-                    <select name="supportFile"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px" id="supportFile">
-                        <option value="" style="text-align: center"> ---------请选择---------</option>
-                        <option value="政府批文" style="text-align: center"> 政府批文</option>
-                        <option value="固定资产请购单" style="text-align: center"> 固定资产请购单</option>
-                        <option value="固定资产出租出借表" style="text-align: center"> 固定资产出租出借表</option>
-                        <option value="集团流转单" style="text-align: center"> 集团流转单</option>
-                        <option value="事前审批表" style="text-align: center"> 事前审批表</option>
-                        <option value="三方比价表" style="text-align: center"> 供应商询价采购单</option>
-                        <option value="供应商报价单" style="text-align: center"> 供应商报价单</option>
-                        <option value="港投报价单" style="text-align: center"> 港投报价单</option>
-                        <option value="预结算价格审核资料" style="text-align: center"> 预结算价格审核资料</option>
-                        <option value="上一年度生效合同复印件" style="text-align: center"> 上一年度生效合同复印件</option>
-                        <option value="顺燃-内部管理规定" style="text-align: center"> 顺燃-内部管理规定</option>
-                        <option value="顺燃-内部请示" style="text-align: center"> 顺燃-内部请示</option>
-                        <option value="营业执照" style="text-align: center"> 营业执照</option>
-                        <option value="税务登记证" style="text-align: center"> 税务登记证</option>
-                        <option value="组织机构代码证" style="text-align: center"> 组织机构代码证</option>
-                        <option value="生产许可证" style="text-align: center"> 生产许可证</option>
-                        <option value="签约用户-申请" style="text-align: center"> 签约用户-申请</option>
-                        <option value="身份证复印件" style="text-align: center"> 身份证复印件</option>
-                        <option value="设计图" style="text-align: center"> 设计图</option>
-                        <option value="开户许可证" style="text-align: center"> 开户许可证</option>
-                        <option value="核准变更登记通知书" style="text-align: center"> 核准变更登记通知书</option>
-                        <option value="培训申请表" style="text-align: center"> 培训申请表</option>
-                    </select>
+                <td colspan="4">
+                    <input type="checkbox" name="supportFile" value="政府批文">政府批文&nbsp;
+                    <input type="checkbox" name="supportFile" value="固定资产请购单">固定资产请购单&nbsp;
+                    <input type="checkbox" name="supportFile" value="固定资产出租出借表">固定资产出租出借表&nbsp;
+                    <input type="checkbox" name="supportFile" value="集团流转单">集团流转单&nbsp;
+                    <input type="checkbox" name="supportFile" value="事前审批表">事前审批表&nbsp;<br>
+                    <input type="checkbox" name="supportFile" value="供应商询价采购单">供应商询价采购单&nbsp;
+                    <input type="checkbox" name="supportFile" value="供应商报价单">供应商报价单&nbsp;
+                    <input type="checkbox" name="supportFile" value="港投报价单">港投报价单&nbsp;
+                    <input type="checkbox" name="supportFile" value="预结算价格审核资料">预结算价格审核资料&nbsp;<br>
+                    <input type="checkbox" name="supportFile" value="上一年度生效合同复印件">上一年度生效合同复印件&nbsp;
+                    <input type="checkbox" name="supportFile" value="顺燃-内部管理规定">顺燃-内部管理规定&nbsp;
+                    <input type="checkbox" name="supportFile" value="顺燃-内部请示">顺燃-内部请示&nbsp;
+                    <input type="checkbox" name="supportFile" value="营业执照">营业执照&nbsp;
+                    <input type="checkbox" name="supportFile" value="税务登记证">税务登记证&nbsp;<br>
+                    <input type="checkbox" name="supportFile" value="组织机构代码证">组织机构代码证&nbsp;
+                    <input type="checkbox" name="supportFile" value="生产许可证">生产许可证&nbsp;
+                    <input type="checkbox" name="supportFile" value="签约用户-申请">签约用户-申请&nbsp;
+                    <input type="checkbox" name="supportFile" value="身份证复印件">身份证复印件&nbsp;
+                    <input type="checkbox" name="supportFile" value="设计图">设计图&nbsp;
+                    <input type="checkbox" name="supportFile" value="开户许可证">开户许可证&nbsp;<br>
+                    <input type="checkbox" name="supportFile" value="核准变更登记通知书">核准变更登记通知书&nbsp;
+                    <input type="checkbox" name="supportFile" value="培训申请表">培训申请表&nbsp;
                 </td>
             </tr>
             <tr>
@@ -266,7 +271,8 @@
                 </td>
                 <td>应付（收）时间:</td>
                 <td>
-                    <input type="text" placeholder="yyyy-mm-dd,yyyy-mm-dd" name="paymentDate" id="paymentDate" onchange="checkDate()">
+                    <input type="text" placeholder="yyyy-mm-dd,yyyy-mm-dd" name="paymentDate" id="paymentDate"
+                           onchange="checkDate()">
                 </td>
             </tr>
             <tr>
@@ -285,7 +291,7 @@
                         <option value="履约保函" style="text-align: center">履约保函</option>
                         <option value="咨询费" style="text-align: center">咨询费</option>
                         <option value="容量气价" style="text-align: center">容量气价</option>
-                        <option value="款货" style="text-align: center">货款</option>
+                        <option value="货款" style="text-align: center">货款</option>
                         <option value="租赁费" style="text-align: center">租赁费</option>
                         <option value="培训费" style="text-align: center">培训费</option>
                         <option value="其他" style="text-align: center">其他</option>
@@ -311,12 +317,7 @@
                     </select>
             </tr>
             <tr>
-                <td>是否超合同结算：</td>
-                <td>
-                    <input name="settleAccount" type="radio" value="2">是，已审核<br/>
-                    <input name="settleAccount" type="radio" value="1">是，未审核<br/>
-                    <input name="settleAccount" type="radio" value="0" checked="checked">否
-                </td>
+
 
                 <td style="color: #ab1e1e">质保期：</td>
                 <td colspan="2">
