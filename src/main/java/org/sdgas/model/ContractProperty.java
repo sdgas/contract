@@ -30,11 +30,19 @@ public enum ContractProperty {
         }
     },
     /**
+     * 其他
+     */
+    OTHER {
+        public int getStatus() {
+            return 3;
+        }
+    },
+    /**
      * 注销
      */
     CANCLE {
         public int getStatus() {
-            return 3;
+            return 4;
         }
     };
 

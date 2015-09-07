@@ -1,5 +1,7 @@
 package org.sdgas.model;
 
+import org.sdgas.util.ExcelResources;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -212,6 +214,7 @@ public class Contract {
     private ContractState state;
 
     @Id
+    @ExcelResources(order = 2, title = "合同编号")
     public String getContractId() {
         return contractId;
     }
@@ -222,6 +225,7 @@ public class Contract {
 
     @ManyToOne
     @JoinColumn(name = "contractName")
+    @ExcelResources(order = 1, title = "合同名称")
     public ContractName getContractName() {
         return contractName;
     }
@@ -232,6 +236,7 @@ public class Contract {
 
     @ManyToOne
     @JoinColumn(name = "department")
+    @ExcelResources(order = 9, title = "经办部门")
     public Department getDepartment() {
         return department;
     }
@@ -242,6 +247,7 @@ public class Contract {
 
     //precision表示数值的总长度，scale表示小数点所占的位数
     @Column(precision = 12, scale = 2, nullable = false)
+    @ExcelResources(order = 4, title = "合同签订金额")
     public double getContractMoney() {
         return contractMoney;
     }
@@ -271,6 +277,7 @@ public class Contract {
 
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
+    @ExcelResources(order = 5, title = "合同生效日期")
     public Date getContractBeginDate() {
         return contractBeginDate;
     }
@@ -281,6 +288,7 @@ public class Contract {
 
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
+    @ExcelResources(order = 6, title = "合同到期日期")
     public Date getContractEndDate() {
         return contractEndDate;
     }
@@ -290,6 +298,7 @@ public class Contract {
     }
 
     @Column(nullable = false, length = 10)
+    @ExcelResources(order = 7, title = "经办人")
     public String getContractOperator() {
         return contractOperator;
     }
@@ -345,6 +354,7 @@ public class Contract {
     }
 
     @Column(length = 4, nullable = false)
+    @ExcelResources(order = 8, title = "合同原件份数")
     public int getCount() {
         return count;
     }
@@ -354,6 +364,7 @@ public class Contract {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
+    @ExcelResources(order = 10, title = "归档月份")
     public Date getContractCloseDate() {
         return contractCloseDate;
     }
@@ -381,6 +392,7 @@ public class Contract {
     }
 
     @Column(length = 255)
+    @ExcelResources(order = 3, title = "签约对象")
     public String getContractSignCompany() {
         return contractSignCompany;
     }

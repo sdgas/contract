@@ -110,6 +110,9 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
                 case 2:
                     contract.setContractProperty(ContractProperty.CHANGE);
                     break;
+                case 3:
+                    contract.setContractProperty(ContractProperty.OTHER);
+                    break;
                 default:
                     break;
             }

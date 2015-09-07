@@ -52,6 +52,14 @@ public enum BiddingType {
         public int getStatus() {
             return 5;
         }
+    },
+    /**
+     * 无
+     */
+    NO {
+        public int getStatus() {
+            return -1;
+        }
     };
 
     public abstract int getStatus();
@@ -71,6 +79,8 @@ public enum BiddingType {
                 return "询价比价";
             case OTHERS:
                 return "其他";
+            case NO:
+                return "无";
             default:
                 return "ERR03";
         }

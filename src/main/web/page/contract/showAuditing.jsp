@@ -156,9 +156,11 @@
                     <c:set var="new" value="<%=ContractProperty.NEW %>"/>
                     <c:set var="renew" value="<%=ContractProperty.RENEW %>"/>
                     <c:set var="change" value="<%=ContractProperty.CHANGE %>"/>
+                    <c:set var="other" value="<%=ContractProperty.OTHER %>"/>
                     <c:if test="${contract.contractProperty eq new}"> 新签 </c:if>
                     <c:if test="${contract.contractProperty eq renew}"> 续签 </c:if>
                     <c:if test="${contract.contractProperty eq change}"> 改签 </c:if>
+                    <c:if test="${contract.contractProperty eq other}"> 其他 </c:if>
                 </td>
                 <td style="color: #ab1e1e">合同原件份数：</td>
                 <td>
@@ -196,6 +198,7 @@
                     <c:set var="DIRECT" value="<%=BiddingType.DIRECT %>"/>
                     <c:set var="COMPARE" value="<%=BiddingType.COMPARE %>"/>
                     <c:set var="OTHERS" value="<%=BiddingType.OTHERS %>"/>
+                    <c:set var="NO" value="<%=BiddingType.NO %>"/>
 
                     <c:if test="${contract.biddingType eq OPEN}"> 公开招标 </c:if>
                     <c:if test="${contract.biddingType eq LAW_INVITE}"> 依法邀请招标 </c:if>
@@ -203,6 +206,7 @@
                     <c:if test="${contract.biddingType eq DIRECT}"> 直接发包 </c:if>
                     <c:if test="${contract.biddingType eq COMPARE}"> 询价比价 </c:if>
                     <c:if test="${contract.biddingType eq OTHERS}"> 其他 </c:if>
+                    <c:if test="${contract.biddingType eq NO}"> 无 </c:if>
 
                 </td>
 
@@ -419,6 +423,9 @@
                     </c:if>
                     <c:if test="${contract.invoice eq 0}">
                         普通发票
+                    </c:if>
+                    <c:if test="${contract.invoice eq -1}">
+                        无发票
                     </c:if>
                 </td>
                 <td>印花税：</td>

@@ -63,7 +63,7 @@ $(document).ready(function () {
 
 function getContract() {
     var contractId = $('#contractId')[0].value;
-    var reg = /^[A-Z|a-z]{2}\d{2}-[A-Z|a-z]{3}-\d{4}$/;
+    var reg = /^[A-Z|a-z]{2}\d{2}-[A-Z|a-z]{2,4}-\d{4}$/;
     if (!reg.test(contractId)) {
         alert("请输入正确的合同编号");
         return false;

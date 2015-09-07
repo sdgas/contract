@@ -121,6 +121,7 @@
                     <input type="radio" name="contractProperty" value="0" checked="checked">新签
                     <input type="radio" name="contractProperty" value="1">续签
                     <input type="radio" name="contractProperty" value="2">改签
+                    <input type="radio" name="contractProperty" value="3">其他
                 </td>
                 <td style="color: #ab1e1e">合同原件份数：</td>
                 <td>
@@ -170,6 +171,7 @@
                     <option style="text-align: center" value="3">直接发包</option>
                     <option style="text-align: center" value="4">询价比价</option>
                     <option style="text-align: center" value="5">其他</option>
+                    <option style="text-align: center" value="-1">无</option>
                 </select>
                 </td>
 
@@ -193,33 +195,7 @@
                     <input name="stamp" type="radio" value="0">否
                 </td>
             </tr>
-            <tr>
-                <td style="color: #ab1e1e">支持文件：</td>
-                <td colspan="4">
-                    <input type="checkbox" name="supportFile" value="政府批文">政府批文&nbsp;
-                    <input type="checkbox" name="supportFile" value="固定资产请购单">固定资产请购单&nbsp;
-                    <input type="checkbox" name="supportFile" value="固定资产出租出借表">固定资产出租出借表&nbsp;
-                    <input type="checkbox" name="supportFile" value="集团流转单">集团流转单&nbsp;
-                    <input type="checkbox" name="supportFile" value="事前审批表">事前审批表&nbsp;<br>
-                    <input type="checkbox" name="supportFile" value="供应商询价采购单">供应商询价采购单&nbsp;
-                    <input type="checkbox" name="supportFile" value="供应商报价单">供应商报价单&nbsp;
-                    <input type="checkbox" name="supportFile" value="港投报价单">港投报价单&nbsp;
-                    <input type="checkbox" name="supportFile" value="预结算价格审核资料">预结算价格审核资料&nbsp;<br>
-                    <input type="checkbox" name="supportFile" value="上一年度生效合同复印件">上一年度生效合同复印件&nbsp;
-                    <input type="checkbox" name="supportFile" value="顺燃-内部管理规定">顺燃-内部管理规定&nbsp;
-                    <input type="checkbox" name="supportFile" value="顺燃-内部请示">顺燃-内部请示&nbsp;
-                    <input type="checkbox" name="supportFile" value="营业执照">营业执照&nbsp;
-                    <input type="checkbox" name="supportFile" value="税务登记证">税务登记证&nbsp;<br>
-                    <input type="checkbox" name="supportFile" value="组织机构代码证">组织机构代码证&nbsp;
-                    <input type="checkbox" name="supportFile" value="生产许可证">生产许可证&nbsp;
-                    <input type="checkbox" name="supportFile" value="签约用户-申请">签约用户-申请&nbsp;
-                    <input type="checkbox" name="supportFile" value="身份证复印件">身份证复印件&nbsp;
-                    <input type="checkbox" name="supportFile" value="设计图">设计图&nbsp;
-                    <input type="checkbox" name="supportFile" value="开户许可证">开户许可证&nbsp;<br>
-                    <input type="checkbox" name="supportFile" value="核准变更登记通知书">核准变更登记通知书&nbsp;
-                    <input type="checkbox" name="supportFile" value="培训申请表">培训申请表&nbsp;
-                </td>
-            </tr>
+
             <tr>
                 <td>经办部门：</td>
                 <td colspan="2">
@@ -300,7 +276,6 @@
                 </td>
             </tr>
             <tr>
-
                 <td style="color: #ab1e1e">合同版本提供:</td>
                 <td>
                     <select name="contractProvide" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
@@ -317,8 +292,6 @@
                     </select>
             </tr>
             <tr>
-
-
                 <td style="color: #ab1e1e">质保期：</td>
                 <td colspan="2">
                     <select name="guaranteePeriod" style="font-family: '微软雅黑';font-size: 16px;width: 180px"
@@ -338,7 +311,6 @@
                         <option value="11" style="text-align: center">终身</option>
                     </select>
                 </td>
-
             </tr>
             <tr>
                 <td style="color: #ab1e1e">质保金：</td>
@@ -346,7 +318,6 @@
                     <input type="text" name="performanceBond" value="0.00" maxlength="10" id="performanceBond"
                            onchange="checkNum(this.value)" style="width: 155px">元
                 </td>
-
                 <td>质保金到期日期:</td>
                 <td colspan="2">
                     <input type="text" name="duePerformanceBond" class="Wdate"
@@ -365,6 +336,7 @@
                         <option style="text-align: center" value="6">6%增值税专用发票</option>
                         <option style="text-align: center" value="3">3%增值税专用发票</option>
                         <option style="text-align: center" value="0">普通发票</option>
+                        <option style="text-align: center" value="-1">无发票</option>
                     </select>
                 </td>
                 <td>印花税：</td>
@@ -382,6 +354,33 @@
                 <td>合同违约条款描述：</td>
                 <td colspan="4">
                     <textarea cols="65" rows="3" name="remark"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="color: #ab1e1e">支持文件：</td>
+                <td colspan="4" style="text-align: left">
+                    <input type="checkbox" name="supportFile" value="政府批文">政府批文&nbsp;
+                    <input type="checkbox" name="supportFile" value="固定资产请购单">固定资产请购单&nbsp;
+                    <input type="checkbox" name="supportFile" value="固定资产出租出借表">固定资产出租出借表&nbsp;
+                    <input type="checkbox" name="supportFile" value="集团流转单">集团流转单&nbsp;
+                    <input type="checkbox" name="supportFile" value="事前审批表">事前审批表&nbsp;<br>
+                    <input type="checkbox" name="supportFile" value="供应商询价采购单">供应商询价采购单&nbsp;
+                    <input type="checkbox" name="supportFile" value="供应商报价单">供应商报价单&nbsp;
+                    <input type="checkbox" name="supportFile" value="港投报价单">港投报价单&nbsp;
+                    <input type="checkbox" name="supportFile" value="预结算价格审核资料">预结算价格审核资料&nbsp;<br>
+                    <input type="checkbox" name="supportFile" value="上一年度生效合同复印件">上一年度生效合同复印件&nbsp;
+                    <input type="checkbox" name="supportFile" value="顺燃-内部管理规定">顺燃-内部管理规定&nbsp;
+                    <input type="checkbox" name="supportFile" value="顺燃-内部请示">顺燃-内部请示&nbsp;
+                    <input type="checkbox" name="supportFile" value="营业执照">营业执照&nbsp;
+                    <input type="checkbox" name="supportFile" value="税务登记证">税务登记证&nbsp;<br>
+                    <input type="checkbox" name="supportFile" value="组织机构代码证">组织机构代码证&nbsp;
+                    <input type="checkbox" name="supportFile" value="生产许可证">生产许可证&nbsp;
+                    <input type="checkbox" name="supportFile" value="签约用户-申请">签约用户-申请&nbsp;
+                    <input type="checkbox" name="supportFile" value="身份证复印件">身份证复印件&nbsp;
+                    <input type="checkbox" name="supportFile" value="设计图">设计图&nbsp;
+                    <input type="checkbox" name="supportFile" value="开户许可证">开户许可证&nbsp;<br>
+                    <input type="checkbox" name="supportFile" value="核准变更登记通知书">核准变更登记通知书&nbsp;
+                    <input type="checkbox" name="supportFile" value="培训申请表">培训申请表&nbsp;
                 </td>
             </tr>
             <tr>
