@@ -163,12 +163,12 @@ function confirm() {
     } else if ($("#performanceBond")[0].value == "") {
         alert("请填写合同质保金!");
         return false;
-    } else if ($("#begin")[0].value == "") {
+    /*} else if ($("#begin")[0].value == "") {
         alert("请填写合同生效时间!");
         return false;
     } else if ($("#end")[0].value == "") {
         alert("请填写合同失效时间!");
-        return false;
+        return false;*/
     } else if ($("#count")[0].value == "") {
         alert("请填写合同原件份数!");
         return false;
