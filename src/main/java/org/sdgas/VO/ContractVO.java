@@ -47,7 +47,7 @@ public class ContractVO extends BaseVO {
     private String mainContent;//合同主要内容
     private String receivableOrPayMoney;//应收（付）金额
     private String receivableOrPay;//收、付标识   0付款  1收款
-    private String settleAccount;//是否超结算  0否 1是，已审核  2是，未审核
+    //private String settleAccount;//是否超结算  0否 1是，已审核  2是，未审核
     private String paymentType;//款项类型   0工程费  1履约保证金  2履约保函  3咨询费  4容量气价  5款货  6租赁费  7培训费  -1其他
     private String stamp;//是否盖章  0未盖章   1已盖章
     private String remark;//备注
@@ -368,14 +368,6 @@ public class ContractVO extends BaseVO {
 
     public void setStampTax(String stampTax) {
         this.stampTax = stampTax;
-    }
-
-    public String getSettleAccount() {
-        return settleAccount;
-    }
-
-    public void setSettleAccount(String settleAccount) {
-        this.settleAccount = settleAccount;
     }
 
     public String getUnit_priced() {

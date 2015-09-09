@@ -9,6 +9,15 @@ public class PaymentVO extends BaseVO {
     private String paymentDate;//付款时间
     private String payMoney;//付款金额
     private String remark;//备注
+    private String settleAccount;//是否超结算  0否 1是，已审核  2是，未审核
+
+    public String getSettleAccount() {
+        return settleAccount;
+    }
+
+    public void setSettleAccount(String settleAccount) {
+        this.settleAccount = settleAccount;
+    }
 
     public String getContract() {
         return contract;

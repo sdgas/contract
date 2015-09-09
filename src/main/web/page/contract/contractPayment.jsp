@@ -488,13 +488,6 @@
             </tr>
             <s:iterator value="date" var="a" status="i">
                 <tr>
-                        <%--<td>一次性${r}款</td>
-                        <td>
-                            <c:if test="${once eq 'F'}">0.0元</c:if>
-                            <c:if test="${once ne 'F'}">
-                                <input type="text" name="payMoney" style="width: 120px">元
-                            </c:if>
-                        </td>--%>
                     <td>${r}款信息</td>
                     <td>${a}</td>
                     <td>
@@ -521,6 +514,14 @@
                     </td>
                 </tr>
             </s:iterator>
+            <tr>
+                <td colspan="2">是否超合同结算：</td>
+                <td colspan="3">
+                    <input name="settleAccount" type="radio" value="2">是，已审核&nbsp; &nbsp;
+                    <input name="settleAccount" type="radio" value="1">是，未审核 &nbsp; &nbsp;
+                    <input name="settleAccount" type="radio" value="0">否
+                </td>
+            </tr>
             <tr>
                 <td colspan="5">
                     <input name="tijiao" value="添加" type="submit">

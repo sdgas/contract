@@ -49,7 +49,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     public String execute() {
         Contract contract = new Contract();
         contract.setContractId(contractVO.getContractId()); //合同编号
-        contract.setAcceptance(ChangeTime.parseStringToShortDate(contractVO.getAcceptance()));//验收时间
+        if (!contractVO.getAcceptance().isEmpty())
+            contract.setAcceptance(ChangeTime.parseStringToShortDate(contractVO.getAcceptance()));//验收时间
         contract.setContractName(contractNameService.findById(Integer.valueOf(contractVO.getContractName()))); //合同名称
         contract.setContractMoney(Double.valueOf(contractVO.getContractMoney()));//合同签订金额
         contract.setContractSignCompany(contractVO.getContractSignCompany());//签约对象（甲方;乙方;第三方）
@@ -200,7 +201,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setReceivableOrPayMoney(Double.valueOf(contractVO.getReceivableOrPayMoney()));//应收（付）金额
 
         //是否超结算
-        switch (Integer.valueOf(contractVO.getSettleAccount())) {
+        /*switch (Integer.valueOf(contractVO.getSettleAccount())) {
             case 0:
                 contract.setSettleAccount(SettleAccount.N);
                 break;
@@ -210,7 +211,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             case 2:
                 contract.setSettleAccount(SettleAccount.Y_N);
                 break;
-        }
+        }*/
         if (!contractVO.getDuePerformanceBond().trim().isEmpty())
             contract.setDuePerformanceBond(ChangeTime.parseStringToShortDate(contractVO.getDuePerformanceBond()));//质保金到期日期
         contract.setContractProvide(Integer.valueOf(contractVO.getContractProvide()));//合同版本提供

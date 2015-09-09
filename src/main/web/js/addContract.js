@@ -190,9 +190,6 @@ function confirm() {
     } else if ($("#contractType")[0].value == "") {
         alert("请选择合同类别!");
         return false;
-    } else if ($("#acceptance")[0].value == "") {
-        alert("请选择验收日期!");
-        return false;
     } else if ($("#invoice")[0].value == "") {
         alert("请选择发票类别!");
         return false;
