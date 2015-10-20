@@ -5,10 +5,12 @@ import org.sdgas.model.Contract;
 import org.sdgas.model.Payment;
 import org.sdgas.service.ContractService;
 import org.sdgas.service.PaymentService;
+import org.sdgas.util.ChangeTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,21 +40,49 @@ public class PaymentServiceImpl extends DaoSupport<Payment> implements PaymentSe
                 money += Double.valueOf(str);
             }
         }
+        int k = 0;
+        for (; k < tep.length; k++) {
+            if ("".equals(tep[k].trim()))
+                break;
+        }
+        String pm = "";
+        for (int j = k - 1; j > -1; j--)
+            pm = tep[j] + "," + pm;
+        pm = pm.substring(0, pm.length() - 1);
+
+
+        tep = paymentDate.split(",");
+        String pd = "";
+        int i = 0;
+        for (; i < tep.length; i++) {
+            if ("".equals(tep[i].trim()))
+                break;
+        }
+        for (int j = i - 1; j > -1; j--)
+            pd = tep[j] + "," + pd;
+        pd = pd.substring(0, pd.length() - 1);
 
         Payment payment = this.findByContractId(contract);
         if (payment == null) {
             payment = new Payment();
             payment.setContract(contractService.find(Contract.class, contract));
-            payment.setPaymentDate(paymentDate);
+            payment.setPaymentDate(pd);
             payment.setPayMoney(paymentMoney);
             payment.setRemark(remark);
             payment.setLeftMoney(contractService.findContractById(contract).getContractMoney() - money);
             this.save(payment);
         } else {
-            payment.setPaymentDate(payment.getPaymentDate() + paymentDate);
-            payment.setPayMoney(payment.getPayMoney() + paymentMoney);
+            if (payment.getPaymentDate() != null)
+                payment.setPaymentDate(payment.getPaymentDate() + "," + pd);
+            else
+                payment.setPaymentDate(payment.getPaymentDate() + pd);
+
+            if (payment.getPayMoney() != null)
+                payment.setPayMoney(payment.getPayMoney() + "," + pm);
+            else
+                payment.setPayMoney(payment.getPayMoney() + pm);
             payment.setRemark(payment.getRemark() + "<br/>" + remark);
-            payment.setLeftMoney(contractService.findContractById(contract).getContractMoney() - money);
+            payment.setLeftMoney(payment.getLeftMoney() - money);
             this.update(payment);
         }
         return payment;

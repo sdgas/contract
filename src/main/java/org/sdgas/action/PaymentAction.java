@@ -45,7 +45,7 @@ public class PaymentAction extends MyActionSupport implements ModelDriven<Paymen
         }
 
         //更新是否超合同结算
-        if (!paymentVO.getSettleAccount().isEmpty()) {
+        if (paymentVO.getSettleAccount() != null && !paymentVO.getSettleAccount().isEmpty()) {
             Contract contract = contractService.findContractById(paymentVO.getContract());
             switch (Integer.valueOf(paymentVO.getSettleAccount())) {
                 case 0:
