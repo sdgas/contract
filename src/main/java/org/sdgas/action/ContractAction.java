@@ -360,6 +360,26 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         return VIEW;
     }
 
+    public String closeContract() {
+        System.out.printf(contractVO.getContractIds());
+        String[] contractIds = contractVO.getContractIds().split(",");
+        for (String c : contractIds) {
+            Contract contract = contractService.findContractById(c);
+            try {
+                contract.setContractCloseDate(ChangeTime.parseShortDate(null));
+                contract.setState(ContractState.CONPLETED);
+                contractService.update(contract);
+            } catch (Exception e) {
+                logger.info("用户：" + user.getUserName() + "归档合同故障（" + contract.getContractId() + ")IP:" + ip);
+                contractVO.setResultMessage("合同状态出错，请与管理员联系");
+                return ERROR;
+            }
+            logger.info("用户：" + user.getUserName() + "归档合同（" + contract.getContractId() + ")IP:" + ip);
+        }
+        contractVO.setResultMessage("<script>alert('合同归档成功');location.href='Payment!closeContract.action';</script>");
+        return SUCCESS;
+    }
+
     @Override
     public ContractVO getModel() {
         return contractVO;

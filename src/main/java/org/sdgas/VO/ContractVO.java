@@ -55,6 +55,7 @@ public class ContractVO extends BaseVO {
 
     private Contract contract;
     private String project;
+    private String contractIds;
 
     private List<Attachment> attachments = new ArrayList<Attachment>();
     private String[] date;//付款日期
@@ -464,6 +465,14 @@ public class ContractVO extends BaseVO {
 
     public void setOutBudget(String outBudget) {
         this.outBudget = outBudget;
+    }
+
+    public String getContractIds() {
+        return contractIds;
+    }
+
+    public void setContractIds(String contractIds) {
+        this.contractIds = contractIds;
     }
 }
 

@@ -72,6 +72,10 @@
             <li>
                 <a href="<%=basePath%>/Contract!findContract.action?flag=3"> 合同审核 </a>
             </li>
+            <li class="divider"></li>
+            <li>
+                <a href="<%=basePath%>/Payment!closeContract.action"> 合同归档 </a>
+            </li>
         </ul>
     </div>
 

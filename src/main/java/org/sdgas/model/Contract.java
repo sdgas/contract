@@ -481,7 +481,7 @@ public class Contract {
         this.stamp = stamp;
     }
 
-    @Column(length = 100)
+    @Column(length = 255)
     public String getSupportFile() {
         return supportFile;
     }

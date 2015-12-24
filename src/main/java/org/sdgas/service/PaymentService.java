@@ -27,5 +27,5 @@ public interface PaymentService extends DAO {
      * @param remark       备注
      * @return
      */
-    public Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney, String remark);
+    Payment saveOrUpdatePay(String contract, String paymentDate, String paymentMoney, String remark);
 }
