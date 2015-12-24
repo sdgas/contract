@@ -5,9 +5,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.sdgas.VO.UserVO;
+import org.sdgas.model.Contract;
 import org.sdgas.model.Department;
 import org.sdgas.model.Position;
 import org.sdgas.model.User;
+import org.sdgas.service.ContractService;
 import org.sdgas.service.DepartmentService;
 import org.sdgas.service.PositionService;
 import org.sdgas.service.UserService;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by 120378 on 2015-03-05.
@@ -30,6 +33,7 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVO> 
     private UserService userService;
     private DepartmentService departmentService;
     private PositionService positionService;
+    private ContractService contractService;
 
     private static String ip = "";
 
@@ -54,6 +58,13 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVO> 
 
             storePersonToSession(user);
             logger.info(user.getPosition().getPositionName() + " " + user.getUserName() + ",登录系统 IP:" + ip);
+
+            List<Contract> overDate = contractService.findOverDate();
+            userVO.setOverDate(overDate);
+            List<Contract> overPerformanceBond = contractService.findOverPerformanceBond();
+            userVO.setOverPerformanceBond(overPerformanceBond);
+
+
             HttpServletRequest request = ServletActionContext.getRequest();
             Object obj = request.getSession().getAttribute("requestURI");
             if (obj != null) {
@@ -145,6 +156,11 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVO> 
     @Resource(name = "positionServiceImpl")
     public void setPositionService(PositionService positionService) {
         this.positionService = positionService;
+    }
+
+    @Resource(name = "contractServiceImpl")
+    public void setContractService(ContractService contractService) {
+        this.contractService = contractService;
     }
 
     private void storePersonToSession(User target) {

@@ -4,6 +4,7 @@ import org.sdgas.base.DAO;
 import org.sdgas.model.Contract;
 import org.sdgas.model.Department;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface ContractService extends DAO {
      *
      * @return 全部合同
      */
-    public List<Contract> findAll();
+    List<Contract> findAll();
 
 
     /**
@@ -25,7 +26,7 @@ public interface ContractService extends DAO {
      * @param contractId 合同编号
      * @return 合同
      */
-    public Contract findContractById(String contractId);
+    Contract findContractById(String contractId);
 
     /**
      * 根据部门查找合同
@@ -34,4 +35,14 @@ public interface ContractService extends DAO {
      * @return 合同
      */
     //public List<Contract> findContractByDepartment(Department department);
+
+
+    /**
+     * 查找到期合同
+     * @return 到期合同
+     */
+    List<Contract> findOverDate();
+
+    List<Contract> findOverPerformanceBond();
+
 }

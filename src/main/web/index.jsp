@@ -42,13 +42,10 @@
 </head>
 <body>
 <%@ include file="/page/share/menu.jsp" %>
-<%--<div id="content">
+<div id="content">
     <form action="#" method="post">
 
         <div class="alert" style="width: 450px;margin: 20px 0px 20px 180px;">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Warning!</strong> Best check yourself, you're not looking
-            too good.
         </div>
     </form>
     <div
@@ -56,34 +53,56 @@
         <table>
             <tr>
                 <td>
-                    <h4>新需求</h4>
+                    <h4>临近到期合同</h4>
                 </td>
             </tr>
-            <tr>
-                <td></td>
-            </tr>
+            <s:iterator value="overDate" var="o">
+                <tr>
+                    <td>
+                        <a href="<%=basePath%>/Contract!findOneContract.action?contractId=${o.contractId}">${o.contractId} ${o.contractName.contractName}</a>
+                    </td>
+                </tr>
+            </s:iterator>
         </table>
     </div>
     <div
-            style="display:block; float:left;border:1px solid #FFFFFF;background-color: #d02380;width: 400px;height: 300px">
+            style="display:block; float:left;border:1px solid #FFFFFF;width: 400px;height: 300px">
         <table>
             <tr>
                 <td>
-                    <h4>临近需求日期</h4>
+                    <h4>质保金到期（一周后）</h4>
                 </td>
             </tr>
+            <s:iterator value="overPerformanceBond" var="o">
+                <tr>
+                    <td>
+                        <a href="<%=basePath%>/Contract!findOneContract.action?contractId=${o.contractId}">${o.contractId} ${o.contractName.contractName}</a>
+                    </td>
+                </tr>
+            </s:iterator>
+        </table>
+    </div>
+   <%-- <div
+            style="display:block; float:left;border:1px solid #FFFFFF;width: 400px;height: 300px">
+        <table>
             <tr>
-                <td></td>
+                <td>
+                    <h4>履约保证金到期（一周后）</h4>
+                </td>
             </tr>
+            <s:iterator value="overPerformanceBond" var="o">
+                <tr>
+                    <td>
+                        <a href="<%=basePath%>/Contract!findOneContract.action?contractId=${o.contractId}">${o.contractId} ${o.contractName.contractName}</a>
+                    </td>
+                </tr>
+            </s:iterator>
         </table>
     </div>
     <div
-            style="display:block; float:left;border:1px solid #FFFFFF;background-color: #f1ffb3;width: 400px;height: 300px">
-    </div>
-    <div
-            style="display:block; float:left;border:1px solid #FFFFFF;background-color: #c0ffa7;width: 400px;height: 300px">
-    </div>
-</div>--%>
+            style="display:block; float:left;border:1px solid #FFFFFF;width: 400px;height: 300px">
+    </div>--%>
+</div>
 
 <div id="content"></div>
 

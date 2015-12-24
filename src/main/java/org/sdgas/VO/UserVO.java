@@ -1,5 +1,10 @@
 package org.sdgas.VO;
 
+import org.sdgas.model.Contract;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by 120378 on 2015-03-05.
  */
@@ -12,6 +17,25 @@ public class UserVO extends BaseVO {
     private String department;
     private String position;
     private String remark;
+
+    private List<Contract> overDate = new ArrayList<Contract>();
+    List<Contract> overPerformanceBond = new ArrayList<Contract>();
+
+    public List<Contract> getOverPerformanceBond() {
+        return overPerformanceBond;
+    }
+
+    public void setOverPerformanceBond(List<Contract> overPerformanceBond) {
+        this.overPerformanceBond = overPerformanceBond;
+    }
+
+    public List<Contract> getOverDate() {
+        return overDate;
+    }
+
+    public void setOverDate(List<Contract> overDate) {
+        this.overDate = overDate;
+    }
 
     public String getUserId() {
         return userId;
