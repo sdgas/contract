@@ -28,7 +28,7 @@
 			<span style="font-family:'微软雅黑'; color: #000000;">欢迎
 				${person.position.positionName}&nbsp&nbsp${person.userName}&nbsp; <a
                         href="<%=basePath%>/page/user/alterPwd.jsp">修改密码</a> <a
-                        href="Login!loginOut.action">退出</a>
+                        href="<%=basePath%>/Login!loginOut.action">退出</a>
 			</span>
         </c:if>
     </div>
