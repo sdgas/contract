@@ -43,7 +43,7 @@
 <body>
 <%@ include file="/page/share/menu.jsp" %>
 <div id="content">
-    <form action="File!create.action" method="post">
+    <form action="File!createContract.action" method="post">
         <table>
             <tr>
                 <td colspan="2" align="center">
@@ -54,7 +54,7 @@
                 <td>归档月份：</td>
                 <td>
                     <input type="text" name="time" id="begin" class="Wdate"
-                           onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM',maxDate:'%y-%M'})">
+                           onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy年MM月',maxDate:'%y-%M'})">
                 </td>
             </tr>
             <tr>

@@ -41,4 +41,15 @@ public class ContractServiceImpl extends DaoSupport<Contract> implements Contrac
         query.setParameter(1, ContractState.CONPLETED);
         return query.getResultList();
     }
+
+    @Override
+    public List<Contract> findContractByCloseDate(String closeDate) {
+        Query query = em.createQuery("from Contract c where c.state>?1 and year(contractCloseDate)= ?2 and month(contractCloseDate)=?3");
+        query.setParameter(1, ContractState.CONPLETED);
+        int year = Integer.valueOf(closeDate.split("-")[0]);
+        int month = Integer.valueOf(closeDate.split("-")[1]);
+        query.setParameter(2,year);
+        query.setParameter(3,month);
+        return query.getResultList();
+    }
 }

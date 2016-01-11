@@ -45,4 +45,6 @@ public interface ContractService extends DAO {
 
     List<Contract> findOverPerformanceBond();
 
+    List<Contract> findContractByCloseDate(String closeDate);
+
 }

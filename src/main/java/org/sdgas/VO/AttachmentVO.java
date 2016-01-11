@@ -13,6 +13,15 @@ public class AttachmentVO extends BaseVO {
     private String uploadifyFileName;
     private String fileName;
     private String dbName;
+    private String path;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public String getContractId() {
         return contractId;

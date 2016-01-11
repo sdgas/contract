@@ -363,7 +363,7 @@ public class Contract {
         this.count = count;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @ExcelResources(order = 10, title = "归档月份")
     public Date getContractCloseDate() {
         return contractCloseDate;
