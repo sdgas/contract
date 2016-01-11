@@ -78,7 +78,21 @@
             </li>
         </ul>
     </div>
-
+    <div class="btn-group" style="margin-top: 10px;">
+        <%--btn-primary 颜色--%>
+        <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
+            报表管理 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="<%=basePath%>/page/contract/report.jsp"> 归档合同明细 </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="<%=basePath%>/#"> 未归档合同明细 </a>
+            </li>
+        </ul>
+    </div>
     <%--按钮3--%>
     <div class="btn-group" style="margin-top: 10px;">
         <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
