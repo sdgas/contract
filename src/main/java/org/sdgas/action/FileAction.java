@@ -43,8 +43,7 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
     User user = (User) session.getAttribute("person");
     String ip = (String) session.getAttribute("ip");
 
-
-    //生成补贴
+    //归档合同明细
     public String createContract() throws UnsupportedEncodingException {
         // 得到备份文件的目录的真实路径
         File dir = new File(SAVE_PATH_DIR_B);

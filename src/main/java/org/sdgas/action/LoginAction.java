@@ -48,7 +48,6 @@ public class LoginAction extends MyActionSupport implements ModelDriven<UserVO> 
         }
 
         User user = userService.findById(userVO.getUserId());
-        System.out.println(user);
         if (user == null) {
             userVO.setResultMessage("<script>alert('用户不存在！');location.href='login.jsp';</script>");
             return ERROR;

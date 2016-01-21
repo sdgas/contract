@@ -7,8 +7,8 @@
     <package name="struts2" extends="struts-default">
         <action name="FileDownload" class="org.sdgas.action.FileDownloadAction">
             <result name="success" type="stream">
-                <param name="contentType">application/octet-stream;charset=utf-8 </param>
-                <param name="contentDisposition">attachment;fileName="${fileName}"</param>
+                <param name="contentType">${contentType}</param>
+                <param name="contentDisposition">attachment;fileName=${fileName}</param>
                 <param name="inputName">downloadFile</param>
                 <param name="bufferSize">4098</param>
             </result>

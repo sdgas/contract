@@ -385,7 +385,7 @@ public class ExcelUtil {
         int year = cal.get(Calendar.YEAR);//得到年
         int month = cal.get(Calendar.MONTH) + 1;//得到月，从0开始的
 
-        cell.setCellValue(year + "年" + month + "月 " + "归档合同明细");
+        cell.setCellValue(date + "归档合同明细");
         XSSFFont font = wb.createFont();
         font.setFontHeightInPoints((short) 16); // 字体高度
         font.setFontName("宋体"); // 字体
