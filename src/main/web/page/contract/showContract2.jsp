@@ -18,7 +18,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>合同信息</title>
+    <title>修改合同信息</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="content－Type" content="text/html;charset=UTF-8">
@@ -74,20 +74,6 @@
                 }
             }
         }
-
-        function subForm(selectNum) {
-            if (selectNum == 1) {
-                $("form")[0].action = "Contract!findOneContract.action";
-                $("#flag").val("2");
-            } else if (selectNum == 2) {
-                $("form")[0].action = "Contract!findOneContract.action";
-                $("#flag").val("4");
-            }else{
-                $("form")[0].action = "Contract!findOneContract.action";
-                $("#flag").val("5");
-            }
-        }
-
     </script>
     <style type="text/css">
 
@@ -472,14 +458,8 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="查看付款信息" onclick="subForm(1)">
-                </td>
-                <td colspan="2" align="center">
-                    <input type="submit" value="查看审核信息" onclick="subForm(2)">
-                </td>
-                <td colspan="2" align="center">
-                    <input type="submit" value="修改合同" onclick="subForm(3)">
+                <td colspan="5" align="center">
+                    <input type="submit" value="修改合同">
                 </td>
             </tr>
         </table>

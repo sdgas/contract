@@ -355,6 +355,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             List<Auditing> auditings = auditingService.findByContractId(contractVO.getContractId());
             contractVO.setAuditings(auditings);
             view = "/page/contract/showAuditing.jsp";
+        } else if (contractVO.getFlag() == 5) {
+            view = "/page/contract/showContract2.jsp";
         } else
             view = "/page/contract/showContract.jsp";
         return VIEW;
