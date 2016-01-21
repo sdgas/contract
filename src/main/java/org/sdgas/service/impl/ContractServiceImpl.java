@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 120378 on 2015-03-06.
@@ -52,4 +54,14 @@ public class ContractServiceImpl extends DaoSupport<Contract> implements Contrac
         query.setParameter(3,month);
         return query.getResultList();
     }
+
+    @Override
+    public List<Contract> findContractByNOTClose() {
+        Query query = em.createQuery("from Contract c where c.state=?1 or c.state=?2");
+        query.setParameter(1, ContractState.COUNTERSIGN);
+        query.setParameter(2, ContractState.PAY);
+        return query.getResultList();
+    }
+
+
 }

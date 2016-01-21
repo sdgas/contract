@@ -47,4 +47,6 @@ public interface ContractService extends DAO {
 
     List<Contract> findContractByCloseDate(String closeDate);
 
+    List<Contract> findContractByNOTClose();
+
 }

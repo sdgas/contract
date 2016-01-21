@@ -89,7 +89,7 @@
             </li>
             <li class="divider"></li>
             <li>
-                <a href="<%=basePath%>/#"> 未归档合同明细 </a>
+                <a href="<%=basePath%>/File!createContractNotClose.action"> 未归档合同明细 </a>
             </li>
         </ul>
     </div>

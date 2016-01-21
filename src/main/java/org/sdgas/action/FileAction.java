@@ -36,7 +36,6 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
     private int count = 0;
     private int num = 0;
     private static String SAVE_PATH_DIR = "D:/contract/downloadFile/";
-    private static String SAVE_PATH_DIR_B = "D:/contract/uploadFile/";
 
     //获取当前登录用户
     HttpSession session = ServletActionContext.getRequest().getSession();
@@ -46,7 +45,7 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
     //归档合同明细
     public String createContract() throws UnsupportedEncodingException {
         // 得到备份文件的目录的真实路径
-        File dir = new File(SAVE_PATH_DIR_B);
+        File dir = new File(SAVE_PATH_DIR);
         // 如果该目录不存在，就创建
         if (!dir.exists()) {
             dir.mkdirs();
@@ -68,6 +67,33 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
 
         logger.info("用户：" + user.getUserId() + "成功生成归档合同明细文件！文件名为:" + fileName);
         fileVO.setResultMessage("<script>alert('成功生成归档合同明细文件:" + fileName + "。请点击确认下载');location.href='FileDownload.action?flag=99&path=" + fileName + "';</script>");
+        return SUCCESS;
+    }
+
+    //未归档合同明细
+    public String createContractNotClose() throws UnsupportedEncodingException {
+        // 得到备份文件的目录的真实路径
+        File dir = new File(SAVE_PATH_DIR);
+        // 如果该目录不存在，就创建
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        String date = ChangeTime.formatDate(ChangeTime.getCurrentDate());
+        String fileName = date + ".xlsx";
+        String path = SAVE_PATH_DIR + fileName;
+        //使用于07以上的版本，03以下的可以修改参数
+        try {
+            excelUtil.createExcelV2(path);
+        } catch (Exception e) {
+            if (e.getMessage().contains("数据异常"))
+                fileVO.setResultMessage("导出数据异常，请与管理员联系");
+            logger.error(e);
+            return ERROR;
+        }
+
+        logger.info("用户：" + user.getUserId() + "成功生成未归档合同明细文件！文件名为:" + fileName);
+        fileVO.setResultMessage("<script>alert('成功生成未归档合同明细文件:" + fileName + "。请点击确认下载');location.href='FileDownload.action?flag=99&path=" + fileName + "';</script>");
         return SUCCESS;
     }
 

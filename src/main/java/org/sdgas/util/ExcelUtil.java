@@ -19,6 +19,7 @@ import javax.annotation.Resource;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.apache.poi.ss.usermodel.Cell.CELL_TYPE_NUMERIC;
@@ -381,10 +382,6 @@ public class ExcelUtil {
         Cell cell = r0.createCell(0);
         r0.setHeightInPoints(28);
 
-        Calendar cal = Calendar.getInstance();//使用日历类
-        int year = cal.get(Calendar.YEAR);//得到年
-        int month = cal.get(Calendar.MONTH) + 1;//得到月，从0开始的
-
         cell.setCellValue(date + "归档合同明细");
         XSSFFont font = wb.createFont();
         font.setFontHeightInPoints((short) 16); // 字体高度
@@ -497,17 +494,198 @@ public class ExcelUtil {
 
                 cell = r.createCell(4);
                 cell.setCellType(XSSFCell.CELL_TYPE_STRING);
-                cell.setCellValue(" "+c.getContractBeginDate());
+                cell.setCellValue(" " + c.getContractBeginDate());
                 cell.setCellStyle(cs);
 
                 cell = r.createCell(5);
                 cell.setCellType(XSSFCell.CELL_TYPE_STRING);
-                cell.setCellValue(" "+c.getContractEndDate());
+                cell.setCellValue(" " + c.getContractEndDate());
                 cell.setCellStyle(cs);
 
                 cell = r.createCell(9);
                 cell.setCellType(XSSFCell.CELL_TYPE_STRING);
-                cell.setCellValue(" "+c.getContractCloseDate());
+                cell.setCellValue(" " + c.getContractCloseDate());
+                cell.setCellStyle(cs);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException("导出数据异常，请与管理员联系");
+            }
+
+            count++;
+
+        }
+        //创建excel，并保存
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(outPath);
+            wb.toString().getBytes("GB2312");
+            wb.write(fos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            logger.error(e);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.error(e);
+        } finally {
+            try {
+                if (fos != null) fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                logger.error(e);
+            }
+        }
+    }
+
+    //生成未归档合同明细excel
+    public void createExcelV2(String outPath) {
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet = wb.createSheet("未归档合同明细");   //取excel工作表对象
+
+        //设置默认列宽
+        sheet.setDefaultColumnWidth(14);
+        //合并单元格
+        sheet.addMergedRegion(new CellRangeAddress(0, (short) 0, 0, (short) 10));
+        Row r0 = sheet.createRow(0);
+        Cell cell = r0.createCell(0);
+        r0.setHeightInPoints(28);
+
+        Calendar cal = Calendar.getInstance();//使用日历类
+        int year = cal.get(Calendar.YEAR);//得到年
+        int month = cal.get(Calendar.MONTH) + 1;//得到月，从0开始的
+
+        cell.setCellValue(year + "年" + month + "月" + "未归档合同明细");
+        XSSFFont font = wb.createFont();
+        font.setFontHeightInPoints((short) 16); // 字体高度
+        font.setFontName("宋体"); // 字体
+        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD); // 宽度
+
+        XSSFCellStyle cellStyle = wb.createCellStyle(); //设置excel单元格样式
+        cellStyle.setFont(font);
+        cellStyle.setAlignment(XSSFCellStyle.ALIGN_CENTER); // 居中
+        cell.setCellStyle(cellStyle);
+
+        //设置单元格样式
+        font = wb.createFont();
+        font.setFontHeightInPoints((short) 12); // 字体高度
+        font.setFontName("宋体"); // 字体
+        font.setBoldweight(HSSFFont.BOLDWEIGHT_NORMAL); // 宽度
+        cellStyle = wb.createCellStyle(); //设置excel单元格样式
+        cellStyle.setFont(font);
+        cellStyle.setAlignment(XSSFCellStyle.ALIGN_CENTER); // 居中
+        cellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN); //下边框
+        cellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);//左边框
+        cellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);//上边框
+        cellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);//右边框
+
+        Row r = sheet.createRow(1);
+        cell = r.createCell(0);
+        cell.setCellValue("合同名称");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(1);
+        cell.setCellValue("合同编号");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(2);
+        cell.setCellValue("签约对象");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(3);
+        cell.setCellValue("合同签订金额");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(6);
+        cell.setCellValue("经办人");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(7);
+        cell.setCellValue("合同原件份数");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(8);
+        cell.setCellValue("经办部门");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(4);
+        cell.setCellValue("合同生效日期");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(5);
+        cell.setCellValue("合同到期日期");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(9);
+        cell.setCellValue("申请日期");
+        cell.setCellStyle(cellStyle);
+
+        cell = r.createCell(10);
+        cell.setCellValue("应归档日期");
+        cell.setCellStyle(cellStyle);
+
+        List<Contract> contracts = contractService.findContractByNOTClose();
+
+        CellStyle cs = wb.createCellStyle();
+        cs.setAlignment(XSSFCellStyle.ALIGN_CENTER); // 居中
+        cs.setBorderBottom(HSSFCellStyle.BORDER_THIN); //下边框
+        cs.setBorderLeft(HSSFCellStyle.BORDER_THIN);//左边框
+        cs.setBorderTop(HSSFCellStyle.BORDER_THIN);//上边框
+        cs.setBorderRight(HSSFCellStyle.BORDER_THIN);//右边框
+        cs.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+
+        int count = 2;
+        for (Contract c : contracts) {
+            r = sheet.createRow(count);
+
+            try {
+                cell = r.createCell(0);
+                cell.setCellValue(c.getContractName().getContractName());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(1);
+                cell.setCellValue(c.getContractId());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(2);
+                cell.setCellValue(c.getContractSignCompany());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(3);
+                cell.setCellType(XSSFCell.CELL_TYPE_NUMERIC);
+                cell.setCellValue(c.getContractMoney());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(6);
+                cell.setCellValue(c.getContractOperator());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(7);
+                cell.setCellType(XSSFCell.CELL_TYPE_NUMERIC);
+                cell.setCellValue(c.getCount());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(8);
+                cell.setCellValue(c.getDepartment().getDepartmentName());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(4);
+                cell.setCellType(XSSFCell.CELL_TYPE_STRING);
+                cell.setCellValue(" " + c.getContractBeginDate());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(5);
+                cell.setCellType(XSSFCell.CELL_TYPE_STRING);
+                cell.setCellValue(" " + c.getContractEndDate());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(9);
+                cell.setCellType(XSSFCell.CELL_TYPE_STRING);
+                cell.setCellValue(" " + c.getSignContractDate());
+                cell.setCellStyle(cs);
+
+                cell = r.createCell(10);
+                cell.setCellType(XSSFCell.CELL_TYPE_STRING);
+                SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+                cell.setCellValue(" " + df.format(new Date(c.getContractCloseDate().getTime() + 30 * 24 * 60 * 60 * 1000)));
                 cell.setCellStyle(cs);
             } catch (Exception e) {
                 e.printStackTrace();
