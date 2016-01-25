@@ -163,12 +163,6 @@ function confirm() {
     } else if ($("#performanceBond")[0].value == "") {
         alert("请填写合同质保金!");
         return false;
-    /*} else if ($("#begin")[0].value == "") {
-        alert("请填写合同生效时间!");
-        return false;
-    } else if ($("#end")[0].value == "") {
-        alert("请填写合同失效时间!");
-        return false;*/
     } else if ($("#count")[0].value == "") {
         alert("请填写合同原件份数!");
         return false;
@@ -182,7 +176,7 @@ function confirm() {
         alert("请选择质保期!");
         return false;
     } else if ($("#biddingType")[0].value == "") {
-        alert("请选择供应商确定方式!");
+        alert("请选择采购方式!");
         return false;
     } else if ($("#contractName")[0].value == "") {
         alert("请选择合同名称!");

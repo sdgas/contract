@@ -105,6 +105,16 @@
                 </td>
             </tr>
             <tr>
+                <td>经办部门：</td>
+                <td colspan="2">
+                    ${contract.department.departmentName}
+                </td>
+                <td style="color: #ab1e1e">经办人：</td>
+                <td>
+                    ${contract.contractOperator}
+                </td>
+            </tr>
+            <tr>
                 <td>合同名称：</td>
                 <td colspan="2">
                     ${contract.contractName.contractName}
@@ -193,7 +203,7 @@
                 </td>
             </tr>
             <tr>
-                <td style="width: 120px">供应商确定方式：</td>
+                <td style="width: 120px">采购方式：</td>
                 <td colspan="2">
 
                     <c:set var="OPEN" value="<%=BiddingType.OPEN %>"/>
@@ -211,7 +221,6 @@
                     <c:if test="${contract.biddingType eq COMPARE}"> 询价比价 </c:if>
                     <c:if test="${contract.biddingType eq OTHERS}"> 其他 </c:if>
                     <c:if test="${contract.biddingType eq NO}"> 无 </c:if>
-
                 </td>
 
                 <td style="color: #ab1e1e">合同版本：</td>

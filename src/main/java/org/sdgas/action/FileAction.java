@@ -27,14 +27,9 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
     @Qualifier("excelUtil")
     @Autowired
     private ExcelUtil excelUtil;
-    private ContractService contractService;
 
     private final static Logger logger = LogManager.getLogger(FileAction.class);
     private final FileVO fileVO = new FileVO();
-    private List<Object> obj = new ArrayList<Object>();
-    private List<Contract> contracts = new ArrayList<Contract>();
-    private int count = 0;
-    private int num = 0;
     private static String SAVE_PATH_DIR = "D:/contract/downloadFile/";
 
     //获取当前登录用户
@@ -95,11 +90,6 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
         logger.info("用户：" + user.getUserId() + "成功生成未归档合同明细文件！文件名为:" + fileName);
         fileVO.setResultMessage("<script>alert('成功生成未归档合同明细文件:" + fileName + "。请点击确认下载');location.href='FileDownload.action?flag=99&path=" + fileName + "';</script>");
         return SUCCESS;
-    }
-
-    @Resource(name = "contractServiceImpl")
-    public void setContractService(ContractService contractService) {
-        this.contractService = contractService;
     }
 
     @Override

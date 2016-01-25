@@ -86,7 +86,7 @@ public class Contract {
     private int invoice;
 
     /**
-     * 供应商的确定方式
+     * 采购方式
      * 0公开招标  1依法邀请招标  2内部邀请招标  3直接发包  4询价比价  5其他
      */
     private BiddingType biddingType;

@@ -222,7 +222,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setState(ContractState.COUNTERSIGN);//合同状态
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);
-        contractVO.setResultMessage("<script>alert('添加成功！');location.href='/contract/page/contract/addContract.jsp';</script>");
+        contractVO.setResultMessage("<script>alert('添加成功！');location.href='/page/contract/addContract.jsp';</script>");
         return SUCCESS;
     }
 

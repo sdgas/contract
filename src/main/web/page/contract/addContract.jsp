@@ -80,6 +80,15 @@
                 </td>
             </tr>
             <tr>
+                <td>经办部门：</td>
+                <td colspan="2">
+                    <select name="department" id="dep"
+                            style="font-family: '微软雅黑';font-size: 16px;width: 180px"></select>
+                </td>
+                <td style="color: #ab1e1e">经办人：</td>
+                <td colspan="2"><input type="text" name="contractOperator" id="contractOperator"></td>
+            </tr>
+            <tr>
                 <td>合同名称：</td>
                 <td colspan="2">
                     <select name="contractName" id="contractName"
@@ -198,16 +207,6 @@
                     <input name="version" type="radio" value="0">非格式合同
                 </td>
 
-            </tr>
-
-            <tr>
-                <td>经办部门：</td>
-                <td colspan="2">
-                    <select name="department" id="dep"
-                            style="font-family: '微软雅黑';font-size: 16px;width: 180px"></select>
-                </td>
-                <td style="color: #ab1e1e">经办人：</td>
-                <td colspan="2"><input type="text" name="contractOperator" id="contractOperator"></td>
             </tr>
             <tr>
                 <td style="color: #ab1e1e">合同生效日期：</td>

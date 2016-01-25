@@ -74,7 +74,7 @@
             </li>
             <li class="divider"></li>
             <li>
-                <a href="<%=basePath%>/Payment!closeContract.action"> 合同归档 </a>
+                <a href="<%=basePath%>/Payment!closeContract.action"> 合同移交 </a>
             </li>
         </ul>
     </div>

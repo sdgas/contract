@@ -11,7 +11,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>合同归档</title>
+    <title>合同移交</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="content－Type" content="text/html;charset=UTF-8">
