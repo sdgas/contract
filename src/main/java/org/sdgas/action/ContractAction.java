@@ -15,6 +15,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -38,6 +41,8 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     private AuditingService auditingService;
 
     private static final Logger logger = LogManager.getLogger(ContractAction.class);
+
+    private static String SAVE_PATH_DIR = "D:/contract/uploadFile/";
 
     //获取当前登录用户
     HttpSession session = ServletActionContext.getRequest().getSession();
@@ -222,6 +227,28 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         contract.setState(ContractState.COUNTERSIGN);//合同状态
         contractService.save(contract);
         logger.info("用户：" + user.getUserName() + "添加了一份合同（" + contract.getContractId() + ")IP:" + ip);
+
+        //处理附件
+        Attachment attachment = new Attachment();
+        try {
+
+            //上传附件
+            String name = this.uploadResource(contractVO);
+            String id = checkId(ChangeTime.formatShortDate(new Date()) + (int) (999 + Math.random() * 9999));
+
+            attachment.setId(id);
+            attachment.setAttachmentName(name);
+            attachment.setContract(contractVO.getContractId());
+            attachmentService.save(attachment);
+
+        } catch (Exception e) {
+            logger.error(e);
+            contractVO.setResultMessage("系统错误，请与管理联系！");
+            return ERROR;
+        }
+
+        logger.info("用户：" + user.getUserName() + "上传了一份附件（" + attachment.getId() + ")IP:" + ip);
+
         contractVO.setResultMessage("<script>alert('添加成功！');location.href='/page/contract/addContract.jsp';</script>");
         return SUCCESS;
     }
@@ -420,5 +447,38 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     @Resource(name = "auditingServiceImpl")
     public void setAuditingService(AuditingService auditingService) {
         this.auditingService = auditingService;
+    }
+
+    private String uploadResource(ContractVO contractVO) throws Exception {
+        // 得到保存上传文件的目录的真实路径
+        File dir = new File(SAVE_PATH_DIR);
+        // 如果该目录不存在，就创建
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        String name = ChangeTime.formatDate() + contractVO.getFileName();
+        FileInputStream is = new FileInputStream(contractVO.getUpload());
+        FileOutputStream os = new FileOutputStream(new File(dir, name));
+        byte[] buf = new byte[1024];
+        int len = -1;
+        while ((len = is.read(buf)) != -1) {
+            os.write(buf, 0, len);
+        }
+
+        is.close();
+        os.close();
+        return name;
+    }
+
+    //递归调用判断ID是否唯一
+    private String checkId(String id) {
+        Attachment attachment = attachmentService.find(Attachment.class, id);
+        if (attachment == null)
+            return id;
+        else {
+            String nextId = ChangeTime.formatShortDate(new Date()) + (int) (999 + Math.random() * 9999);
+            return checkId(nextId);
+        }
     }
 }

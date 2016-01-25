@@ -14,7 +14,7 @@
               value="true"/>
 
     <!--上传文件的临时目录-->
-    <constant name="struts.multipart.saveDir" value="D:/contract/attachment/"/>
+    <constant name="struts.multipart.saveDir" value="D:/contract/uploadFile/"/>
     <!-- 上传文件的总大小限制200M-->
     <constant name="struts.multipart.maxSize" value="209715200"/>
     <!--资源文件配置-->

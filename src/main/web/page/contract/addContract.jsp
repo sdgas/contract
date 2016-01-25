@@ -12,6 +12,7 @@
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
             + path;
+    String realPath = request.getSession().getServletContext().getRealPath("/");
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -35,10 +36,8 @@
             src="<%=basePath%>/js/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="<%=basePath%>/js/addContract.js"></script>
 
-    <%--uploadify--%>
-    <script type="text/javascript" src="<%=basePath%>/uploadify/jquery.uploadify.js"></script>
-    <script type="text/javascript" src="<%=basePath%>/uploadify/jquery.uploadify.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>/uploadify/uploadify.css">
+    <script type="text/javascript" src="<%=basePath%>/js/sufix.js"></script>
+
     <%--加载dwr--%>
     <script src='<%=basePath%>/dwr/util.js' type="text/javascript"></script>
     <script src='<%=basePath%>/dwr/engine.js' type="text/javascript"></script>
@@ -72,7 +71,7 @@
     <%@ include file="/page/share/menu.jsp" %>
 </div>
 <div id="content">
-    <form action="<%=basePath%>/Contract.action" method="post" enctype="multipart/form-data">
+    <form action="<%=basePath%>/Contract.action" method="post" enctype="multipart/form-data" onsubmit="return checkFile(this)">
         <table id="t1" class="mergeTable">
             <tr>
                 <td colspan="6" align="center">
@@ -380,8 +379,10 @@
             <tr>
                 <td>附件：</td>
                 <td colspan="5">
-                    <input type="file" name="uploadify" id="uploadify"/>
-                    <a href="javascript:$('#uploadify').uploadify('upload', '*')">上传文件</a>
+                    <input type="hidden" name="path" value="<%=realPath%>"/>
+                    <input type="file" name="upload" style="height: 25px;" onchange="verifyFileName()"/>
+                    <input type="hidden" name="fileName"/>
+                    <div id="sufix_result"></div>
                 </td>
             </tr>
             <tr>

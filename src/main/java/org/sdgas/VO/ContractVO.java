@@ -2,6 +2,7 @@ package org.sdgas.VO;
 
 import org.sdgas.model.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +67,44 @@ public class ContractVO extends BaseVO {
     private String dn;//分期数量
     private String pn;
     private List<Auditing> auditings = new ArrayList<Auditing>();//审核信息
+
+    //附件上传
+    private String fileName;
+    private String filePath;
+    private File upload;
+    private String path;
+
+    public File getUpload() {
+        return upload;
+    }
+
+    public void setUpload(File upload) {
+        this.upload = upload;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
     public List<Auditing> getAuditings() {
         return auditings;
