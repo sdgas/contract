@@ -528,7 +528,8 @@
                 <td colspan="3">
                     <input name="settleAccount" type="radio" value="2">是，已审核&nbsp; &nbsp;
                     <input name="settleAccount" type="radio" value="1">是，未审核 &nbsp; &nbsp;
-                    <input name="settleAccount" type="radio" value="0">否
+                    <input name="settleAccount" type="radio" value="0">否&nbsp; &nbsp;&nbsp; &nbsp;
+                    超合同结算的原因：<input name ="remark">
                 </td>
             </tr>
             <tr>

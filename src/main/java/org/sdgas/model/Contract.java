@@ -193,11 +193,6 @@ public class Contract {
     private String paymentType;
 
     /**
-     * 结算金额
-     */
-    // private double closingMoney;
-
-    /**
      * 是否盖章
      * 0未盖章   1已盖章
      */
@@ -287,7 +282,6 @@ public class Contract {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
     @ExcelResources(order = 6, title = "合同到期日期")
     public Date getContractEndDate() {
         return contractEndDate;

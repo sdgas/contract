@@ -78,8 +78,9 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             contract.setUnit_price(Double.valueOf(contractVO.getUnit_priced()));
         else
             contract.setUnit_price(0.0d);
-
-        contract.setContractEndDate(ChangeTime.parseStringToShortDate(contractVO.getContractEndDate()));//合同到期日期
+        //todo:how to deal with  --- wilson
+        //if (contractVO.getContractEndDate() != null)
+            contract.setContractEndDate(ChangeTime.parseStringToShortDate(contractVO.getContractEndDate()));//合同到期日期
         contract.setContractOperator(contractVO.getContractOperator());//经办人
         contract.setCount(Integer.valueOf(contractVO.getCount()));//合同原件份数
 
@@ -220,7 +221,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         if (!contractVO.getDuePerformanceBond().trim().isEmpty())
             contract.setDuePerformanceBond(ChangeTime.parseStringToShortDate(contractVO.getDuePerformanceBond()));//质保金到期日期
         contract.setContractProvide(Integer.valueOf(contractVO.getContractProvide()));//合同版本提供
-        contract.setRemark(contractVO.getRemark()+"\n 预算外审核信息："+contractVO.getSHremark());//备注
+        contract.setRemark(contractVO.getRemark() + "\n 预算外审核信息：" + contractVO.getSHremark());//备注
         contract.setLawer(Integer.valueOf(contractVO.getLawer()));//律师咨询
 
         contract.setPaymentDate(contractVO.getPaymentDate());
