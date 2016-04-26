@@ -22,7 +22,6 @@
               value="ApplicationResources">
     </constant>
 
-    <include file="struts/struts4download.xml"/>
     <package name="default" extends="struts-default">
         <!-- 默认action参考，就是当配置里的action都对应不上的时候，最后就会执行这个-->
         <!--暂时不需要-->

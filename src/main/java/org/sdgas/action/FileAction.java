@@ -104,9 +104,9 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
         if (!dir.exists()) {
             dir.mkdirs();
         }
-        String[] temp = fileName.split("\\\\");
-        fileName = temp[temp.length - 1];
-        String name = ChangeTime.formatDate() + fileName;
+        //String[] temp = fileName.split("\\\\");
+        //fileName = temp[temp.length - 1];
+        String name = ChangeTime.formatDate();
         try {
             FileInputStream is = new FileInputStream(file);
             FileOutputStream os = new FileOutputStream(new File(dir, name));
