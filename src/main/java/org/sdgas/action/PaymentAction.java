@@ -68,7 +68,7 @@ public class PaymentAction extends MyActionSupport implements ModelDriven<Paymen
                 return ERROR;
             }
         }
-        paymentVO.setResultMessage("<script>alert('添加付款信息成功！');location.href='Contract!findContract.action?flag=1';</script>");
+        paymentVO.setResultMessage("<script>alert('添加付款信息成功！');location.href='contract/Contract!findContract.action?flag=1';</script>");
         return SUCCESS;
     }
 

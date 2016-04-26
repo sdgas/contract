@@ -53,7 +53,7 @@ public class AuditingAction extends MyActionSupport implements ModelDriven<Audit
         }
 
         logger.info("用户：" + user.getUserName() + "添加审核信息成功（" + auditing.getContract() + ")IP:" + ip);
-        auditingVO.setResultMessage("<script>alert('添加审核信息成功！');location.href='Contract!findContract.action?flag=3';</script>");
+        auditingVO.setResultMessage("<script>alert('添加审核信息成功！');location.href='contract/Contract!findContract.action?flag=3';</script>");
         return SUCCESS;
     }
 

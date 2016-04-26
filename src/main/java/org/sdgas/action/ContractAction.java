@@ -206,18 +206,6 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
 
         contract.setReceivableOrPayMoney(Double.valueOf(contractVO.getReceivableOrPayMoney()));//应收（付）金额
 
-        //是否超结算
-        /*switch (Integer.valueOf(contractVO.getSettleAccount())) {
-            case 0:
-                contract.setSettleAccount(SettleAccount.N);
-                break;
-            case 1:
-                contract.setSettleAccount(SettleAccount.Y);
-                break;
-            case 2:
-                contract.setSettleAccount(SettleAccount.Y_N);
-                break;
-        }*/
         if (!contractVO.getDuePerformanceBond().trim().isEmpty())
             contract.setDuePerformanceBond(ChangeTime.parseStringToShortDate(contractVO.getDuePerformanceBond()));//质保金到期日期
         contract.setContractProvide(Integer.valueOf(contractVO.getContractProvide()));//合同版本提供
@@ -250,7 +238,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
 
         logger.info("用户：" + user.getUserName() + "上传了一份附件（" + attachment.getId() + ")IP:" + ip);
 
-        contractVO.setResultMessage("<script>alert('添加成功！');location.href='/page/contract/addContract.jsp';</script>");
+        contractVO.setResultMessage("<script>alert('添加成功！');location.href='contract/page/contract/addContract.jsp';</script>");
         return SUCCESS;
     }
 
@@ -350,7 +338,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         Contract contract = contractService.findContractById(contractVO.getContractId());
         if (contract == null) {
             logger.info("用户：" + user.getUserName() + "查找了一份无效合同（" + contractVO.getContractId() + ")IP:" + ip);
-            contractVO.setResultMessage("<script>alert('找不到改合同！请与管理员联系');location.href='Contract!findContract.action';</script>");
+            contractVO.setResultMessage("<script>alert('找不到改合同！请与管理员联系');location.href='contract/Contract!findContract.action';</script>");
         }
         contractVO.setContract(contract);
         String tmp[] = contract.getContractSignCompany().split(",");
@@ -405,7 +393,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
             }
             logger.info("用户：" + user.getUserName() + "归档合同（" + contract.getContractId() + ")IP:" + ip);
         }
-        contractVO.setResultMessage("<script>alert('合同归档成功');location.href='Payment!closeContract.action';</script>");
+        contractVO.setResultMessage("<script>alert('合同归档成功');location.href='contract/Payment!closeContract.action';</script>");
         return SUCCESS;
     }
 
