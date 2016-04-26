@@ -33,21 +33,21 @@ public class ContractServiceImpl extends DaoSupport<Contract> implements Contrac
     @Override
     public List<Contract> findOverDate() {
         Query query = em.createQuery("from Contract c where to_days(c.contractEndDate)-to_days(now()) < 7 and c.state>?1");
-        query.setParameter(1, ContractState.CONPLETED);
+        query.setParameter(1, ContractState.COMPLETED);
         return query.getResultList();
     }
 
     @Override
     public List<Contract> findOverPerformanceBond() {
         Query query = em.createQuery("from Contract c where to_days(c.duePerformanceBond)-to_days(now()) < 7 and c.state>?1");
-        query.setParameter(1, ContractState.CONPLETED);
+        query.setParameter(1, ContractState.COMPLETED);
         return query.getResultList();
     }
 
     @Override
     public List<Contract> findContractByCloseDate(String closeDate) {
         Query query = em.createQuery("from Contract c where c.state>?1 and year(contractCloseDate)= ?2 and month(contractCloseDate)=?3");
-        query.setParameter(1, ContractState.CONPLETED);
+        query.setParameter(1, ContractState.COMPLETED);
         int year = Integer.valueOf(closeDate.split("-")[0]);
         int month = Integer.valueOf(closeDate.split("-")[1]);
         query.setParameter(2,year);
@@ -57,9 +57,8 @@ public class ContractServiceImpl extends DaoSupport<Contract> implements Contrac
 
     @Override
     public List<Contract> findContractByNOTClose() {
-        Query query = em.createQuery("from Contract c where c.state=?1 or c.state=?2");
-        query.setParameter(1, ContractState.COUNTERSIGN);
-        query.setParameter(2, ContractState.PAY);
+        Query query = em.createQuery("from Contract c where c.state!=?1");
+        query.setParameter(1, ContractState.COMPLETED);
         return query.getResultList();
     }
 

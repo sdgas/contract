@@ -220,7 +220,7 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
         if (!contractVO.getDuePerformanceBond().trim().isEmpty())
             contract.setDuePerformanceBond(ChangeTime.parseStringToShortDate(contractVO.getDuePerformanceBond()));//质保金到期日期
         contract.setContractProvide(Integer.valueOf(contractVO.getContractProvide()));//合同版本提供
-        contract.setRemark(contractVO.getRemark());//备注
+        contract.setRemark(contractVO.getRemark()+"\n 预算外审核信息："+contractVO.getSHremark());//备注
         contract.setLawer(Integer.valueOf(contractVO.getLawer()));//律师咨询
 
         contract.setPaymentDate(contractVO.getPaymentDate());
@@ -390,13 +390,12 @@ public class ContractAction extends MyActionSupport implements ModelDriven<Contr
     }
 
     public String closeContract() {
-        System.out.printf(contractVO.getContractIds());
         String[] contractIds = contractVO.getContractIds().split(",");
         for (String c : contractIds) {
             Contract contract = contractService.findContractById(c);
             try {
                 contract.setContractCloseDate(ChangeTime.parseShortDate(null));
-                contract.setState(ContractState.CONPLETED);
+                contract.setState(ContractState.COMPLETED);
                 contractService.update(contract);
             } catch (Exception e) {
                 logger.info("用户：" + user.getUserName() + "归档合同故障（" + contract.getContractId() + ")IP:" + ip);

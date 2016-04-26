@@ -684,8 +684,15 @@ public class ExcelUtil {
 
                 cell = r.createCell(10);
                 cell.setCellType(XSSFCell.CELL_TYPE_STRING);
-                SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-                cell.setCellValue(" " + df.format(new Date(c.getContractCloseDate().getTime() + 30 * 24 * 60 * 60 * 1000)));
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                //延后30天
+                Date date = c.getSignContractDate();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                calendar.add(5, 30);
+                Date newdate = calendar.getTime();
+                cell.setCellValue(" " + df.format(newdate));
+
                 cell.setCellStyle(cs);
             } catch (Exception e) {
                 e.printStackTrace();

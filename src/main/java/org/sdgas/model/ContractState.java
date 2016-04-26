@@ -8,7 +8,7 @@ public enum ContractState {
     /**
      * 完成
      */
-    CONPLETED {
+    COMPLETED {
         public int getContractState() {
             return 0;
         }
@@ -52,7 +52,7 @@ public enum ContractState {
     @Override
     public String toString() {
         switch (this) {
-            case CONPLETED:
+            case COMPLETED:
                 return "完成";
             case CANCELED:
                 return "作废";

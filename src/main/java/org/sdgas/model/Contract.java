@@ -139,7 +139,7 @@ public class Contract {
     /**
      * 审结日期（提交到招采部时间）
      */
-    private Date contractCloseDate;
+    private Date contractCloseDate ;
 
     /**
      * 印花税 0未购买 1已购买 2无须购买

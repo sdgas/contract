@@ -120,9 +120,13 @@
             </tr>
             <tr style="display:none" id="displayTr2">
                 <td>上报审核：</td>
-                <td colspan="5">
+                <td colspan="2">
                     <input type="radio" name="outBudget" value="0">未通过审批
                     <input type="radio" name="outBudget" value="1">已通过审批
+                </td>
+                <td>审核备注：</td>
+                <td colspan="2">
+                    <input type="text" name="SHremark">
                 </td>
             </tr>
             <tr>

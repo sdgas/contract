@@ -74,6 +74,16 @@ public class ContractVO extends BaseVO {
     private File upload;
     private String path;
 
+    private String SHremark;
+
+    public String getSHremark() {
+        return SHremark;
+    }
+
+    public void setSHremark(String SHremark) {
+        this.SHremark = SHremark;
+    }
+
     public File getUpload() {
         return upload;
     }
